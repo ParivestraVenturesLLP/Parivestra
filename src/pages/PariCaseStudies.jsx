@@ -175,12 +175,12 @@ const PariCaseStudies = () => {
                         Detailed documentation including strategy decks, execution frameworks, and outcome metrics for each brand engagement.
                     </p>
                     <a
-                        href="https://www.canva.com/design/DAGnCSjB6Gg/phbckJVpepIfHc_prCwpxg/edit"
+                        href="https://drive.google.com/file/d/10SdJ7aKV-obvXBfMDk_sj3jOELq23IN6/view?usp=sharing"
                         target="_blank"
                         rel="noreferrer"
                         className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#FF4500] to-[#FF6B35] text-white font-semibold text-[16px] rounded-[14px] hover:from-[#E03D00] hover:to-[#FF4500] transition-all shadow-xl shadow-orange-500/30"
                     >
-                        Open in Canva →
+                        Open →
                     </a>
                 </div>
             </section>
