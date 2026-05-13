@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import PariNavbar from './PariNavbar';
 import PariFooter from './PariFooter';
 import { Link } from 'react-router-dom';
@@ -78,6 +79,12 @@ const segments = [
 ];
 
 const PariDistribution = () => {
+    useEffect(() => {
+        if (window.fbq) {
+            window.fbq('track', 'ViewContent', { content_name: 'Services Page' });
+        }
+    }, []);
+
     return (
         <div className="bg-[var(--pari-bg-primary)] min-h-screen text-[var(--pari-text-primary)] font-sans transition-colors">
             <PariNavbar />

@@ -32,6 +32,16 @@ export const useContactForm = () => {
         try {
             const response = await sendContactMessage(formData);
             if (response.success) {
+                // Meta Pixel Lead Event
+                if (window.fbq) {
+                    window.fbq('track', 'Lead', {
+                        content_name: 'Parivestra Registration Form',
+                        content_category: 'Agency Inquiry',
+                        value: 0,
+                        currency: 'INR'
+                    });
+                }
+
                 setStatus('success');
                 setFormData({
                     name: '',

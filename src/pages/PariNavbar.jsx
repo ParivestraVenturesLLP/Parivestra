@@ -71,6 +71,7 @@ const PariNavbar = () => {
                     <ThemeToggle />
                     <Link
                         to="/contact"
+                        onClick={() => window.fbq && window.fbq('track', 'Contact')}
                         className="hidden lg:flex px-5 py-2.5 text-[14px] font-semibold bg-gradient-to-r from-[#FF4500] to-[#FF6B35] text-white rounded-[12px] hover:from-[#E03D00] hover:to-[#FF4500] transition-all shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40"
                     >
                         Partner With Us
@@ -109,7 +110,10 @@ const PariNavbar = () => {
                     ))}
                     <Link
                         to="/contact"
-                        onClick={() => setMenuOpen(false)}
+                        onClick={() => {
+                            setMenuOpen(false);
+                            window.fbq && window.fbq('track', 'Contact');
+                        }}
                         className="mt-2 px-5 py-3 text-[15px] font-semibold bg-gradient-to-r from-[#FF4500] to-[#FF6B35] text-white rounded-[12px] text-center"
                     >
                         Partner With Us

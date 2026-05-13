@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PariNavbar from './PariNavbar';
 import PariFooter from './PariFooter';
 
 const PariAbout = () => {
+    useEffect(() => {
+        if (window.fbq) {
+            window.fbq('track', 'ViewContent', { content_name: 'About Page' });
+        }
+    }, []);
+
     return (
         <div className="bg-[var(--pari-bg-primary)] min-h-screen text-[var(--pari-text-primary)] font-sans transition-colors">
             <PariNavbar />

@@ -147,6 +147,21 @@ const PariFooter = () => {
                     <div className="text-[13px] text-[var(--pari-text-secondary)] transition-colors">Distribution, engineered for outcomes.</div>
                 </div>
             </div>
+
+            {/* Floating WhatsApp Button */}
+            <a
+                href="https://wa.me/910000000000" // Placeholder, user should update this
+                id="whatsappBtn"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => window.fbq && window.fbq('track', 'InitiateCheckout')}
+                className="fixed bottom-8 right-8 z-[100] w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform duration-300 group"
+            >
+                <i className="fa-brands fa-whatsapp text-[32px]"></i>
+                <span className="absolute right-full mr-4 px-3 py-1 bg-white text-black text-[12px] font-bold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-xl pointer-events-none">
+                    Chat with us
+                </span>
+            </a>
         </section>
     );
 };
