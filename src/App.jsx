@@ -6,6 +6,7 @@ import PariClientele from './pages/PariClientele';
 import PariDistribution from './pages/PariDistribution';
 import PariPartnerships from './pages/PariPartnerships';
 import PariCaseStudies from './pages/PariCaseStudies';
+import PariAIApps from './pages/PariAIApps';
 import PariContact from './pages/PariContact';
 import ScrollToTop from './components/ScrollToTop';
 
@@ -20,6 +21,7 @@ function App() {
         <Route path="/distribution" element={<PariDistribution />} />
         <Route path="/partnerships" element={<PariPartnerships />} />
         <Route path="/case-studies" element={<PariCaseStudies />} />
+        <Route path="/ai-apps" element={<PariAIApps />} />
         <Route path="/contact" element={<PariContact />} />
       </Routes>
     </Router>

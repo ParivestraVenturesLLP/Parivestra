@@ -104,24 +104,6 @@ const PariDistribution = () => {
                 </div>
             </section>
 
-            {/* ── STATS ─────────────────────────────────────── */}
-            <section className="py-16 px-6 bg-[var(--pari-bg-secondary)] dark:bg-[#080F18] transition-colors">
-                <div className="max-w-[1000px] mx-auto">
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
-                        {[
-                            { val: '100+', label: 'Brands Enabled', color: '#FF4500' },
-                            { val: '300M+', label: 'Device & Community Touchpoints', color: '#9999FE' },
-                            { val: '₹120+ Cr', label: 'Aggregated Sales Driven', color: '#81E4BA' },
-                        ].map((s) => (
-                            <div key={s.val} className="bg-[var(--pari-bg-secondary)] dark:bg-white/4 border border-[var(--pari-border)] rounded-2xl p-8 shadow-sm dark:shadow-none">
-                                <div className="text-[44px] font-bold mb-2 transition-colors" style={{ color: s.color }}>{s.val}</div>
-                                <div className="text-[14px] text-[var(--pari-text-secondary)] font-medium transition-colors">{s.label}</div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
             {/* ── TABS: OFFLINE + DIGITAL ───────────────────── */}
             {['Offline', 'Digital'].map((type) => (
                 <section key={type} className={`py-24 px-6 ${type === 'Offline' ? 'bg-[var(--pari-bg-primary)]' : 'bg-[var(--pari-bg-secondary)] dark:bg-[#080F18]'} transition-colors`}>

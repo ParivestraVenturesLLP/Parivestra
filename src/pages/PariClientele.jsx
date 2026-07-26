@@ -101,7 +101,7 @@ const PariClientele = () => {
                         {brands.map((brand) => (
                             <div
                                 key={brand.name}
-                                className="group relative flex flex-col items-center justify-center h-[180px] bg-white border border-[var(--pari-border)] hover:border-[#FF4500]/50 rounded-[28px] overflow-hidden transition-all duration-500 hover:shadow-[0_20px_40px_-15px_rgba(255,69,0,0.15)] hover:-translate-y-2 cursor-pointer"
+                                className="group relative flex flex-col items-center justify-center h-[180px] dark:bg-[#EDEBE6] dark:shadow-sm dark:shadow-black/40 border border-[var(--pari-border)] hover:border-[#FF4500]/50 rounded-[28px] overflow-hidden transition-all duration-500 hover:shadow-[0_20px_40px_-15px_rgba(255,69,0,0.15)] hover:-translate-y-2 cursor-pointer"
                             >
                                 {/* Dark Gradient Overlay on Hover for Text Readability */}
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none" />
@@ -137,16 +137,16 @@ const PariClientele = () => {
                     </h2>
                     <p className="text-[#FF4500] text-[22px] font-bold mb-10">Community driven Offline Capabilities</p>
                     <div className="flex flex-wrap gap-4 items-center bg-white/5 p-4 rounded-xl border border-white/10 w-fit">
-                        <div className="bg-white p-2 rounded-lg flex items-center justify-center h-10 w-24">
+                        <div className="bg-white/90 p-2 rounded-lg flex items-center justify-center h-10 w-24">
                             <img src={aptosLogo} className="h-full w-full object-contain mix-blend-multiply" alt="Aptos" />
                         </div>
-                        <div className="bg-white p-2 rounded-lg flex items-center justify-center h-10 w-24">
+                        <div className="bg-white/90 p-2 rounded-lg flex items-center justify-center h-10 w-24">
                             <img src={riseinLogo} className="h-full w-full object-contain mix-blend-multiply" alt="Rise In" />
                         </div>
-                        <div className="bg-white p-2 rounded-lg flex items-center justify-center h-10 w-24">
+                        <div className="bg-white/90 p-2 rounded-lg flex items-center justify-center h-10 w-24">
                             <img src={redbullLogo} className="h-full w-full object-contain mix-blend-multiply" alt="Red Bull" />
                         </div>
-                        <div className="bg-white p-2 rounded-lg flex items-center justify-center h-10 w-24">
+                        <div className="bg-white/90 p-2 rounded-lg flex items-center justify-center h-10 w-24">
                             <img src={ndtvLogo} className="h-full w-full object-contain mix-blend-multiply" alt="NDTV" />
                         </div>
                     </div>
@@ -343,7 +343,7 @@ const PariClientele = () => {
                             <h3 className="text-white text-[28px] font-bold mb-8 text-center font-sans tracking-tight">Success Stories</h3>
                             <div className="bg-white/5 border border-white/10 rounded-3xl p-8 lg:p-12 gap-8 grid grid-cols-2 shadow-2xl h-full content-start">
                                 {[indiatodayLogo, wowmomoLogo, hindustantimesLogo, tataLogo, meeshoLogo, fixdermaLogo, amazonLogo, budweiserLogo, fastupLogo, hersheysLogo].map((logo, idx) => (
-                                    <div key={idx} className="flex items-center justify-center bg-white p-4 rounded-xl aspect-[3/2] shadow-lg hover:scale-105 transition-transform duration-300">
+                                    <div key={idx} className="flex items-center justify-center bg-[#EDEBE6] p-4 rounded-xl aspect-[3/2] shadow-lg shadow-black/30 hover:scale-105 transition-transform duration-300">
                                         <img src={logo} className="w-full h-full object-contain mix-blend-multiply" alt="Partner Logo" />
                                     </div>
                                 ))}
@@ -368,7 +368,7 @@ const PariClientele = () => {
                     <div className="flex-[1.2] w-full bg-[#1A2234] rounded-3xl p-8 md:p-12 border border-white/5 relative shadow-2xl">
                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 lg:gap-6 items-center justify-items-center w-full">
                             {[aptosLogo, riseinLogo, swiggyLogo, hangyoLogo, relianceLogo, paytmLogo, meeshoLogo, ohiLogo, redbullLogo, wowmomoLogo, idpLogo, stockpeLogo, pizzahutLogo, admitadLogo, excellentLogo, nescafeLogo, fixdermaLogo, indiatodayLogo, amazonLogo, hindustantimesLogo, tataLogo, budweiserLogo, gilletteLogo, hersheysLogo, ndtvLogo, fastupLogo].map((logo, idx) => (
-                                <div key={idx} className="bg-white rounded-xl shadow-md border border-gray-100 flex items-center justify-center p-3 h-16 w-full max-w-[140px] hover:scale-105 transition-transform duration-300">
+                                <div key={idx} className="bg-[#EDEBE6] rounded-xl shadow-md shadow-black/30 border border-black/5 flex items-center justify-center p-3 h-16 w-full max-w-[140px] hover:scale-105 transition-transform duration-300">
                                     <img src={logo} className="w-full h-full object-contain mix-blend-multiply" alt="Partner Logo" />
                                 </div>
                             ))}

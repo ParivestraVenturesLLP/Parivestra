@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PariNavbar from './PariNavbar';
 import PariFooter from './PariFooter';
@@ -117,6 +117,13 @@ const PariHome = () => {
     const [order, setOrder] = useState(['ai', 'influencer', 'offline', 'data']);
     const [hovered, setHovered] = useState(null);
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setOrder(prev => [...prev.slice(1), prev[0]]);
+        }, 3000);
+        return () => clearInterval(interval);
+    }, []);
+
     const getPosStyle = (id) => {
         const pos = order.indexOf(id);
         const yOffsets = [150, 75, 35, 0];
@@ -207,7 +214,7 @@ const PariHome = () => {
                     <div className="absolute top-0 right-0 w-24 h-full bg-gradient-to-l from-[var(--pari-bg-primary)] to-transparent z-10 pointer-events-none transition-all" />
                     <div className="p-scroll-l items-center gap-10 px-5">
                         {[...topLogos, ...topLogos].map((logo, i) => (
-                            <div key={i} className="flex items-center justify-center bg-white rounded-xl shadow-sm border border-[var(--pari-border)] p-4 h-[80px] min-w-[140px] transition-all duration-300 hover:shadow-md hover:-translate-y-1 mx-3">
+                            <div key={i} className="flex items-center justify-center dark:bg-[#EDEBE6] dark:shadow-sm dark:shadow-black/40 rounded-xl border border-[var(--pari-border)] p-4 h-[80px] min-w-[140px] transition-all duration-300 hover:shadow-md hover:-translate-y-1 mx-3">
                                 <img src={logo} alt="Brand Logo" className="h-[40px] md:h-[50px] w-auto object-contain mix-blend-multiply" />
                             </div>
                         ))}

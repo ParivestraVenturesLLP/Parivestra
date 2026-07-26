@@ -13,6 +13,7 @@ const navLinks = [
     { label: 'Case Studies', to: '/case-studies' },
     { label: 'Distribution', to: '/distribution' },
     { label: 'About', to: '/about' },
+    { label: 'AI & Apps', to: '/ai-apps' },
 ];
 
 const PariNavbar = () => {
@@ -27,6 +28,10 @@ const PariNavbar = () => {
         handleScroll();
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    useEffect(() => {
+        setMenuOpen(false);
+    }, [location.pathname]);
 
     const isActive = (to) => location.pathname === to || (to !== '/' && location.pathname.startsWith(to));
 
@@ -79,6 +84,7 @@ const PariNavbar = () => {
                     {/* Mobile menu button */}
                     <button
                         onClick={() => setMenuOpen(!menuOpen)}
+                        aria-label={menuOpen ? 'Close menu' : 'Open menu'}
                         className="lg:hidden p-2 rounded-lg text-[var(--pari-text-secondary)] hover:text-[var(--pari-text-primary)] hover:bg-[var(--pari-border)]"
                     >
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -94,7 +100,7 @@ const PariNavbar = () => {
 
             {/* Mobile Menu */}
             {menuOpen && (
-                <div className="lg:hidden bg-[var(--pari-bg-primary)]/98 backdrop-blur-xl border-t border-[var(--pari-border)] px-6 py-4 flex flex-col gap-1">
+                <div className="lg:hidden bg-[var(--pari-bg-primary)]/98 backdrop-blur-xl border-t border-[var(--pari-border)] px-6 py-4 flex flex-col gap-1 max-h-[calc(100vh-80px)] overflow-y-auto">
                     {navLinks.map((link) => (
                         <Link
                             key={link.to}

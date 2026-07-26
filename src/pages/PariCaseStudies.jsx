@@ -1,6 +1,7 @@
 import React from 'react';
 import PariNavbar from './PariNavbar';
 import PariFooter from './PariFooter';
+import ScrollReveal from '../components/ScrollReveal';
 
 // Import local logos
 import swiggyLogo from '../assets/swiggy.png';
@@ -123,14 +124,15 @@ const PariCaseStudies = () => {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {caseStudies.map((cs) => (
-                            <div
+                        {caseStudies.map((cs, i) => (
+                            <ScrollReveal
                                 key={cs.brand}
-                                className="bg-[var(--pari-bg-secondary)] dark:bg-[#080F18] border border-[var(--pari-border)] rounded-2xl overflow-hidden hover:bg-[var(--pari-bg-secondary)]/80 dark:hover:bg-[#0c1622] hover:border-[#FF4500]/25 transition-all group shadow-sm dark:shadow-none"
+                                delay={(i % 2) * 120}
+                                className="bg-[var(--pari-bg-secondary)] dark:bg-[#080F18] border border-[var(--pari-border)] rounded-2xl overflow-hidden hover:bg-[var(--pari-bg-secondary)]/80 dark:hover:bg-[#0c1622] hover:border-[#FF4500]/25 hover:-translate-y-1 transition-all group shadow-sm dark:shadow-none"
                             >
                                 {/* Card header */}
                                 <div className="p-7 border-b border-[var(--pari-border)] flex items-center gap-5 transition-colors" style={{ background: `linear-gradient(135deg, ${cs.color}18 0%, transparent 70%)` }}>
-                                    <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center p-2 shadow-sm shrink-0 border border-gray-100 dark:border-gray-800">
+                                    <div className="w-16 h-16 dark:bg-[#EDEBE6] dark:shadow-sm dark:shadow-black/40 rounded-xl flex items-center justify-center p-2 shrink-0 border border-gray-100 dark:border-gray-800">
                                         <img
                                             src={cs.logo}
                                             alt={`${cs.brand} Logo`}
@@ -160,7 +162,7 @@ const PariCaseStudies = () => {
                                         ))}
                                     </div>
                                 </div>
-                            </div>
+                            </ScrollReveal>
                         ))}
                     </div>
                 </div>
