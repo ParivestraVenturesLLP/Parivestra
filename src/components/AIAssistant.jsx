@@ -59,9 +59,9 @@ const AIAssistant = () => {
                 type="button"
                 onClick={() => setOpen((v) => !v)}
                 aria-label="Open Assistant"
-                className="fixed bottom-25 right-8 z-100 w-14 h-14 bg-linear-to-br from-[#FF4500] to-[#FF6B35] text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform duration-300 group"
+                className="fixed bottom-24 right-9 z-100 w-11 h-11 bg-linear-to-br from-[#FF4500] to-[#FF6B35] text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform duration-300 group"
             >
-                <i className={`fa-solid ${open ? 'fa-xmark' : 'fa-robot'} text-[26px]`}></i>
+                <i className={`fa-solid ${open ? 'fa-xmark' : 'fa-robot'} text-[18px]`}></i>
                 {!open && (
                     <span className="absolute right-full mr-4 px-3 py-1 bg-white text-black text-[12px] font-bold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-xl pointer-events-none">
                         Chat with Assistant
