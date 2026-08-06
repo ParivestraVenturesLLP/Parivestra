@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import PariHome from './pages/PariHome';
 import PariAbout from './pages/PariAbout';
 import PariClientele from './pages/PariClientele';
@@ -30,6 +31,7 @@ function App() {
         <Route path="/admin" element={<AdminLeads />} />
         <Route path="/admin/tools" element={<AdminTools />} />
       </Routes>
+      <Analytics />
     </Router>
   );
 }
