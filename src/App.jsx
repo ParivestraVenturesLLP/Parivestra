@@ -8,6 +8,9 @@ import PariPartnerships from './pages/PariPartnerships';
 import PariCaseStudies from './pages/PariCaseStudies';
 import PariAIApps from './pages/PariAIApps';
 import PariContact from './pages/PariContact';
+import AdminLogin from './pages/AdminLogin';
+import AdminLeads from './pages/AdminLeads';
+import AdminTools from './pages/AdminTools';
 import ScrollToTop from './components/ScrollToTop';
 
 function App() {
@@ -23,6 +26,9 @@ function App() {
         <Route path="/case-studies" element={<PariCaseStudies />} />
         <Route path="/ai-apps" element={<PariAIApps />} />
         <Route path="/contact" element={<PariContact />} />
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin" element={<AdminLeads />} />
+        <Route path="/admin/tools" element={<AdminTools />} />
       </Routes>
     </Router>
   );

@@ -72,39 +72,39 @@ const brands = [
 
 const PariClientele = () => {
     return (
-        <div className="bg-[var(--pari-bg-primary)] min-h-screen text-[var(--pari-text-primary)] font-sans transition-colors">
+        <div className="bg-(--pari-bg-primary) min-h-screen text-(--pari-text-primary) font-sans transition-colors">
             <PariNavbar />
 
             {/* ── HERO ─────────────────────────────────────── */}
             <section className="pt-40 pb-24 px-6 text-center relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-b from-[#FF4500]/8 via-transparent to-transparent pointer-events-none" />
-                <div className="max-w-[760px] mx-auto relative z-10">
+                <div className="absolute inset-0 bg-linear-to-b from-[#FF4500]/8 via-transparent to-transparent pointer-events-none" />
+                <div className="max-w-190 mx-auto relative z-10">
                     <span className="inline-block px-4 py-1.5 rounded-full bg-[#FF4500]/15 border border-[#FF4500]/30 text-[#FF4500] text-[12px] font-bold uppercase tracking-widest mb-8 transition-colors">Clientele</span>
-                    <h1 className="text-[52px] md:text-[68px] font-bold tracking-[-0.03em] leading-[1.0] text-[var(--pari-text-primary)] mb-6 transition-colors">
+                    <h1 className="text-[52px] md:text-[68px] font-bold tracking-[-0.03em] leading-none text-(--pari-text-primary) mb-6 transition-colors">
                         Brands we've{' '}
                         <em style={{ fontFamily: 'Georgia, serif', color: '#FF4500' }}>worked with</em>
                     </h1>
-                    <p className="text-[19px] text-[var(--pari-text-secondary)] leading-relaxed transition-colors">
+                    <p className="text-[19px] text-(--pari-text-secondary) leading-relaxed transition-colors">
                         We build nationwide campaigns tailored to distinct regional markets, leveraging a robust offline and online presence.
                     </p>
                 </div>
             </section>
 
             {/* ── BRAND GRID (Premium Collage) ──────────────── */}
-            <section className="py-24 px-4 sm:px-6 bg-[var(--pari-bg-secondary)] dark:bg-[#080F18] transition-colors relative overflow-hidden">
+            <section className="py-24 px-4 sm:px-6 bg-(--pari-bg-secondary) dark:bg-[#080F18] transition-colors relative overflow-hidden">
                 {/* Decorative background blur to make it feel rich */}
                 <div className="absolute top-1/4 left-1/4 w-[40vw] h-[40vw] bg-[#FF4500]/5 rounded-full blur-[120px] pointer-events-none" />
                 <div className="absolute bottom-1/4 right-1/4 w-[30vw] h-[30vw] bg-[#FF6B35]/5 rounded-full blur-[100px] pointer-events-none" />
 
-                <div className="max-w-[1400px] mx-auto relative z-10">
+                <div className="max-w-350 mx-auto relative z-10">
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-5">
                         {brands.map((brand) => (
                             <div
                                 key={brand.name}
-                                className="group relative flex flex-col items-center justify-center h-[180px] dark:bg-[#EDEBE6] dark:shadow-sm dark:shadow-black/40 border border-[var(--pari-border)] hover:border-[#FF4500]/50 rounded-[28px] overflow-hidden transition-all duration-500 hover:shadow-[0_20px_40px_-15px_rgba(255,69,0,0.15)] hover:-translate-y-2 cursor-pointer"
+                                className="group relative flex flex-col items-center justify-center h-45 dark:bg-[#EDEBE6] dark:shadow-sm dark:shadow-black/40 border border-(--pari-border) hover:border-[#FF4500]/50 rounded-[28px] overflow-hidden transition-all duration-500 hover:shadow-[0_20px_40px_-15px_rgba(255,69,0,0.15)] hover:-translate-y-2 cursor-pointer"
                             >
                                 {/* Dark Gradient Overlay on Hover for Text Readability */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none" />
+                                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none" />
 
                                 {/* Full Tile Logo Plate */}
                                 <div className="absolute inset-0 z-0 p-8 flex items-center justify-center group-hover:scale-[0.85] group-hover:-translate-y-3 transition-all duration-500">
@@ -127,11 +127,11 @@ const PariClientele = () => {
             </section>
 
             {/* ── SECTION 1: PARIVESTRA OFFLINE CAPABILITIES ── */}
-            <section className="py-24 px-6 bg-[#0B1120] relative overflow-hidden flex flex-col lg:flex-row items-center justify-between min-h-[700px]">
+            <section className="py-24 px-6 bg-[#0B1120] relative overflow-hidden flex flex-col lg:flex-row items-center justify-between min-h-175">
                 {/* Decorative glow */}
-                <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#FF4500]/10 rounded-full blur-[150px] pointer-events-none" />
+                <div className="absolute top-0 right-0 w-150 h-150 bg-[#FF4500]/10 rounded-full blur-[150px] pointer-events-none" />
 
-                <div className="max-w-[500px] relative z-10 lg:ml-[5%] mb-16 lg:mb-0">
+                <div className="max-w-125 relative z-10 lg:ml-[5%] mb-16 lg:mb-0">
                     <h2 className="text-[48px] md:text-[64px] font-bold text-white leading-[1.1] tracking-tight mb-4">
                         Parivestra Offline<br />Capabilities
                     </h2>
@@ -177,7 +177,7 @@ const PariClientele = () => {
                     ].map((circ, i) => (
                         <div
                             key={i}
-                            className={`absolute rounded-full flex flex-col items-center justify-center text-center shadow-xl transition-transform hover:scale-105 border border-white/10 ${circ.highlight ? 'bg-gradient-to-br from-[#8B0000] to-[#4A0000] z-20 border-[#9333ea]' : 'bg-gradient-to-br from-[#6B1B1B] to-[#3B0B0B]/80 z-10 mix-blend-screen opacity-90'}`}
+                            className={`absolute rounded-full flex flex-col items-center justify-center text-center shadow-xl transition-transform hover:scale-105 border border-white/10 ${circ.highlight ? 'bg-linear-to-br from-[#8B0000] to-[#4A0000] z-20 border-[#9333ea]' : 'bg-linear-to-br from-[#6B1B1B] to-[#3B0B0B]/80 z-10 mix-blend-screen opacity-90'}`}
                             style={{ top: circ.top, left: circ.left, width: circ.size, height: circ.size, padding: '10px' }}
                         >
                             <span className="text-white font-bold text-[18px] mb-1">{circ.val}</span>
@@ -192,11 +192,11 @@ const PariClientele = () => {
                 <h2 className="text-[36px] md:text-[44px] font-bold text-white mb-2 font-sans tracking-tight">
                     THE PROBLEM MOST BRANDS FACE TODAY...
                 </h2>
-                <p className="text-[17px] text-white/70 italic mb-16 max-w-[800px] mx-auto">
+                <p className="text-[17px] text-white/70 italic mb-16 max-w-200 mx-auto">
                     Despite high spends on Google and Meta ads & influencer partnerships, most brands struggle with:
                 </p>
 
-                <div className="flex flex-wrap justify-center gap-6 max-w-[1200px] mx-auto mb-16">
+                <div className="flex flex-wrap justify-center gap-6 max-w-300 mx-auto mb-16">
                     {[
                         { title: 'Low retention among Gen Z users and lack of any positive Word-of-Mouth', icon: 'fa-solid fa-users-slash', color: 'border-white' },
                         { title: 'Lack of authentic reviews or UGC on Play Store/App Store', icon: 'fa-solid fa-mobile-screen', color: 'border-[#991B1B]' },
@@ -204,30 +204,30 @@ const PariClientele = () => {
                         { title: 'Poor on-ground visibility beyond digital campaigns', icon: 'fa-solid fa-map-location-dot', color: 'border-[#991B1B]' },
                         { title: 'No community-led momentum — users download, but don\'t endorse', icon: 'fa-solid fa-comments', color: 'border-white' }
                     ].map((card, i) => (
-                        <div key={i} className={`bg-white rounded-2xl w-full sm:w-[220px] p-6 shadow-xl flex flex-col items-center border-t-[8px] ${card.color} ${card.color === 'border-[#991B1B]' ? 'bg-[#991B1B]/10' : ''}`}>
+                        <div key={i} className={`bg-white rounded-2xl w-full sm:w-55 p-6 shadow-xl flex flex-col items-center border-t-[8px] ${card.color} ${card.color === 'border-[#991B1B]' ? 'bg-[#991B1B]/10' : ''}`}>
                             <i className={`${card.icon} text-4xl mb-5 ${card.color === 'border-[#991B1B]' ? 'text-white' : 'text-[#333]'}`}></i>
                             <p className={`text-[14px] font-bold text-center ${card.color === 'border-[#991B1B]' ? 'text-white' : 'text-[#222]'}`}>{card.title}</p>
                         </div>
                     ))}
                 </div>
 
-                <div className="max-w-[1000px] mx-auto relative mt-20">
+                <div className="max-w-250 mx-auto relative mt-20">
                     {/* Fake divider line */}
                     <div className="absolute top-0 inset-x-0 h-1 bg-[#991B1B] -mt-10" />
 
                     <div className="bg-[#1A2234] border border-white/5 rounded-2xl p-8 pb-16 z-10 relative shadow-2xl">
                         <h3 className="text-[26px] font-bold text-white mb-8">The Missed Opportunity: India's College Ecosystem</h3>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                            <div className="aspect-video bg-gradient-to-br from-indigo-500/20 to-purple-500/20 rounded-xl overflow-hidden border border-white/10 flex items-center justify-center">
+                            <div className="aspect-video bg-linear-to-br from-indigo-500/20 to-purple-500/20 rounded-xl overflow-hidden border border-white/10 flex items-center justify-center">
                                 <i className="fa-solid fa-people-group text-3xl text-white/40"></i>
                             </div>
-                            <div className="aspect-video bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-xl overflow-hidden border border-white/10 flex items-center justify-center">
+                            <div className="aspect-video bg-linear-to-br from-red-500/20 to-orange-500/20 rounded-xl overflow-hidden border border-white/10 flex items-center justify-center">
                                 <i className="fa-solid fa-person-running text-3xl text-white/40"></i>
                             </div>
-                            <div className="aspect-video bg-gradient-to-br from-yellow-500/20 to-amber-500/20 rounded-xl overflow-hidden border border-white/10 flex items-center justify-center">
+                            <div className="aspect-video bg-linear-to-br from-yellow-500/20 to-amber-500/20 rounded-xl overflow-hidden border border-white/10 flex items-center justify-center">
                                 <img src={hangyoLogo} alt="Hangyo" className="w-16 h-auto opacity-50 grayscale" />
                             </div>
-                            <div className="aspect-video bg-gradient-to-br from-emerald-500/20 to-teal-500/20 rounded-xl overflow-hidden border border-white/10 flex items-center justify-center">
+                            <div className="aspect-video bg-linear-to-br from-emerald-500/20 to-teal-500/20 rounded-xl overflow-hidden border border-white/10 flex items-center justify-center">
                                 <i className="fa-solid fa-hands-clapping text-3xl text-white/40"></i>
                             </div>
                         </div>
@@ -248,12 +248,12 @@ const PariClientele = () => {
                 <h2 className="text-[32px] md:text-[44px] font-bold text-white uppercase tracking-tight mb-4 leading-tight">
                     THE DISTRIBUTION ENGINE BEHIND<br />EVERY CAMPAIGN
                 </h2>
-                <p className="text-white/80 italic max-w-[800px] mx-auto mb-20 text-[18px]">
+                <p className="text-white/80 italic max-w-200 mx-auto mb-20 text-[18px]">
                     Your campaigns are designed to drive both topline installs and bottomline reputation.<br />
                     Our influencer, college, and digital community network powers every growth KPI.
                 </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-[1100px] mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-275 mx-auto">
                     {[
                         { val: '10,000+', label: 'Influencer Community', text: 'across platforms like Instagram, Youtube, X, Linkedin & more in all niches like education, finance, technology etc.' },
                         { val: '170M+', label: 'Online Community', text: 'across Social media platforms & niche groups that have been built on the basis of data from our campaigns over the last 5 years.' },
@@ -261,14 +261,14 @@ const PariClientele = () => {
                     ].map((col, i) => (
                         <div key={i} className="flex flex-col items-center">
                             {/* Shiny Red Orb */}
-                            <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-[#6B0000] via-[#FF0000] to-[#FF8888] shadow-[0_0_30px_rgba(255,0,0,0.4)] mb-8 flex items-center justify-center border border-white/40 relative overflow-hidden">
+                            <div className="w-16 h-16 rounded-full bg-linear-to-tr from-[#6B0000] via-[#FF0000] to-[#FF8888] shadow-[0_0_30px_rgba(255,0,0,0.4)] mb-8 flex items-center justify-center border border-white/40 relative overflow-hidden">
                                 <div className="absolute top-1 left-2 w-4 h-4 bg-white/40 rounded-full blur-[2px]"></div>
                             </div>
 
                             <h3 className="text-[32px] font-bold text-white mb-1">{col.val}</h3>
                             <h4 className="text-[20px] font-semibold text-white mb-8">{col.label}</h4>
 
-                            <div className="bg-transparent border border-white/30 p-6 w-full text-left rounded-lg min-h-[160px] flex items-center">
+                            <div className="bg-transparent border border-white/30 p-6 w-full text-left rounded-lg min-h-40 flex items-center">
                                 <p className="text-white/90 text-[16px] leading-[1.6]">{col.text}</p>
                             </div>
                         </div>
@@ -278,7 +278,7 @@ const PariClientele = () => {
 
             {/* ── SECTION 4: OFFLINE SERVICE CAPABILITIES ── */}
             <section className="py-24 px-6 bg-[#080C17] border-t border-white/5 relative">
-                <div className="max-w-[1200px] mx-auto">
+                <div className="max-w-300 mx-auto">
                     <div className="text-center mb-16 flex flex-col items-center">
                         <div className="flex items-center gap-4 mb-2">
                             <h2 className="text-[36px] md:text-[52px] font-bold text-white tracking-tight">Offline Service Capabilities</h2>
@@ -290,7 +290,7 @@ const PariClientele = () => {
                     <div className="flex flex-col lg:flex-row gap-16">
                         {/* Timeline */}
                         <div className="flex-1 relative bg-[#0B1120] p-10 rounded-3xl border border-white/5 shadow-2xl">
-                            <div className="absolute left-[39px] top-[40px] bottom-[40px] w-1.5 bg-white/10 rounded-full"></div>
+                            <div className="absolute left-[39px] top-10 bottom-10 w-1.5 bg-white/10 rounded-full"></div>
 
                             <div className="space-y-14 relative z-10">
                                 {[
@@ -322,7 +322,7 @@ const PariClientele = () => {
                                 ].map((item, i) => (
                                     <div key={i} className="relative pl-14">
                                         {/* Dot */}
-                                        <div className={`absolute -left-[5px] top-1 w-8 h-8 rounded-full border-[3px] border-white/20 flex items-center justify-center shadow-lg ${item.dot === 'red' ? 'bg-gradient-to-tr from-[#6B0000] to-[#FF4500]' : 'bg-gradient-to-tr from-gray-300 to-white'}`}>
+                                        <div className={`absolute -left-[5px] top-1 w-8 h-8 rounded-full border-[3px] border-white/20 flex items-center justify-center shadow-lg ${item.dot === 'red' ? 'bg-linear-to-tr from-[#6B0000] to-[#FF4500]' : 'bg-linear-to-tr from-gray-300 to-white'}`}>
                                             <div className="absolute top-1 left-1.5 w-2 h-2 bg-white/60 rounded-full blur-[1px]"></div>
                                         </div>
                                         <h3 className="text-[#FF4500] text-[22px] font-bold mb-4 tracking-wide">{item.title}</h3>
@@ -355,7 +355,7 @@ const PariClientele = () => {
 
             {/* ── SECTION 5: PARTNERS WHO TRUST OUR CAMPAIGNS ── */}
             <section className="py-24 px-6 bg-[#0B1120] relative">
-                <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row items-center gap-16">
+                <div className="max-w-300 mx-auto flex flex-col md:flex-row items-center gap-16">
                     <div className="flex-[0.8] text-center md:text-left">
                         <h2 className="text-[48px] md:text-[64px] font-bold text-white leading-[1.1] tracking-tight mb-8">
                             Partners who<br />trust our<br /><span className="text-[#FF4500]">campaigns</span>
@@ -368,7 +368,7 @@ const PariClientele = () => {
                     <div className="flex-[1.2] w-full bg-[#1A2234] rounded-3xl p-8 md:p-12 border border-white/5 relative shadow-2xl">
                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 lg:gap-6 items-center justify-items-center w-full">
                             {[aptosLogo, riseinLogo, swiggyLogo, hangyoLogo, relianceLogo, paytmLogo, meeshoLogo, ohiLogo, redbullLogo, wowmomoLogo, idpLogo, stockpeLogo, pizzahutLogo, admitadLogo, excellentLogo, nescafeLogo, fixdermaLogo, indiatodayLogo, amazonLogo, hindustantimesLogo, tataLogo, budweiserLogo, gilletteLogo, hersheysLogo, ndtvLogo, fastupLogo].map((logo, idx) => (
-                                <div key={idx} className="bg-[#EDEBE6] rounded-xl shadow-md shadow-black/30 border border-black/5 flex items-center justify-center p-3 h-16 w-full max-w-[140px] hover:scale-105 transition-transform duration-300">
+                                <div key={idx} className="bg-[#EDEBE6] rounded-xl shadow-md shadow-black/30 border border-black/5 flex items-center justify-center p-3 h-16 w-full max-w-35 hover:scale-105 transition-transform duration-300">
                                     <img src={logo} className="w-full h-full object-contain mix-blend-multiply" alt="Partner Logo" />
                                 </div>
                             ))}
@@ -380,12 +380,12 @@ const PariClientele = () => {
 
             {/* ── SECTION 6: CASE STUDY ── */}
             <section className="py-24 px-6 bg-[#080C17] border-t border-white/5 overflow-hidden">
-                <div className="max-w-[1200px] mx-auto flex flex-col lg:flex-row items-center gap-16">
+                <div className="max-w-300 mx-auto flex flex-col lg:flex-row items-center gap-16">
                     {/* Image side */}
                     <div className="flex-1 w-full relative">
                         <img src={fastupLogo} className="h-16 mb-8 object-contain" alt="Fast&Up" />
                         <div className="bg-[#115E59]/20 p-6 rounded-2xl border border-[#115E59]/40 flex justify-center shadow-2xl">
-                            <div className="w-full aspect-[4/3] bg-gradient-to-br from-[#004270] to-[#002f52] rounded-xl border border-white/10 flex items-center justify-center relative overflow-hidden shadow-inner">
+                            <div className="w-full aspect-[4/3] bg-linear-to-br from-[#004270] to-[#002f52] rounded-xl border border-white/10 flex items-center justify-center relative overflow-hidden shadow-inner">
                                 <div className="text-white font-bold text-center p-6 mix-blend-screen opacity-90">
                                     <h4 className="text-[32px] sm:text-[40px] italic tracking-tight font-black leading-[1.1] mb-6">WHY INDIA<br />TRUSTS <span className="text-[#FFD700]">RELOAD?</span></h4>
                                     <div className="flex flex-col items-center gap-2">
@@ -408,21 +408,21 @@ const PariClientele = () => {
 
                         <div className="space-y-5">
                             <div className="flex gap-4">
-                                <div className="w-4 h-4 rounded-full mt-1.5 shrink-0 bg-gradient-to-br from-[#FFD700] to-[#B8860B] shadow-[0_0_10px_rgba(255,215,0,0.5)]"></div>
+                                <div className="w-4 h-4 rounded-full mt-1.5 shrink-0 bg-linear-to-br from-[#FFD700] to-[#B8860B] shadow-[0_0_10px_rgba(255,215,0,0.5)]"></div>
                                 <p className="text-white/90 text-[16px]"><span className="font-bold text-white">Campaign Duration:</span> 3 Months (Peak summer activation)</p>
                             </div>
                             <div className="flex gap-4">
-                                <div className="w-4 h-4 rounded-full mt-1.5 shrink-0 bg-gradient-to-br from-[#FFD700] to-[#B8860B] shadow-[0_0_10px_rgba(255,215,0,0.5)]"></div>
+                                <div className="w-4 h-4 rounded-full mt-1.5 shrink-0 bg-linear-to-br from-[#FFD700] to-[#B8860B] shadow-[0_0_10px_rgba(255,215,0,0.5)]"></div>
                                 <p className="text-white/90 text-[16px]"><span className="font-bold text-white">Sales Volume:</span> 25,000 bottles distributed</p>
                             </div>
                             <div className="flex gap-4">
-                                <div className="w-4 h-4 rounded-full mt-1.5 shrink-0 bg-gradient-to-br from-[#FFD700] to-[#B8860B] shadow-[0_0_10px_rgba(255,215,0,0.5)]"></div>
+                                <div className="w-4 h-4 rounded-full mt-1.5 shrink-0 bg-linear-to-br from-[#FFD700] to-[#B8860B] shadow-[0_0_10px_rgba(255,215,0,0.5)]"></div>
                                 <p className="text-white/90 text-[16px]"><span className="font-bold text-white">Target Audience:</span> Athletes, fitness enthusiasts, college students, young professionals (ages 18–35)</p>
                             </div>
 
                             <div className="flex gap-4 pt-4 relative">
                                 <div className="absolute left-[-24px] top-6 bottom-0 w-px bg-white/10 hidden md:block"></div>
-                                <div className="w-4 h-4 rounded-full mt-1.5 shrink-0 bg-gradient-to-br from-[#FFD700] to-[#B8860B] shadow-[0_0_10px_rgba(255,215,0,0.5)]"></div>
+                                <div className="w-4 h-4 rounded-full mt-1.5 shrink-0 bg-linear-to-br from-[#FFD700] to-[#B8860B] shadow-[0_0_10px_rgba(255,215,0,0.5)]"></div>
                                 <div className="bg-[#111827] rounded-xl p-5 border border-white/5 w-full">
                                     <p className="text-white text-[16px] font-bold mb-3">Activation Model:</p>
                                     <p className="text-white/80 text-[15px] mb-2"><span className="mr-2">🏋️</span> Strategic placements and activations at gyms, marathons, yoga studios, sports events, colleges and railway stations</p>
@@ -431,7 +431,7 @@ const PariClientele = () => {
                             </div>
 
                             <div className="flex gap-4 pt-2">
-                                <div className="w-4 h-4 rounded-full mt-1.5 shrink-0 bg-gradient-to-br from-[#FFD700] to-[#B8860B] shadow-[0_0_10px_rgba(255,215,0,0.5)]"></div>
+                                <div className="w-4 h-4 rounded-full mt-1.5 shrink-0 bg-linear-to-br from-[#FFD700] to-[#B8860B] shadow-[0_0_10px_rgba(255,215,0,0.5)]"></div>
                                 <div className="bg-[#111827] rounded-xl p-5 border border-white/5 w-full">
                                     <p className="text-white text-[16px] font-bold mb-3">Outcomes Achieved:</p>
                                     <p className="text-white/80 text-[15px] mb-2"><span className="mr-2">🚀</span> Significant boost in brand recall and trial among fitness-oriented communities</p>
@@ -446,12 +446,12 @@ const PariClientele = () => {
 
             {/* ── SECTION 7: CONTACT / HAVE A QUESTION ── */}
             <section className="py-24 px-6 bg-[#0B1120] relative border-t border-white/5 overflow-hidden">
-                <div className="absolute right-0 top-0 bottom-0 w-[500px] bg-gradient-to-l from-red-900/10 to-transparent pointer-events-none" />
+                <div className="absolute right-0 top-0 bottom-0 w-125 bg-linear-to-l from-red-900/10 to-transparent pointer-events-none" />
 
-                <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row items-center md:items-start justify-between gap-16 relative z-10">
+                <div className="max-w-300 mx-auto flex flex-col md:flex-row items-center md:items-start justify-between gap-16 relative z-10">
                     <div className="flex-[0.8] text-center md:text-left">
                         <img src={heroLogo} className="h-10 mb-12 mx-auto md:mx-0 invert opacity-90" alt="Parivestra Ventures" />
-                        <h2 className="text-[64px] lg:text-[80px] font-bold text-white leading-[1.0] tracking-tight mb-8">
+                        <h2 className="text-[64px] lg:text-[80px] font-bold text-white leading-none tracking-tight mb-8">
                             Have a<br />Question?
                         </h2>
                         <a href="/contact" className="text-white text-[24px] font-bold hover:text-[#FF4500] transition-colors ml-2 flex items-center justify-center md:justify-start gap-3">
@@ -460,7 +460,7 @@ const PariClientele = () => {
                         </a>
                     </div>
 
-                    <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-16 mt-10 md:mt-16 w-full max-w-[600px]">
+                    <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-16 mt-10 md:mt-16 w-full max-w-150">
                         <div>
                             <div className="bg-white rounded-full px-6 py-2 inline-block text-[#0B1120] font-bold text-[14px] mb-5 shadow-[0_0_15px_rgba(255,255,255,0.1)]">Phone</div>
                             <p className="text-white/90 text-[16px] mb-1.5 font-medium">+91 7970476060</p>

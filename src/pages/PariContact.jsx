@@ -13,10 +13,10 @@ const PariContact = () => {
     const isSubmitting = status === 'submitting';
 
     return (
-        <div className="bg-[var(--pari-bg-primary)] min-h-screen text-[var(--pari-text-primary)] font-sans">
+        <div className="bg-(--pari-bg-primary) min-h-screen text-(--pari-text-primary) font-sans">
             <PariNavbar />
 
-            <main className="max-w-[1440px] mx-auto px-6 pt-[160px] pb-32">
+            <main className="max-w-360 mx-auto px-6 pt-40 pb-32">
                 <div className="flex flex-col lg:flex-row items-start gap-20 lg:gap-32">
 
                     {/* Left Side: Brand Identity */}
@@ -29,22 +29,22 @@ const PariContact = () => {
                                 className="relative h-32 md:h-40 w-auto object-contain transition-transform duration-500 group-hover:scale-110"
                             />
                         </div>
-                        <h1 className="text-[32px] md:text-[40px] font-bold tracking-[0.2em] text-[var(--pari-text-primary)] uppercase">
+                        <h1 className="text-[32px] md:text-[40px] font-bold tracking-[0.2em] text-(--pari-text-primary) uppercase">
                             Parivestra
                         </h1>
                         <div className="h-1.5 w-20 bg-[#FF4500] mt-4 rounded-full" />
-                        <p className="mt-8 text-[18px] text-[var(--pari-text-secondary)] leading-relaxed max-w-[320px]">
+                        <p className="mt-8 text-[18px] text-(--pari-text-secondary) leading-relaxed max-w-80">
                             Distribution, engineered for outcomes. Let's build the future together.
                         </p>
                     </div>
 
                     {/* Right Side: Form */}
-                    <div className="flex-1 w-full max-w-[600px]">
+                    <div className="flex-1 w-full max-w-150">
                         <div className="mb-12">
                             <h2 className="text-[44px] md:text-[56px] font-bold tracking-tight leading-tight mb-4">
                                 Get in <em className="italic" style={{ fontFamily: 'Georgia, serif', color: '#FF4500' }}>touch</em>
                             </h2>
-                            <p className="text-[18px] text-[var(--pari-text-secondary)]">
+                            <p className="text-[18px] text-(--pari-text-secondary)">
                                 Fill out the form below and our team will get back to you shortly.
                             </p>
                         </div>
@@ -98,7 +98,7 @@ const PariContact = () => {
                                 <button
                                     type="submit"
                                     disabled={isSubmitting}
-                                    className={`w-full md:w-auto px-10 py-4 bg-gradient-to-r from-[#FF4500] to-[#FF6B35] text-white font-bold text-[16px] rounded-xl hover:shadow-2xl hover:shadow-orange-500/40 transition-all transform hover:-translate-y-1 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3`}
+                                    className={`w-full md:w-auto px-10 py-4 bg-linear-to-r from-[#FF4500] to-[#FF6B35] text-white font-bold text-[16px] rounded-xl hover:shadow-2xl hover:shadow-orange-500/40 transition-all transform hover:-translate-y-1 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3`}
                                 >
                                     {isSubmitting ? (
                                         <>
@@ -124,7 +124,7 @@ const PariContact = () => {
                                     </p>
                                 )}
 
-                                <p className="mt-8 flex items-center gap-3 text-[14px] text-[var(--pari-text-secondary)] font-medium">
+                                <p className="mt-8 flex items-center gap-3 text-[14px] text-(--pari-text-secondary) font-medium">
                                     <span className="flex h-2 w-2 rounded-full bg-[#FF4500] animate-pulse" />
                                     Someone from our team will reach you in 24 hours.
                                 </p>

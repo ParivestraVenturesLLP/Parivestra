@@ -1,6 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import contactRoutes from '../server/routes/contactRoutes.js';
+import adminRoutes from '../server/routes/adminRoutes.js';
+import toolsRoutes from '../server/routes/toolsRoutes.js';
 import { errorHandler } from '../server/middleware/errorHandler.js';
 import dotenv from 'dotenv';
 
@@ -13,6 +15,8 @@ app.use(cors());
 
 // Mount the API Routes
 app.use('/api', contactRoutes);
+app.use('/api/admin', adminRoutes);
+app.use('/api/tools', toolsRoutes);
 
 // Error Handling Middleware
 app.use(errorHandler);

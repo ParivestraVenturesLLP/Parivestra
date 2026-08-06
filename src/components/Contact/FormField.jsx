@@ -14,8 +14,8 @@ const FormField = ({ label, name, type = 'text', placeholder, value, onChange, r
                 onChange={onChange}
                 required={required}
                 className={`
-                    w-full bg-transparent border-b-2 border-[var(--pari-border)] py-3 px-1
-                    text-[var(--pari-text-primary)] placeholder:text-[var(--pari-text-secondary)]/50
+                    w-full bg-transparent border-b-2 border-(--pari-border) py-3 px-1
+                    text-(--pari-text-primary) placeholder:text-(--pari-text-secondary)/50
                     focus:outline-none focus:border-[#FF4500] hover:border-[#FF4500]/60
                     transition-all duration-300 group
                 `}

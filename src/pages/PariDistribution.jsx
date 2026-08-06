@@ -86,19 +86,19 @@ const PariDistribution = () => {
     }, []);
 
     return (
-        <div className="bg-[var(--pari-bg-primary)] min-h-screen text-[var(--pari-text-primary)] font-sans transition-colors">
+        <div className="bg-(--pari-bg-primary) min-h-screen text-(--pari-text-primary) font-sans transition-colors">
             <PariNavbar />
 
             {/* ── HERO ─────────────────────────────────────── */}
             <section className="pt-40 pb-24 px-6 text-center relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-b from-[#FF4500]/8 via-transparent to-transparent pointer-events-none" />
-                <div className="max-w-[800px] mx-auto relative z-10">
+                <div className="absolute inset-0 bg-linear-to-b from-[#FF4500]/8 via-transparent to-transparent pointer-events-none" />
+                <div className="max-w-200 mx-auto relative z-10">
                     <span className="inline-block px-4 py-1.5 rounded-full bg-[#FF4500]/15 border border-[#FF4500]/30 text-[#FF4500] text-[12px] font-bold uppercase tracking-widest mb-8">Distribution Segments</span>
-                    <h1 className="text-[52px] md:text-[68px] font-bold tracking-[-0.03em] leading-[1.0] text-[var(--pari-text-primary)] mb-6 transition-colors">
+                    <h1 className="text-[52px] md:text-[68px] font-bold tracking-[-0.03em] leading-none text-(--pari-text-primary) mb-6 transition-colors">
                         Every distribution{' '}
                         <em style={{ fontFamily: 'Georgia, serif', color: '#FF4500' }}>lever, activated</em>
                     </h1>
-                    <p className="text-[19px] text-[var(--pari-text-secondary)] leading-relaxed max-w-[580px] mx-auto transition-colors">
+                    <p className="text-[19px] text-(--pari-text-secondary) leading-relaxed max-w-145 mx-auto transition-colors">
                         We leverage a diverse mix of owned and partnered channels to engage audiences effectively across deep physical and online ecosystems.
                     </p>
                 </div>
@@ -106,34 +106,34 @@ const PariDistribution = () => {
 
             {/* ── TABS: OFFLINE + DIGITAL ───────────────────── */}
             {['Offline', 'Digital'].map((type) => (
-                <section key={type} className={`py-24 px-6 ${type === 'Offline' ? 'bg-[var(--pari-bg-primary)]' : 'bg-[var(--pari-bg-secondary)] dark:bg-[#080F18]'} transition-colors`}>
-                    <div className="max-w-[1200px] mx-auto">
+                <section key={type} className={`py-24 px-6 ${type === 'Offline' ? 'bg-(--pari-bg-primary)' : 'bg-(--pari-bg-secondary) dark:bg-[#080F18]'} transition-colors`}>
+                    <div className="max-w-300 mx-auto">
                         <div className="flex items-center gap-4 mb-12">
                             <div className={`px-4 py-1.5 rounded-full text-[12px] font-bold uppercase tracking-widest border transition-all flex items-center gap-2 ${type === 'Offline' ? 'bg-[#FF4500]/15 border-[#FF4500]/30 text-[#FF4500]' : 'bg-[#9999FE]/15 border-[#9999FE]/30 text-[#9999FE]'}`}>
                                 <i className={`fa-solid ${type === 'Offline' ? 'fa-map-location-dot' : 'fa-globe'}`}></i>
                                 {type === 'Offline' ? 'Offline Distribution' : 'Digital Distribution'}
                             </div>
-                            <div className="flex-1 h-px bg-[var(--pari-border)] transition-colors" />
+                            <div className="flex-1 h-px bg-(--pari-border) transition-colors" />
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                             {segments.filter((s) => s.type === type).map((seg) => (
                                 <div
                                     key={seg.id}
-                                    className="bg-[var(--pari-bg-secondary)] dark:bg-white/3 border border-[var(--pari-border)] rounded-2xl p-7 hover:bg-[var(--pari-bg-secondary)]/80 dark:hover:bg-white/6 hover:border-[var(--pari-border)] transition-all group relative overflow-hidden shadow-sm dark:shadow-none"
+                                    className="bg-(--pari-bg-secondary) dark:bg-white/3 border border-(--pari-border) rounded-2xl p-7 hover:bg-(--pari-bg-secondary)/80 dark:hover:bg-white/6 hover:border-(--pari-border) transition-all group relative overflow-hidden shadow-sm dark:shadow-none"
                                 >
                                     <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full opacity-8 group-hover:opacity-15 transition-opacity" style={{ background: seg.color }} />
                                     <div className="flex items-start gap-5 mb-5 group">
                                         <i className={`${seg.icon} text-[44px] shrink-0 text-[#FF4500] group-hover:scale-110 transition-transform duration-300`}></i>
                                         <div>
-                                            <h3 className="text-[19px] font-bold text-[var(--pari-text-primary)] group-hover:text-[#FF4500] transition-colors mb-1">{seg.title}</h3>
+                                            <h3 className="text-[19px] font-bold text-(--pari-text-primary) group-hover:text-[#FF4500] transition-colors mb-1">{seg.title}</h3>
                                             <span className="text-[11px] font-bold uppercase tracking-wide" style={{ color: seg.color }}>{seg.type}</span>
                                         </div>
                                     </div>
-                                    <p className="text-[15px] text-[var(--pari-text-secondary)] leading-relaxed mb-6 transition-colors">{seg.desc}</p>
+                                    <p className="text-[15px] text-(--pari-text-secondary) leading-relaxed mb-6 transition-colors">{seg.desc}</p>
                                     <div className="flex flex-wrap gap-2">
                                         {seg.metrics.map((m) => (
-                                            <span key={m} className="px-3 py-1 bg-[var(--pari-bg-primary)]/60 dark:bg-white/6 border border-[var(--pari-border)] rounded-lg text-[12px] font-medium text-[var(--pari-text-secondary)] transition-colors">{m}</span>
+                                            <span key={m} className="px-3 py-1 bg-(--pari-bg-primary)/60 dark:bg-white/6 border border-(--pari-border) rounded-lg text-[12px] font-medium text-(--pari-text-secondary) transition-colors">{m}</span>
                                         ))}
                                     </div>
                                 </div>
@@ -144,17 +144,17 @@ const PariDistribution = () => {
             ))}
 
             {/* ── PARTNERSHIP SCALE LINK ────────────────────── */}
-            <section className="py-24 px-6 bg-[var(--pari-bg-primary)] transition-colors">
-                <div className="max-w-[700px] mx-auto text-center">
-                    <h2 className="text-[36px] md:text-[48px] font-bold tracking-tight text-[var(--pari-text-primary)] mb-6 transition-colors">
+            <section className="py-24 px-6 bg-(--pari-bg-primary) transition-colors">
+                <div className="max-w-175 mx-auto text-center">
+                    <h2 className="text-[36px] md:text-[48px] font-bold tracking-tight text-(--pari-text-primary) mb-6 transition-colors">
                         Partnership Scale | <span style={{ color: '#FF4500' }}>Parivestra</span>
                     </h2>
-                    <p className="text-[17px] text-[var(--pari-text-secondary)] leading-relaxed mb-10 transition-colors">
+                    <p className="text-[17px] text-(--pari-text-secondary) leading-relaxed mb-10 transition-colors">
                         Ready to unlock access to Parivestra's proprietary distribution network? Let's build your growth infrastructure together.
                     </p>
                     <Link
                         to="/contact"
-                        className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#FF4500] to-[#FF6B35] text-white font-semibold text-[16px] rounded-[14px] hover:from-[#E03D00] hover:to-[#FF4500] transition-all shadow-xl shadow-orange-500/30"
+                        className="inline-flex items-center gap-2 px-8 py-4 bg-linear-to-r from-[#FF4500] to-[#FF6B35] text-white font-semibold text-[16px] rounded-[14px] hover:from-[#E03D00] hover:to-[#FF4500] transition-all shadow-xl shadow-orange-500/30"
                     >
                         Explore Partnership
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>

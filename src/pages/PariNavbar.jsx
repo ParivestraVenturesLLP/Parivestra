@@ -8,12 +8,12 @@ import { useTheme } from '../context/ThemeContext';
 
 const navLinks = [
     { label: 'Home', to: '/' },
+    { label: 'AI & Apps', to: '/ai-apps' },
     { label: 'Partnerships', to: '/partnerships' },
     { label: 'Clientele', to: '/clientele' },
     { label: 'Case Studies', to: '/case-studies' },
     { label: 'Distribution', to: '/distribution' },
     { label: 'About', to: '/about' },
-    { label: 'AI & Apps', to: '/ai-apps' },
 ];
 
 const PariNavbar = () => {
@@ -37,10 +37,10 @@ const PariNavbar = () => {
 
     return (
         <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled
-            ? 'bg-[var(--pari-bg-primary)]/85 backdrop-blur-[12px] border-b border-[var(--pari-border)] shadow-lg shadow-black/5'
+            ? 'bg-(--pari-bg-primary)/85 backdrop-blur-md border-b border-(--pari-border) shadow-lg shadow-black/5'
             : 'bg-transparent'
             }`}>
-            <div className="max-w-[1440px] mx-auto px-6 h-[80px] flex items-center justify-between">
+            <div className="max-w-360 mx-auto px-6 h-20 flex items-center justify-between">
                 {/* Logo */}
                 <Link to="/" className="flex items-center gap-3 group">
                     <img
@@ -63,7 +63,7 @@ const PariNavbar = () => {
                             to={link.to}
                             className={`px-4 py-2 rounded-xl text-[14px] font-medium transition-all duration-200 ${isActive(link.to)
                                 ? 'text-[#FF4500] bg-[#FF4500]/10'
-                                : 'text-[var(--pari-text-secondary)] hover:text-[var(--pari-text-primary)] hover:bg-[var(--pari-border)]'
+                                : 'text-(--pari-text-secondary) hover:text-(--pari-text-primary) hover:bg-(--pari-border)'
                                 }`}
                         >
                             {link.label}
@@ -77,7 +77,7 @@ const PariNavbar = () => {
                     <Link
                         to="/contact"
                         onClick={() => window.fbq && window.fbq('track', 'Contact')}
-                        className="hidden lg:flex px-5 py-2.5 text-[14px] font-semibold bg-gradient-to-r from-[#FF4500] to-[#FF6B35] text-white rounded-[12px] hover:from-[#E03D00] hover:to-[#FF4500] transition-all shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40"
+                        className="hidden lg:flex px-5 py-2.5 text-[14px] font-semibold bg-linear-to-r from-[#FF4500] to-[#FF6B35] text-white rounded-[12px] hover:from-[#E03D00] hover:to-[#FF4500] transition-all shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40"
                     >
                         Partner With Us
                     </Link>
@@ -85,7 +85,7 @@ const PariNavbar = () => {
                     <button
                         onClick={() => setMenuOpen(!menuOpen)}
                         aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-                        className="lg:hidden p-2 rounded-lg text-[var(--pari-text-secondary)] hover:text-[var(--pari-text-primary)] hover:bg-[var(--pari-border)]"
+                        className="lg:hidden p-2 rounded-lg text-(--pari-text-secondary) hover:text-(--pari-text-primary) hover:bg-(--pari-border)"
                     >
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                             {menuOpen ? (
@@ -100,7 +100,7 @@ const PariNavbar = () => {
 
             {/* Mobile Menu */}
             {menuOpen && (
-                <div className="lg:hidden bg-[var(--pari-bg-primary)]/98 backdrop-blur-xl border-t border-[var(--pari-border)] px-6 py-4 flex flex-col gap-1 max-h-[calc(100vh-80px)] overflow-y-auto">
+                <div className="lg:hidden bg-(--pari-bg-primary)/98 backdrop-blur-xl border-t border-(--pari-border) px-6 py-4 flex flex-col gap-1 max-h-[calc(100vh-80px)] overflow-y-auto">
                     {navLinks.map((link) => (
                         <Link
                             key={link.to}
@@ -108,7 +108,7 @@ const PariNavbar = () => {
                             onClick={() => setMenuOpen(false)}
                             className={`px-4 py-3 rounded-xl text-[15px] font-medium transition-all ${isActive(link.to)
                                 ? 'text-[#FF4500] bg-[#FF4500]/10'
-                                : 'text-[var(--pari-text-secondary)] hover:text-[var(--pari-text-primary)] hover:bg-[var(--pari-border)]'
+                                : 'text-(--pari-text-secondary) hover:text-(--pari-text-primary) hover:bg-(--pari-border)'
                                 }`}
                         >
                             {link.label}
@@ -120,7 +120,7 @@ const PariNavbar = () => {
                             setMenuOpen(false);
                             window.fbq && window.fbq('track', 'Contact');
                         }}
-                        className="mt-2 px-5 py-3 text-[15px] font-semibold bg-gradient-to-r from-[#FF4500] to-[#FF6B35] text-white rounded-[12px] text-center"
+                        className="mt-2 px-5 py-3 text-[15px] font-semibold bg-linear-to-r from-[#FF4500] to-[#FF6B35] text-white rounded-[12px] text-center"
                     >
                         Partner With Us
                     </Link>
