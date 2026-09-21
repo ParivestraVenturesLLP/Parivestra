@@ -2,11 +2,13 @@ import React, { useEffect, useRef, useState } from 'react';
 
 const ScrollReveal = ({ children, delay = 0, className = '' }) => {
     const ref = useRef(null);
-    const [visible, setVisible] = useState(false);
+    const [visible, setVisible] = useState(
+        () => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    );
 
     useEffect(() => {
         const el = ref.current;
-        if (!el) return;
+        if (!el || visible) return;
 
         const observer = new IntersectionObserver(
             ([entry]) => {

@@ -7,7 +7,7 @@ const segments = [
     {
         id: 'colleges',
         icon: 'fa-solid fa-graduation-cap',
-        color: '#FF4500',
+        color: '#D88A43',
         title: 'College & Campus Networks',
         type: 'Offline',
         desc: 'Direct access to 500+ college campuses across India. From on-ground events to ambassador programs, we activate student communities at scale.',
@@ -91,12 +91,12 @@ const PariDistribution = () => {
 
             {/* ── HERO ─────────────────────────────────────── */}
             <section className="pt-40 pb-24 px-6 text-center relative overflow-hidden">
-                <div className="absolute inset-0 bg-linear-to-b from-[#FF4500]/8 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-linear-to-b from-[#A85F32]/8 via-transparent to-transparent pointer-events-none" />
                 <div className="max-w-200 mx-auto relative z-10">
-                    <span className="inline-block px-4 py-1.5 rounded-full bg-[#FF4500]/15 border border-[#FF4500]/30 text-[#FF4500] text-[12px] font-bold uppercase tracking-widest mb-8">Distribution Segments</span>
+                    <span className="inline-block px-4 py-1.5 rounded-full bg-[#A85F32]/15 border border-[#D88A43]/30 text-[#D88A43] text-[12px] font-bold uppercase tracking-widest mb-8">Distribution Segments</span>
                     <h1 className="text-[52px] md:text-[68px] font-bold tracking-[-0.03em] leading-none text-(--pari-text-primary) mb-6 transition-colors">
                         Every distribution{' '}
-                        <em style={{ fontFamily: 'Georgia, serif', color: '#FF4500' }}>lever, activated</em>
+                        <em style={{ fontFamily: 'Georgia, serif', color: '#D88A43' }}>lever, activated</em>
                     </h1>
                     <p className="text-[19px] text-(--pari-text-secondary) leading-relaxed max-w-145 mx-auto transition-colors">
                         We leverage a diverse mix of owned and partnered channels to engage audiences effectively across deep physical and online ecosystems.
@@ -109,7 +109,7 @@ const PariDistribution = () => {
                 <section key={type} className={`py-24 px-6 ${type === 'Offline' ? 'bg-(--pari-bg-primary)' : 'bg-(--pari-bg-secondary) dark:bg-[#080F18]'} transition-colors`}>
                     <div className="max-w-300 mx-auto">
                         <div className="flex items-center gap-4 mb-12">
-                            <div className={`px-4 py-1.5 rounded-full text-[12px] font-bold uppercase tracking-widest border transition-all flex items-center gap-2 ${type === 'Offline' ? 'bg-[#FF4500]/15 border-[#FF4500]/30 text-[#FF4500]' : 'bg-[#9999FE]/15 border-[#9999FE]/30 text-[#9999FE]'}`}>
+                            <div className={`px-4 py-1.5 rounded-full text-[12px] font-bold uppercase tracking-widest border transition-all flex items-center gap-2 ${type === 'Offline' ? 'bg-[#A85F32]/15 border-[#D88A43]/30 text-[#D88A43]' : 'bg-[#9999FE]/15 border-[#9999FE]/30 text-[#9999FE]'}`}>
                                 <i className={`fa-solid ${type === 'Offline' ? 'fa-map-location-dot' : 'fa-globe'}`}></i>
                                 {type === 'Offline' ? 'Offline Distribution' : 'Digital Distribution'}
                             </div>
@@ -124,9 +124,9 @@ const PariDistribution = () => {
                                 >
                                     <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full opacity-8 group-hover:opacity-15 transition-opacity" style={{ background: seg.color }} />
                                     <div className="flex items-start gap-5 mb-5 group">
-                                        <i className={`${seg.icon} text-[44px] shrink-0 text-[#FF4500] group-hover:scale-110 transition-transform duration-300`}></i>
+                                        <i className={`${seg.icon} text-[44px] shrink-0 text-[#D88A43] group-hover:scale-110 transition-transform duration-300`}></i>
                                         <div>
-                                            <h3 className="text-[19px] font-bold text-(--pari-text-primary) group-hover:text-[#FF4500] transition-colors mb-1">{seg.title}</h3>
+                                            <h3 className="text-[19px] font-bold text-(--pari-text-primary) group-hover:text-[#D88A43] transition-colors mb-1">{seg.title}</h3>
                                             <span className="text-[11px] font-bold uppercase tracking-wide" style={{ color: seg.color }}>{seg.type}</span>
                                         </div>
                                     </div>
@@ -147,14 +147,14 @@ const PariDistribution = () => {
             <section className="py-24 px-6 bg-(--pari-bg-primary) transition-colors">
                 <div className="max-w-175 mx-auto text-center">
                     <h2 className="text-[36px] md:text-[48px] font-bold tracking-tight text-(--pari-text-primary) mb-6 transition-colors">
-                        Partnership Scale | <span style={{ color: '#FF4500' }}>Parivestra</span>
+                        Partnership Scale | <span style={{ color: '#D88A43' }}>Parivestra</span>
                     </h2>
                     <p className="text-[17px] text-(--pari-text-secondary) leading-relaxed mb-10 transition-colors">
                         Ready to unlock access to Parivestra's proprietary distribution network? Let's build your growth infrastructure together.
                     </p>
                     <Link
                         to="/contact"
-                        className="inline-flex items-center gap-2 px-8 py-4 bg-linear-to-r from-[#FF4500] to-[#FF6B35] text-white font-semibold text-[16px] rounded-[14px] hover:from-[#E03D00] hover:to-[#FF4500] transition-all shadow-xl shadow-orange-500/30"
+                        className="inline-flex items-center gap-2 px-8 py-4 bg-linear-to-r from-[#A85F32] to-[#D88A43] text-white font-semibold text-[16px] rounded-[14px] hover:from-[#8F4F29] hover:to-[#A85F32] transition-all shadow-xl shadow-orange-500/30"
                     >
                         Explore Partnership
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>

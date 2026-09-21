@@ -1,66 +1,212 @@
 @import "tailwindcss";
 
-/* Tailwind v4 dark mode via .dark class on <html> */
+/* Parivestra is dark-first. `.dark` is kept so legacy `dark:` variants keep resolving. */
 @custom-variant dark (&:where(.dark, .dark *));
 
+@theme {
+  --font-sans: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --color-ink: #11100E;
+  --color-ink-2: #181613;
+  --color-ink-3: #211e1a;
+  --color-bone: #EFE7DB;
+  --color-copper: #A85F32;
+  --color-amber: #D88A43;
+  --color-stone: #8C8175;
+
+  --breakpoint-3xl: 112rem;
+}
+
 :root {
-  --pari-bg-primary: #FAF9F6;
-  --pari-bg-secondary: #FFFFFF;
-  --pari-text-primary: #0D1B2A;
-  --pari-text-secondary: rgba(13, 27, 42, 0.85);
-  --pari-border: rgba(13, 27, 42, 0.1);
-  --pari-orange: #FF4500;
+  /* Legacy tokens consumed by the secondary pages — remapped to the new palette. */
+  --pari-bg-primary: #11100E;
+  --pari-bg-secondary: #181613;
+  --pari-text-primary: #EFE7DB;
+  --pari-text-secondary: rgba(239, 231, 219, 0.62);
+  --pari-border: rgba(239, 231, 219, 0.12);
+  --pari-orange: #D88A43;
+
+  --line: rgba(239, 231, 219, 0.12);
+  --line-strong: rgba(239, 231, 219, 0.24);
+  --line-dark: rgba(17, 16, 14, 0.14);
 }
 
-.dark {
-  --pari-bg-primary: #0D1B2A;
-  --pari-bg-secondary: #060E18;
-  --pari-text-primary: #FFFFFF;
-  --pari-text-secondary: rgba(255, 255, 255, 0.6);
-  --pari-border: rgba(255, 255, 255, 0.1);
+html {
+  scroll-behavior: smooth;
+  background: #11100E;
+  color-scheme: dark;
 }
 
-/* ── Custom scrollbar for sidebar ── */
-::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
+body {
+  margin: 0;
+  background: #11100E;
+  color: #EFE7DB;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-::-webkit-scrollbar-track {
-  background: transparent;
+::selection {
+  background: #A85F32;
+  color: #EFE7DB;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #d1cdc9;
-  border-radius: 99px;
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #11100E; }
+::-webkit-scrollbar-thumb { background: #3a342d; border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: #574d42; }
+
+/* ── Type ─────────────────────────────────────────────── */
+/* Light, confident display type — the Quantara weight. */
+.display {
+  font-weight: 300;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+}
+.display-xl { font-size: clamp(2.5rem, 6vw, 5.5rem); }
+.display-lg { font-size: clamp(2.1rem, 4.6vw, 4.25rem); }
+.display-md { font-size: clamp(1.6rem, 3vw, 2.6rem); letter-spacing: -0.03em; line-height: 1.08; }
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
-.dark ::-webkit-scrollbar-thumb {
-  background: #333;
+/* ── Texture ──────────────────────────────────────────── */
+/* Fine grain over the whole page. Static, never animated. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #b5b0aa;
+/* Sandstone / paper surface for light sections */
+.surface-bone {
+  background-color: #EFE7DB;
+  background-image:
+    radial-gradient(120% 80% at 50% -10%, rgba(255, 255, 255, 0.35), transparent 60%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .35  0 0 0 0 .27  0 0 0 0 .18  0 0 0 .22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  color: #11100E;
 }
 
-.dark ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+/* Barely-there radial light on dark sections */
+.glow-copper {
+  background-image: radial-gradient(60% 50% at 50% 0%, rgba(168, 95, 50, 0.16), transparent 70%);
 }
 
-/* ── Smooth global color transitions ── */
-*,
-*::before,
-*::after {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, box-shadow, opacity;
-  transition-duration: 300ms;
-  transition-timing-function: ease;
+/* Thin technical grid lines */
+.tech-grid {
+  background-image:
+    linear-gradient(to right, rgba(239, 231, 219, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(239, 231, 219, 0.045) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(80% 70% at 50% 40%, #000 30%, transparent 100%);
+  -webkit-mask-image: radial-gradient(80% 70% at 50% 40%, #000 30%, transparent 100%);
 }
 
-/* Exclude elements that need their own explicit transitions */
-.transition-all,
-.transition-colors,
-.transition-transform,
-.transition-opacity,
-.transition-shadow {
-  transition-property: all;
+/* Crosshair corner marks, Quantara-style framing */
+.frame { position: relative; }
+.frame > .corner {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  pointer-events: none;
 }
+.frame > .corner::before,
+.frame > .corner::after {
+  content: "";
+  position: absolute;
+  background: #D88A43;
+}
+.frame > .corner::before { left: 5px; top: 0; width: 1px; height: 11px; }
+.frame > .corner::after { left: 0; top: 5px; width: 11px; height: 1px; }
+.corner.tl { top: -6px; left: -6px; }
+.corner.tr { top: -6px; right: -6px; }
+.corner.bl { bottom: -6px; left: -6px; }
+.corner.br { bottom: -6px; right: -6px; }
+
+/* ── Marquee (logo wall) ──────────────────────────────── */
+@keyframes marquee-x {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-x 70s linear infinite;
+}
+.marquee:hover .marquee-track { animation-play-state: paused; }
+
+/* Logos are white-background JPG/PNG: multiply melts them into the bone surface. */
+.logo-mono {
+  mix-blend-mode: multiply;
+  filter: grayscale(1) contrast(1.15);
+  opacity: 0.72;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+.logo-mono:hover { opacity: 1; filter: grayscale(0) contrast(1.05); }
+
+/* ── Motion helpers ───────────────────────────────────── */
+@keyframes pulse-ring {
+  0% { transform: scale(0.6); opacity: 0.9; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+.pulse-dot { position: relative; }
+.pulse-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: currentColor;
+  animation: pulse-ring 2.4s ease-out infinite;
+}
+
+@keyframes dash-flow {
+  to { stroke-dashoffset: -24; }
+}
+.dash-flow { animation: dash-flow 1.6s linear infinite; }
+
+/* Photographic treatment so every execution photo shares one crop, tone and grade. */
+.photo-grade {
+  filter: grayscale(0.55) sepia(0.35) contrast(1.06) brightness(0.92);
+  transition: filter 0.5s ease, transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.photo-card:hover .photo-grade {
+  filter: grayscale(0.15) sepia(0.2) contrast(1.05) brightness(1);
+  transform: scale(1.04);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .marquee-track, .dash-flow, .pulse-dot::after { animation: none; }
+}
+
+/* Aurora: horizontal copper light bands, the Parivestra take on Quantara's blue aurora. */
+.aurora {
+  background:
+    linear-gradient(180deg,
+      transparent 0%, transparent 16%,
+      rgba(168, 95, 50, 0.55) 30%, rgba(216, 138, 67, 0.25) 36%, transparent 44%,
+      rgba(216, 138, 67, 0.32) 54%, transparent 62%,
+      rgba(168, 95, 50, 0.5) 74%, transparent 86%, transparent 100%);
+  filter: blur(22px);
+}
+
+/* Dotted field used behind the solutions table */
+.dot-field {
+  background-image: radial-gradient(rgba(239, 231, 219, 0.09) 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+
+@keyframes fade-up { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+.fade-up { animation: fade-up 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+@media (prefers-reduced-motion: reduce) { .fade-up { animation: none; } }

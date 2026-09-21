@@ -41,7 +41,7 @@ const DemoPopup = () => {
                     <i className="fa-solid fa-xmark text-[16px]"></i>
                 </button>
 
-                <div className="w-14 h-14 mx-auto mb-5 rounded-full bg-linear-to-br from-[#FF4500] to-[#FF6B35] flex items-center justify-center">
+                <div className="w-14 h-14 mx-auto mb-5 rounded-full bg-linear-to-br from-[#A85F32] to-[#D88A43] flex items-center justify-center">
                     <i className="fa-solid fa-microchip text-white text-[24px]"></i>
                 </div>
 
@@ -57,7 +57,7 @@ const DemoPopup = () => {
                         href={CALENDAR_URL}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-full py-3.5 bg-linear-to-r from-[#FF4500] to-[#FF6B35] text-white text-[15px] font-semibold rounded-xl hover:from-[#E03D00] hover:to-[#FF4500] transition-all flex items-center justify-center gap-2"
+                        className="w-full py-3.5 bg-linear-to-r from-[#A85F32] to-[#D88A43] text-white text-[15px] font-semibold rounded-xl hover:from-[#8F4F29] hover:to-[#A85F32] transition-all flex items-center justify-center gap-2"
                     >
                         <i className="fa-solid fa-calendar-check"></i>
                         Book a Free Demo

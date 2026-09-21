@@ -47,7 +47,7 @@ const AIAssistant = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Chat on WhatsApp"
-                className="fixed bottom-8 right-8 z-100 w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform duration-300 group"
+                className="fixed bottom-22 right-5 lg:bottom-8 lg:right-8 z-100 w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform duration-300 group"
             >
                 <i className="fa-brands fa-whatsapp text-[30px]"></i>
                 <span className="absolute right-full mr-4 px-3 py-1 bg-white text-black text-[12px] font-bold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-xl pointer-events-none">
@@ -59,7 +59,7 @@ const AIAssistant = () => {
                 type="button"
                 onClick={() => setOpen((v) => !v)}
                 aria-label="Open Assistant"
-                className="fixed bottom-24 right-9 z-100 w-11 h-11 bg-linear-to-br from-[#FF4500] to-[#FF6B35] text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform duration-300 group"
+                className="fixed bottom-40 right-6.5 lg:bottom-24 lg:right-9 z-100 w-11 h-11 bg-linear-to-br from-[#A85F32] to-[#D88A43] text-white rounded-full hidden sm:flex items-center justify-center shadow-2xl hover:scale-110 transition-transform duration-300 group"
             >
                 <i className={`fa-solid ${open ? 'fa-xmark' : 'fa-robot'} text-[18px]`}></i>
                 {!open && (
@@ -70,8 +70,8 @@ const AIAssistant = () => {
             </button>
 
             {open && (
-                <div className="fixed bottom-42 right-8 z-100 w-85 max-w-[calc(100vw-4rem)] h-110 max-h-[calc(100vh-232px)] bg-(--pari-bg-secondary) border border-(--pari-border) rounded-2xl shadow-2xl overflow-hidden flex flex-col transition-colors">
-                    <div className="px-5 py-4 bg-linear-to-r from-[#FF4500] to-[#FF6B35] flex items-center gap-3 shrink-0">
+                <div className="fixed bottom-56 right-5 lg:bottom-42 lg:right-8 z-100 w-85 max-w-[calc(100vw-4rem)] h-110 max-h-[calc(100vh-232px)] bg-(--pari-bg-secondary) border border-(--pari-border) rounded-2xl shadow-2xl overflow-hidden flex flex-col transition-colors">
+                    <div className="px-5 py-4 bg-linear-to-r from-[#A85F32] to-[#D88A43] flex items-center gap-3 shrink-0">
                         <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center shrink-0">
                             <i className="fa-solid fa-robot text-white text-[18px]"></i>
                         </div>
@@ -86,7 +86,7 @@ const AIAssistant = () => {
                             <div
                                 key={i}
                                 className={`max-w-[85%] text-[13px] leading-relaxed px-3.5 py-2.5 rounded-2xl transition-colors ${m.role === 'user'
-                                    ? 'self-end bg-linear-to-r from-[#FF4500] to-[#FF6B35] text-white rounded-br-sm'
+                                    ? 'self-end bg-linear-to-r from-[#A85F32] to-[#D88A43] text-white rounded-br-sm'
                                     : 'self-start bg-(--pari-bg-primary) text-(--pari-text-primary) border border-(--pari-border) rounded-bl-sm'
                                     }`}
                             >
@@ -109,7 +109,7 @@ const AIAssistant = () => {
                                     key={s}
                                     type="button"
                                     onClick={() => sendMessage(s)}
-                                    className="px-3 py-1.5 text-[11px] font-medium rounded-full border border-(--pari-border) text-(--pari-text-secondary) hover:border-[#FF4500]/50 hover:text-(--pari-text-primary) transition-colors"
+                                    className="px-3 py-1.5 text-[11px] font-medium rounded-full border border-(--pari-border) text-(--pari-text-secondary) hover:border-[#D88A43]/50 hover:text-(--pari-text-primary) transition-colors"
                                 >
                                     {s}
                                 </button>
@@ -123,12 +123,12 @@ const AIAssistant = () => {
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
                             placeholder="Type your question..."
-                            className="flex-1 bg-(--pari-bg-primary) border border-(--pari-border) rounded-lg px-3.5 py-2.5 text-[13px] text-(--pari-text-primary) placeholder:text-(--pari-text-secondary)/60 focus:outline-none focus:border-[#FF4500]/50 transition-colors"
+                            className="flex-1 bg-(--pari-bg-primary) border border-(--pari-border) rounded-lg px-3.5 py-2.5 text-[13px] text-(--pari-text-primary) placeholder:text-(--pari-text-secondary)/60 focus:outline-none focus:border-[#D88A43]/50 transition-colors"
                         />
                         <button
                             type="submit"
                             aria-label="Send message"
-                            className="w-10 h-10 shrink-0 bg-linear-to-br from-[#FF4500] to-[#FF6B35] text-white rounded-lg flex items-center justify-center hover:opacity-90 transition-opacity"
+                            className="w-10 h-10 shrink-0 bg-linear-to-br from-[#A85F32] to-[#D88A43] text-white rounded-lg flex items-center justify-center hover:opacity-90 transition-opacity"
                         >
                             <i className="fa-solid fa-paper-plane text-[14px]"></i>
                         </button>

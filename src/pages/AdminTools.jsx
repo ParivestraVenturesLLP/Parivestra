@@ -131,7 +131,7 @@ const AdminTools = () => {
                     />
                     <button
                         type="submit"
-                        className="md:col-span-5 mt-1 px-6 py-2.5 bg-linear-to-r from-[#FF4500] to-[#FF6B35] text-white text-[13px] font-semibold rounded-lg hover:from-[#E03D00] hover:to-[#FF4500] transition-all"
+                        className="md:col-span-5 mt-1 px-6 py-2.5 bg-linear-to-r from-[#A85F32] to-[#D88A43] text-white text-[13px] font-semibold rounded-lg hover:from-[#8F4F29] hover:to-[#A85F32] transition-all"
                     >
                         Add Tool
                     </button>
@@ -196,11 +196,11 @@ const AdminTools = () => {
                                         ) : (
                                             <>
                                                 <td className="px-4 py-3">{tool.display_order}</td>
-                                                <td className="px-4 py-3"><i className={`${tool.icon} text-[#FF4500]`}></i></td>
+                                                <td className="px-4 py-3"><i className={`${tool.icon} text-[#D88A43]`}></i></td>
                                                 <td className="px-4 py-3 font-medium whitespace-nowrap">{tool.name}</td>
                                                 <td className="px-4 py-3 text-(--pari-text-secondary)">{tool.description}</td>
                                                 <td className="px-4 py-3 whitespace-nowrap">
-                                                    <button onClick={() => startEdit(tool)} className="text-[#FF4500] font-semibold mr-3">Edit</button>
+                                                    <button onClick={() => startEdit(tool)} className="text-[#D88A43] font-semibold mr-3">Edit</button>
                                                     <button onClick={() => handleDelete(tool.id)} className="text-red-500 font-semibold">Delete</button>
                                                 </td>
                                             </>

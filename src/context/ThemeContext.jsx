@@ -2,23 +2,16 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const ThemeContext = createContext();
 
+// The Parivestra identity is dark-first (charcoal + copper). The theme API is kept
+// so existing consumers keep working, but the site no longer offers a light mode.
 export function ThemeProvider({ children }) {
-    const [theme, setTheme] = useState(() => {
-        const saved = localStorage.getItem('parivestra-theme');
-        return saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    });
+    const [theme] = useState('dark');
 
     useEffect(() => {
-        const root = document.documentElement;
-        if (theme === 'dark') {
-            root.classList.add('dark');
-        } else {
-            root.classList.remove('dark');
-        }
-        localStorage.setItem('parivestra-theme', theme);
-    }, [theme]);
+        document.documentElement.classList.add('dark');
+    }, []);
 
-    const toggleTheme = () => setTheme(t => t === 'light' ? 'dark' : 'light');
+    const toggleTheme = () => {};
 
     return (
         <ThemeContext.Provider value={{ theme, toggleTheme }}>

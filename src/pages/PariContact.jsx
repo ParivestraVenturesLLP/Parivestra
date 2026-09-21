@@ -1,137 +1,120 @@
 import React from 'react';
+import { useSearchParams } from 'react-router-dom';
 import PariNavbar from './PariNavbar';
 import PariFooter from './PariFooter';
-import logoIcon from '../assets/logo_icon.png';
-import { useTheme } from '../context/ThemeContext';
 import { useContactForm } from '../hooks/useContactForm';
-import FormField from '../components/Contact/FormField';
+import { objectives, CTA_LABEL } from '../content/homeContent';
+import { CALENDAR_URL, buildWhatsappLink } from '../config/contactLinks';
+import { IconArrow, IconCheck } from '../components/ui/icons';
+import { usePageMeta } from '../hooks/usePageMeta';
 
+const fieldCls =
+    'w-full border-0 border-b border-bone/25 bg-transparent px-0 py-3 text-[17px] text-bone placeholder:text-bone/30 outline-none transition-colors focus:border-amber';
+
+const Field = ({ label, ...props }) => (
+    <label className="block">
+        <span className="label text-stone">{label}</span>
+        <input {...props} className={fieldCls} />
+    </label>
+);
+
+// Booking page — plan §10. Headline is the qualifying question; calendar follows submission.
 const PariContact = () => {
-    const { theme } = useTheme();
-    const { formData, status, errorMessage, handleChange, handleSubmit } = useContactForm();
-
-    const isSubmitting = status === 'submitting';
+    usePageMeta({ title: 'Book a Call | Parivestra', description: 'What outcome are you trying to achieve? Tell us the outcome and book a call.', path: '/book-a-call' });
+    const [params] = useSearchParams();
+    const preset = objectives.find((o) => o.toLowerCase() === (params.get('objective') || '').toLowerCase()) || '';
+    const { formData, status, errorMessage, handleChange, setField, handleSubmit } = useContactForm({ objective: preset });
+    const submitting = status === 'submitting';
 
     return (
-        <div className="bg-(--pari-bg-primary) min-h-screen text-(--pari-text-primary) font-sans">
+        <div className="min-h-screen bg-ink font-sans text-bone">
             <PariNavbar />
 
-            <main className="max-w-360 mx-auto px-6 pt-40 pb-32">
-                <div className="flex flex-col lg:flex-row items-start gap-20 lg:gap-32">
+            <main className="relative overflow-hidden pt-[128px] lg:pt-[160px]">
+                <div className="tech-grid pointer-events-none absolute inset-0" />
+                <div className="glow-copper pointer-events-none absolute inset-0" />
 
-                    {/* Left Side: Brand Identity */}
-                    <div className="lg:w-1/3 flex flex-col items-center lg:items-start text-center lg:text-left">
-                        <div className="relative group mb-8">
-                            <div className="absolute -inset-4 bg-[#FF4500]/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                            <img
-                                src={logoIcon}
-                                alt="Parivestra Icon"
-                                className="relative h-32 md:h-40 w-auto object-contain transition-transform duration-500 group-hover:scale-110"
-                            />
-                        </div>
-                        <h1 className="text-[32px] md:text-[40px] font-bold tracking-[0.2em] text-(--pari-text-primary) uppercase">
-                            Parivestra
-                        </h1>
-                        <div className="h-1.5 w-20 bg-[#FF4500] mt-4 rounded-full" />
-                        <p className="mt-8 text-[18px] text-(--pari-text-secondary) leading-relaxed max-w-80">
-                            Distribution, engineered for outcomes. Let's build the future together.
+                <div className="relative mx-auto grid max-w-[1360px] gap-16 px-5 pb-28 sm:px-8 lg:grid-cols-12 lg:px-10">
+                    <div className="lg:col-span-6">
+                        <span className="label text-amber">Book a call</span>
+                        <h1 className="display display-lg mt-6 text-balance">What outcome are you trying to achieve?</h1>
+                        <p className="mt-8 max-w-[480px] text-[17px] leading-relaxed text-bone/65">
+                            Tell us the outcome. We’ll engineer the distribution. Share a few details and pick a time — someone from our team will reach you within 24 hours.
                         </p>
+                        <ul className="mt-10 space-y-4 border-t border-bone/12 pt-8">
+                            {['Company and objective', 'Target market and scale', 'A calendar slot that works for you'].map((t, i) => (
+                                <li key={t} className="flex items-center gap-4 text-[15px] text-bone/75">
+                                    <span className="label text-copper">0{i + 1}</span>{t}
+                                </li>
+                            ))}
+                        </ul>
                     </div>
 
-                    {/* Right Side: Form */}
-                    <div className="flex-1 w-full max-w-150">
-                        <div className="mb-12">
-                            <h2 className="text-[44px] md:text-[56px] font-bold tracking-tight leading-tight mb-4">
-                                Get in <em className="italic" style={{ fontFamily: 'Georgia, serif', color: '#FF4500' }}>touch</em>
-                            </h2>
-                            <p className="text-[18px] text-(--pari-text-secondary)">
-                                Fill out the form below and our team will get back to you shortly.
-                            </p>
-                        </div>
-
-                        <form onSubmit={handleSubmit} className="space-y-10">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                                <FormField
-                                    label="Name"
-                                    name="name"
-                                    placeholder="John Doe"
-                                    value={formData.name}
-                                    onChange={handleChange}
-                                />
-                                <FormField
-                                    label="Brand Name"
-                                    name="brandName"
-                                    placeholder="Company Inc."
-                                    value={formData.brandName}
-                                    onChange={handleChange}
-                                />
+                    <div className="lg:col-span-6">
+                        {status === 'success' ? (
+                            <div className="rounded-[24px] border border-amber/40 bg-ink-2 p-8 sm:p-10">
+                                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-amber text-ink"><IconCheck size={20} /></span>
+                                <h2 className="display display-md mt-6">Received. Now pick a time.</h2>
+                                <p className="mt-3 text-[16px] leading-relaxed text-bone/65">Choose a slot on the calendar and we’ll come prepared for your outcome.</p>
+                                <div className="mt-8 flex flex-wrap gap-3">
+                                    <a href={CALENDAR_URL} target="_blank" rel="noopener noreferrer"
+                                        className="inline-flex h-12 items-center gap-3 rounded-full bg-copper px-6 font-mono text-[13px] font-medium uppercase tracking-[0.12em] text-bone transition-colors hover:bg-amber hover:text-ink">
+                                        Open calendar <IconArrow size={14} />
+                                    </a>
+                                    <a href={buildWhatsappLink("Hi! I just requested a call on the Parivestra website.")} target="_blank" rel="noopener noreferrer"
+                                        className="inline-flex h-12 items-center rounded-full border border-bone/25 px-6 font-mono text-[13px] font-medium uppercase tracking-[0.12em] text-bone transition-colors hover:border-amber hover:text-amber">
+                                        WhatsApp us
+                                    </a>
+                                </div>
                             </div>
+                        ) : (
+                            <form onSubmit={handleSubmit} className="rounded-[24px] border border-bone/12 bg-ink-2 p-7 sm:p-10">
+                                <fieldset>
+                                    <legend className="label text-stone">Objective</legend>
+                                    <div className="mt-4 flex flex-wrap gap-2.5">
+                                        {objectives.map((o) => {
+                                            const on = formData.objective === o;
+                                            return (
+                                                <button
+                                                    key={o}
+                                                    type="button"
+                                                    aria-pressed={on}
+                                                    onClick={() => setField('objective', o)}
+                                                    className={`label rounded-full border px-4 py-2.5 transition-colors ${on ? 'border-amber bg-amber text-ink' : 'border-bone/20 text-bone/70 hover:border-amber hover:text-amber'}`}
+                                                >
+                                                    {o}
+                                                </button>
+                                            );
+                                        })}
+                                    </div>
+                                </fieldset>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                                <FormField
-                                    type="tel"
-                                    label="Phone Number"
-                                    name="phoneNumber"
-                                    placeholder="+91 00000 00000"
-                                    value={formData.phoneNumber}
-                                    onChange={handleChange}
-                                />
-                                <FormField
-                                    type="email"
-                                    label="Email Id"
-                                    name="emailId"
-                                    placeholder="john@example.com"
-                                    value={formData.emailId}
-                                    onChange={handleChange}
-                                />
-                            </div>
+                                <div className="mt-8 grid gap-7 sm:grid-cols-2">
+                                    <Field label="Name" name="name" required autoComplete="name" placeholder="Your name" value={formData.name} onChange={handleChange} />
+                                    <Field label="Company" name="brandName" required autoComplete="organization" placeholder="Company name" value={formData.brandName} onChange={handleChange} />
+                                    <Field label="Work email" name="emailId" type="email" required autoComplete="email" placeholder="you@company.com" value={formData.emailId} onChange={handleChange} />
+                                    <Field label="Phone" name="phoneNumber" type="tel" required autoComplete="tel" placeholder="+91 00000 00000" value={formData.phoneNumber} onChange={handleChange} />
+                                    <Field label="Target market" name="targetMarket" placeholder="City, region or country" value={formData.targetMarket} onChange={handleChange} />
+                                    <Field label="Approximate monthly scale" name="monthlyScale" placeholder="e.g. 10,000 signups" value={formData.monthlyScale} onChange={handleChange} />
+                                </div>
 
-                            <FormField
-                                label="Service Required"
-                                name="serviceRequired"
-                                placeholder="e.g. Influencer Marketing, Distribution"
-                                value={formData.serviceRequired}
-                                onChange={handleChange}
-                            />
+                                {status === 'error' && (
+                                    <p role="alert" className="mt-7 rounded-xl border border-red-400/30 bg-red-400/10 px-4 py-3 text-[14px] text-red-300">
+                                        {errorMessage}
+                                    </p>
+                                )}
 
-                            <div className="pt-6">
                                 <button
                                     type="submit"
-                                    disabled={isSubmitting}
-                                    className={`w-full md:w-auto px-10 py-4 bg-linear-to-r from-[#FF4500] to-[#FF6B35] text-white font-bold text-[16px] rounded-xl hover:shadow-2xl hover:shadow-orange-500/40 transition-all transform hover:-translate-y-1 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3`}
+                                    disabled={submitting}
+                                    className="group mt-9 inline-flex h-14 items-center gap-4 rounded-full bg-copper pl-8 pr-2.5 font-mono text-[14px] font-medium uppercase tracking-[0.12em] text-bone transition-colors hover:bg-amber hover:text-ink disabled:opacity-60"
                                 >
-                                    {isSubmitting ? (
-                                        <>
-                                            <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                            </svg>
-                                            Sending...
-                                        </>
-                                    ) : 'Send Message'}
+                                    {submitting ? 'Sending…' : CTA_LABEL}
+                                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-ink/20"><IconArrow size={16} /></span>
                                 </button>
-
-                                {status === 'success' && (
-                                    <p className="mt-4 flex items-center gap-2 p-4 bg-green-500/10 border border-green-500/20 text-green-500 font-medium rounded-lg">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M20 6L9 17l-5-5" /></svg>
-                                        Message sent! We'll be in touch.
-                                    </p>
-                                )}
-                                {status === 'error' && (
-                                    <p className="mt-4 flex items-center gap-2 p-4 bg-red-500/10 border border-red-500/20 text-red-500 font-medium rounded-lg">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg>
-                                        {errorMessage || 'Failed to send message. Please try again.'}
-                                    </p>
-                                )}
-
-                                <p className="mt-8 flex items-center gap-3 text-[14px] text-(--pari-text-secondary) font-medium">
-                                    <span className="flex h-2 w-2 rounded-full bg-[#FF4500] animate-pulse" />
-                                    Someone from our team will reach you in 24 hours.
-                                </p>
-                            </div>
-                        </form>
+                            </form>
+                        )}
                     </div>
-
                 </div>
             </main>
 

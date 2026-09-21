@@ -17,7 +17,7 @@ const ToolBannerSlider = ({ tools, onSelect }) => {
             <style>{bannerCSS}</style>
             <div className="max-w-300 mx-auto px-6">
                 <div className="flex flex-col items-center text-center mb-12">
-                    <span className="inline-block px-4 py-1.5 rounded-full bg-[#FF4500]/15 border border-[#FF4500]/30 text-[#FF4500] text-[12px] font-bold uppercase tracking-widest mb-6">Product Previews</span>
+                    <span className="inline-block px-4 py-1.5 rounded-full bg-[#A85F32]/15 border border-[#D88A43]/30 text-[#D88A43] text-[12px] font-bold uppercase tracking-widest mb-6">Product Previews</span>
                     <h2 className="text-[36px] md:text-[46px] font-bold tracking-tight text-(--pari-text-primary) transition-colors">
                         See the tools in action
                     </h2>

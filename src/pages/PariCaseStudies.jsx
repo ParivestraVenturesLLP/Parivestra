@@ -1,194 +1,125 @@
 import React from 'react';
-import PariNavbar from './PariNavbar';
-import PariFooter from './PariFooter';
-import ScrollReveal from '../components/ScrollReveal';
+import { PageShell, Wrap } from '../components/PageShell';
+import BookCall from '../components/ui/BookCall';
+import { IconCheck, IconArrowUpRight } from '../components/ui/icons';
+import { usePageMeta } from '../hooks/usePageMeta';
+import { caseStudies, moreStories, executionPhotos } from '../content/homeContent';
 
-// Import local logos
-import swiggyLogo from '../assets/swiggy.png';
-import uberLogo from '../assets/uber.png';
-import flixbusLogo from '../assets/flixbus.png';
-import nestleLogo from '../assets/nestle.png';
-import myntraLogo from '../assets/myntra.jpg';
+const DECK = 'https://drive.google.com/file/d/14sm-jmkoAbmcyzgFmxZ0Ryg4Xdeh6Bo3/view?usp=sharing';
 
-const caseStudies = [
-    {
-        brand: 'Swiggy',
-        logo: swiggyLogo,
-        category: 'Food Delivery',
-        color: '#FF4500',
-        title: 'Hyper-local Community Distribution for Swiggy',
-        outcomes: ['Campus activation across 50+ colleges', 'Community-first GTM in Tier-2 cities', 'Correlated brand trials with app installs'],
-        tags: ['Offline Activation', 'Community GTM', 'Data Attribution'],
-    },
-    {
-        brand: 'Uber',
-        logo: uberLogo,
-        category: 'Mobility',
-        color: '#9999FE',
-        title: 'Uber Rider Acquisition via UGC & Influencers',
-        outcomes: ['UGC campaigns across 15+ cities', 'Influencer-driven first-ride conversions', 'AI-led attribution to ride completions'],
-        tags: ['UGC Campaigns', 'Influencer Marketing', 'AI Attribution'],
-    },
-    {
-        brand: 'FlixBus',
-        logo: flixbusLogo,
-        category: 'Intercity Travel',
-        color: '#81E4BA',
-        title: 'FlixBus Market Entry & Distribution Stack',
-        outcomes: ['Pan-India affiliate ecosystem built', 'ORM strategy for brand trust building', 'Performance marketing across 20 routes'],
-        tags: ['GTM Execution', 'Affiliate Stack', 'ORM'],
-    },
-    {
-        brand: 'Nestlé',
-        logo: nestleLogo,
-        category: 'FMCG',
-        color: '#FFB347',
-        title: 'Nestlé Youth-First Community Engagement',
-        outcomes: ['RWA and turf activations nationwide', 'Brand visibility to sales correlation tracked', 'Community-led product sampling campaigns'],
-        tags: ['Offline Distribution', 'Community Activation', 'Sales Correlation'],
-    },
-    {
-        brand: 'Meesho',
-        logo: 'https://upload.wikimedia.org/wikipedia/commons/8/80/Meesho_Logo_Full.png',
-        category: 'Social Commerce',
-        color: '#FF885C',
-        title: 'Meesho Seller Ecosystem Expansion',
-        outcomes: ['Affiliate seller network built in Tier-3 markets', 'On-ground reseller activation campaigns', 'Revenue-linked distribution across 8 states'],
-        tags: ['Affiliate Commerce', 'On-Ground Activation', 'Revenue Attribution'],
-    },
-    {
-        brand: 'Myntra',
-        logo: myntraLogo,
-        category: 'Fashion E-Commerce',
-        color: '#FBC768',
-        title: 'Myntra Campus & Youth Distribution',
-        outcomes: ['College influencer ambassador program', 'High-intent fashion community targeting', 'Sales-correlated brand presence tracking'],
-        tags: ['Influencer Ecosystem', 'Campus GTM', 'Performance Tracking'],
-    },
-];
-
-const PariCaseStudies = () => {
+const Metric = ({ value }) => {
+    const m = /^(\d[\d,.]*)(.*)$/.exec(value);
     return (
-        <div className="bg-(--pari-bg-primary) min-h-screen text-(--pari-text-primary) font-sans transition-colors">
-            <PariNavbar />
+        <span className="display block text-[clamp(7rem,18vw,15rem)] font-extralight leading-[0.8] tracking-[-0.06em]">
+            {m[1]}<span className="text-amber">{m[2]}</span>
+        </span>
+    );
+};
 
-            {/* ── HERO ─────────────────────────────────────── */}
-            <section className="pt-40 pb-24 px-6 text-center relative overflow-hidden">
-                <div className="absolute inset-0 bg-linear-to-b from-[#FF4500]/8 via-transparent to-transparent pointer-events-none" />
-                <div className="max-w-190 mx-auto relative z-10">
-                    <span className="inline-block px-4 py-1.5 rounded-full bg-[#FF4500]/15 border border-[#FF4500]/30 text-[#FF4500] text-[12px] font-bold uppercase tracking-widest mb-8 transition-colors">Case Studies</span>
-                    <h1 className="text-[52px] md:text-[68px] font-bold tracking-[-0.03em] leading-none text-(--pari-text-primary) mb-6 transition-colors">
-                        Real distribution.{' '}
-                        <em style={{ fontFamily: 'Georgia, serif', color: '#FF4500' }}>Real outcomes.</em>
-                    </h1>
-                    <p className="text-[19px] text-(--pari-text-secondary) leading-relaxed max-w-140 mx-auto mb-12 transition-colors">
-                        Explore detailed case studies showcasing how Parivestra solved complex distribution challenges and scaled brands across offline and digital ecosystems.
-                    </p>
-                    <a
-                        href="https://drive.google.com/file/d/14sm-jmkoAbmcyzgFmxZ0Ryg4Xdeh6Bo3/view?usp=sharing"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-2 px-8 py-4 bg-linear-to-r from-[#FF4500] to-[#FF6B35] text-white font-semibold text-[16px] rounded-[14px] hover:from-[#E03D00] hover:to-[#FF4500] transition-all shadow-xl shadow-orange-500/30"
-                    >
-                        View Full Case Study Doc
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" /></svg>
-                    </a>
-                </div>
-            </section>
+// Outcome-first template (plan §9): the number leads, then problem (when approved), the
+// distribution deployed, the execution, the measured outcome, and a Book a Call.
+const PariCaseStudies = () => {
+    usePageMeta({
+        title: 'Case Studies | Parivestra — Quantified Outcome Stories',
+        description: 'Outcome-first case studies: colleges activated, cities of UGC, states of revenue-linked distribution and routes of performance marketing.',
+        path: '/case-studies',
+        jsonLd: {
+            '@context': 'https://schema.org',
+            '@type': 'ItemList',
+            itemListElement: caseStudies.map((c, i) => ({
+                '@type': 'ListItem',
+                position: i + 1,
+                item: { '@type': 'Article', headline: `${c.metric} ${c.unit} — ${c.brand}`, about: c.title, author: { '@type': 'Organization', name: 'Parivestra' } },
+            })),
+        },
+    });
 
-            {/* ── WHAT WE PROVE ─────────────────────────────── */}
-            <section className="py-16 px-6 bg-(--pari-bg-secondary) dark:bg-[#080F18] transition-colors">
-                <div className="max-w-275 mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-20">
-                        {[
-                            { icon: 'fa-solid fa-building-circle-check', label: 'Complex distribution challenges solved' },
-                            { icon: 'fa-solid fa-earth-asia', label: 'Community-first GTM strategies built' },
-                            { icon: 'fa-solid fa-chart-line', label: 'Brand visibility correlated with sales' },
-                            { icon: 'fa-solid fa-arrows-spin', label: 'Brands scaled across offline + digital' },
-                        ].map((item) => (
-                            <div key={item.label} className="flex items-center gap-4 bg-(--pari-bg-secondary)/50 dark:bg-white/4 border border-(--pari-border) rounded-2xl p-6 shadow-sm dark:shadow-none transition-colors group">
-                                <i className={`${item.icon} text-[32px] text-[#FF4500] shrink-0 group-hover:scale-110 transition-transform`}></i>
-                                <span className="text-[15px] font-medium text-(--pari-text-secondary) leading-snug transition-colors">{item.label}</span>
+    return (
+        <PageShell
+            eyebrow="Case studies"
+            title="Outcomes, not portfolios."
+            sub="Every story leads with the number, then the infrastructure that produced it."
+            actions={<a href={DECK} target="_blank" rel="noreferrer" className="inline-flex h-12 items-center gap-2 rounded-full border border-bone/25 px-6 font-mono text-[13px] font-medium uppercase tracking-[0.12em] text-bone transition-colors hover:border-amber hover:text-amber">Full case study deck <IconArrowUpRight size={14} /></a>}
+        >
+            <Wrap className="space-y-6 pb-24">
+                {caseStudies.map((c, i) => (
+                    <article key={c.brand} id={c.brand.toLowerCase()} className="scroll-mt-28 rounded-lg border border-bone/12 bg-[#0c0b09] p-7 sm:p-12">
+                        <div className="flex items-center justify-between">
+                            <span className="label text-[10px] text-copper">0{i + 1} — {c.brand}</span>
+                            <span className="label text-[10px] text-stone">{c.sector}</span>
+                        </div>
+
+                        <div className="mt-10 grid gap-10 lg:grid-cols-12 lg:items-end">
+                            <div className="lg:col-span-6">
+                                <Metric value={c.metric} />
+                                <p className="label mt-5 text-[11px] text-amber">{c.unit}</p>
                             </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* ── CASE STUDY CARDS ──────────────────────────── */}
-            <section className="py-16 px-6 bg-(--pari-bg-primary) transition-colors">
-                <div className="max-w-275 mx-auto">
-                    <div className="text-center mb-14">
-                        <span className="inline-block px-4 py-1.5 rounded-full bg-[#FF4500]/15 border border-[#FF4500]/30 text-[#FF4500] text-[12px] font-bold uppercase tracking-widest mb-6 transition-colors">Performance First</span>
-                        <h2 className="text-[38px] md:text-[48px] font-bold tracking-tight text-(--pari-text-primary) transition-colors">Case Studies | UGC Campaigns</h2>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {caseStudies.map((cs, i) => (
-                            <ScrollReveal
-                                key={cs.brand}
-                                delay={(i % 2) * 120}
-                                className="bg-(--pari-bg-secondary) dark:bg-[#080F18] border border-(--pari-border) rounded-2xl overflow-hidden hover:bg-(--pari-bg-secondary)/80 dark:hover:bg-[#0c1622] hover:border-[#FF4500]/25 hover:-translate-y-1 transition-all group shadow-sm dark:shadow-none"
-                            >
-                                {/* Card header */}
-                                <div className="p-7 border-b border-(--pari-border) flex items-center gap-5 transition-colors" style={{ background: `linear-gradient(135deg, ${cs.color}18 0%, transparent 70%)` }}>
-                                    <div className="w-16 h-16 dark:bg-[#EDEBE6] dark:shadow-sm dark:shadow-black/40 rounded-xl flex items-center justify-center p-2 shrink-0 border border-gray-100 dark:border-gray-800">
-                                        <img
-                                            src={cs.logo}
-                                            alt={`${cs.brand} Logo`}
-                                            className="w-full h-full object-contain"
-                                        />
-                                    </div>
-                                    <div>
-                                        <span className="text-[11px] font-bold uppercase tracking-widest" style={{ color: cs.color }}>{cs.category}</span>
-                                        <h3 className="text-[18px] font-bold text-(--pari-text-primary) mt-0.5 group-hover:text-[#FF4500] transition-colors">{cs.title}</h3>
-                                    </div>
+                            <div className="lg:col-span-6">
+                                <h2 className="display display-md">{c.title}</h2>
+                                <p className="label mt-8 text-[10px] text-stone">Distribution deployed</p>
+                                <ul className="mt-3 flex flex-wrap gap-2">
+                                    {c.stack.map((t) => <li key={t} className="label rounded border border-bone/14 px-3 py-1.5 text-[10px] text-bone/70">{t}</li>)}
+                                </ul>
+                                <p className="label mt-8 text-[10px] text-stone">Execution</p>
+                                <ul className="mt-3 space-y-2.5">
+                                    {c.execution.map((e) => (
+                                        <li key={e} className="flex items-start gap-3 text-[15.5px] text-bone/75"><IconCheck size={15} className="mt-1 shrink-0 text-amber" />{e}</li>
+                                    ))}
+                                </ul>
+                                <div className="mt-9 flex flex-wrap items-center gap-4 border-t border-bone/12 pt-6">
+                                    <span className="label text-[10px] text-stone">Measured outcome</span>
+                                    <span className="text-[15.5px] text-bone">{c.metric} {c.unit.toLowerCase()}</span>
                                 </div>
+                                <div className="mt-6"><BookCall section={`case-${c.brand.toLowerCase()}`} variant="bone" size="sm" /></div>
+                            </div>
+                        </div>
+                    </article>
+                ))}
+            </Wrap>
 
-                                {/* Outcomes */}
-                                <div className="p-7">
-                                    <p className="text-[12px] font-bold uppercase tracking-widest text-(--pari-text-secondary) mb-4 transition-colors">Key Outcomes</p>
-                                    <ul className="flex flex-col gap-2.5 mb-6">
-                                        {cs.outcomes.map((o) => (
-                                            <li key={o} className="flex items-start gap-3 text-[14px] text-(--pari-text-secondary) transition-colors">
-                                                <span className="shrink-0 mt-0.5 text-[#FF4500]">→</span>
-                                                {o}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                    <div className="flex flex-wrap gap-2">
-                                        {cs.tags.map((t) => (
-                                            <span key={t} className="px-3 py-1 bg-(--pari-bg-primary)/60 dark:bg-white/5 border border-(--pari-border) rounded-lg text-[12px] font-medium text-(--pari-text-secondary) transition-colors">{t}</span>
-                                        ))}
-                                    </div>
-                                </div>
-                            </ScrollReveal>
-                        ))}
-                    </div>
+            <Wrap className="pb-24">
+                <div className="flex items-end justify-between border-b border-bone/12 pb-4">
+                    <h2 className="display display-md">More stories</h2>
+                    <span className="label hidden text-[10px] text-stone sm:block">Headline numbers in review</span>
                 </div>
-            </section>
-
-            {/* ── FULL DOC CTA ──────────────────────────────── */}
-            <section className="py-24 px-6 bg-(--pari-bg-secondary) dark:bg-[#080F18] transition-colors">
-                <div className="max-w-175 mx-auto text-center bg-(--pari-bg-secondary)/50 dark:bg-white/4 border border-(--pari-border) rounded-2xl p-12 hover:border-[#FF4500]/25 transition-all shadow-sm dark:shadow-none group">
-                    <i className="fa-solid fa-file-lines text-[48px] text-[#FF4500] mb-4 block group-hover:scale-110 transition-transform"></i>
-                    <h2 className="text-[32px] font-bold text-(--pari-text-primary) mb-4 transition-colors">Full Case Study Document</h2>
-                    <p className="text-[16px] text-(--pari-text-secondary) leading-relaxed mb-8 transition-colors">
-                        Detailed documentation including strategy decks, execution frameworks, and outcome metrics for each brand engagement.
-                    </p>
-                    <a
-                        href="https://drive.google.com/file/d/14sm-jmkoAbmcyzgFmxZ0Ryg4Xdeh6Bo3/view?usp=sharing"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-2 px-8 py-4 bg-linear-to-r from-[#FF4500] to-[#FF6B35] text-white font-semibold text-[16px] rounded-[14px] hover:from-[#E03D00] hover:to-[#FF4500] transition-all shadow-xl shadow-orange-500/30"
-                    >
-                        Open →
-                    </a>
+                <div className="mt-8 grid gap-4 md:grid-cols-2">
+                    {moreStories.map((c) => (
+                        <article key={c.brand} id={c.brand.toLowerCase()} className="scroll-mt-28 rounded-lg border border-bone/12 bg-[#0c0b09] p-7">
+                            <div className="flex items-center justify-between">
+                                <span className="label text-[10px] text-copper">{c.brand}</span>
+                                <span className="label text-[10px] text-stone">{c.sector}</span>
+                            </div>
+                            <h3 className="display mt-8 text-[1.9rem]">{c.title}</h3>
+                            <ul className="mt-5 space-y-2.5">
+                                {c.execution.map((e) => (
+                                    <li key={e} className="flex items-start gap-3 text-[15px] text-bone/70"><IconCheck size={14} className="mt-1 shrink-0 text-amber" />{e}</li>
+                                ))}
+                            </ul>
+                            <ul className="mt-6 flex flex-wrap gap-2">
+                                {c.stack.map((t) => <li key={t} className="label rounded border border-bone/14 px-2.5 py-1 text-[9.5px] text-bone/60">{t}</li>)}
+                            </ul>
+                        </article>
+                    ))}
                 </div>
-            </section>
+            </Wrap>
 
-            <PariFooter />
-        </div>
+            <Wrap className="pb-28">
+                <div className="flex items-end justify-between border-b border-bone/12 pb-4">
+                    <h2 className="display display-md">Execution, <span className="text-bone/45">not slides.</span></h2>
+                    <span className="label hidden text-[10px] text-stone sm:block">On the ground</span>
+                </div>
+                <div className="mt-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
+                    {executionPhotos.map((p) => (
+                        <figure key={p.src} className="photo-card relative aspect-[4/5] overflow-hidden rounded-lg border border-bone/12">
+                            <img src={p.src} alt={p.alt} loading="lazy" className="photo-grade h-full w-full object-cover" />
+                            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/85 via-transparent to-transparent" />
+                            <figcaption className="label absolute bottom-4 left-4 text-[10px] text-bone/85">{p.caption}</figcaption>
+                        </figure>
+                    ))}
+                </div>
+                <div className="mt-16 flex justify-center"><BookCall section="case-studies-end" variant="bone" size="lg" /></div>
+            </Wrap>
+        </PageShell>
     );
 };
 

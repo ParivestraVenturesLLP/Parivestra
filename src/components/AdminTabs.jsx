@@ -16,7 +16,7 @@ const AdminTabs = () => {
                     key={tab.to}
                     to={tab.to}
                     className={`px-4 py-2 rounded-lg text-[13px] font-semibold transition-colors ${location.pathname === tab.to
-                        ? 'bg-linear-to-r from-[#FF4500] to-[#FF6B35] text-white'
+                        ? 'bg-linear-to-r from-[#A85F32] to-[#D88A43] text-white'
                         : 'bg-(--pari-bg-secondary) text-(--pari-text-secondary) hover:text-(--pari-text-primary)'
                         }`}
                 >

@@ -77,12 +77,12 @@ const PariClientele = () => {
 
             {/* ── HERO ─────────────────────────────────────── */}
             <section className="pt-40 pb-24 px-6 text-center relative overflow-hidden">
-                <div className="absolute inset-0 bg-linear-to-b from-[#FF4500]/8 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-linear-to-b from-[#A85F32]/8 via-transparent to-transparent pointer-events-none" />
                 <div className="max-w-190 mx-auto relative z-10">
-                    <span className="inline-block px-4 py-1.5 rounded-full bg-[#FF4500]/15 border border-[#FF4500]/30 text-[#FF4500] text-[12px] font-bold uppercase tracking-widest mb-8 transition-colors">Clientele</span>
+                    <span className="inline-block px-4 py-1.5 rounded-full bg-[#A85F32]/15 border border-[#D88A43]/30 text-[#D88A43] text-[12px] font-bold uppercase tracking-widest mb-8 transition-colors">Clientele</span>
                     <h1 className="text-[52px] md:text-[68px] font-bold tracking-[-0.03em] leading-none text-(--pari-text-primary) mb-6 transition-colors">
                         Brands we've{' '}
-                        <em style={{ fontFamily: 'Georgia, serif', color: '#FF4500' }}>worked with</em>
+                        <em style={{ fontFamily: 'Georgia, serif', color: '#D88A43' }}>worked with</em>
                     </h1>
                     <p className="text-[19px] text-(--pari-text-secondary) leading-relaxed transition-colors">
                         We build nationwide campaigns tailored to distinct regional markets, leveraging a robust offline and online presence.
@@ -93,15 +93,15 @@ const PariClientele = () => {
             {/* ── BRAND GRID (Premium Collage) ──────────────── */}
             <section className="py-24 px-4 sm:px-6 bg-(--pari-bg-secondary) dark:bg-[#080F18] transition-colors relative overflow-hidden">
                 {/* Decorative background blur to make it feel rich */}
-                <div className="absolute top-1/4 left-1/4 w-[40vw] h-[40vw] bg-[#FF4500]/5 rounded-full blur-[120px] pointer-events-none" />
-                <div className="absolute bottom-1/4 right-1/4 w-[30vw] h-[30vw] bg-[#FF6B35]/5 rounded-full blur-[100px] pointer-events-none" />
+                <div className="absolute top-1/4 left-1/4 w-[40vw] h-[40vw] bg-[#A85F32]/5 rounded-full blur-[120px] pointer-events-none" />
+                <div className="absolute bottom-1/4 right-1/4 w-[30vw] h-[30vw] bg-[#D88A43]/5 rounded-full blur-[100px] pointer-events-none" />
 
                 <div className="max-w-350 mx-auto relative z-10">
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-5">
                         {brands.map((brand) => (
                             <div
                                 key={brand.name}
-                                className="group relative flex flex-col items-center justify-center h-45 dark:bg-[#EDEBE6] dark:shadow-sm dark:shadow-black/40 border border-(--pari-border) hover:border-[#FF4500]/50 rounded-[28px] overflow-hidden transition-all duration-500 hover:shadow-[0_20px_40px_-15px_rgba(255,69,0,0.15)] hover:-translate-y-2 cursor-pointer"
+                                className="group relative flex flex-col items-center justify-center h-45 dark:bg-[#EDEBE6] dark:shadow-sm dark:shadow-black/40 border border-(--pari-border) hover:border-[#D88A43]/50 rounded-[28px] overflow-hidden transition-all duration-500 hover:shadow-[0_20px_40px_-15px_rgba(255,69,0,0.15)] hover:-translate-y-2 cursor-pointer"
                             >
                                 {/* Dark Gradient Overlay on Hover for Text Readability */}
                                 <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none" />
@@ -118,7 +118,7 @@ const PariClientele = () => {
                                 {/* Sliding Text Details */}
                                 <div className="absolute bottom-0 inset-x-0 p-4 translate-y-full group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out z-20 flex flex-col items-center text-center">
                                     <h3 className="text-[17px] font-bold text-white leading-tight drop-shadow-md">{brand.name}</h3>
-                                    <p className="text-[11px] font-bold uppercase tracking-widest text-[#FF4500] mt-1 drop-shadow-md">{brand.sector}</p>
+                                    <p className="text-[11px] font-bold uppercase tracking-widest text-[#D88A43] mt-1 drop-shadow-md">{brand.sector}</p>
                                 </div>
                             </div>
                         ))}
@@ -129,13 +129,13 @@ const PariClientele = () => {
             {/* ── SECTION 1: PARIVESTRA OFFLINE CAPABILITIES ── */}
             <section className="py-24 px-6 bg-[#0B1120] relative overflow-hidden flex flex-col lg:flex-row items-center justify-between min-h-175">
                 {/* Decorative glow */}
-                <div className="absolute top-0 right-0 w-150 h-150 bg-[#FF4500]/10 rounded-full blur-[150px] pointer-events-none" />
+                <div className="absolute top-0 right-0 w-150 h-150 bg-[#A85F32]/10 rounded-full blur-[150px] pointer-events-none" />
 
                 <div className="max-w-125 relative z-10 lg:ml-[5%] mb-16 lg:mb-0">
                     <h2 className="text-[48px] md:text-[64px] font-bold text-white leading-[1.1] tracking-tight mb-4">
                         Parivestra Offline<br />Capabilities
                     </h2>
-                    <p className="text-[#FF4500] text-[22px] font-bold mb-10">Community driven Offline Capabilities</p>
+                    <p className="text-[#D88A43] text-[22px] font-bold mb-10">Community driven Offline Capabilities</p>
                     <div className="flex flex-wrap gap-4 items-center bg-white/5 p-4 rounded-xl border border-white/10 w-fit">
                         <div className="bg-white/90 p-2 rounded-lg flex items-center justify-center h-10 w-24">
                             <img src={aptosLogo} className="h-full w-full object-contain mix-blend-multiply" alt="Aptos" />
@@ -152,11 +152,11 @@ const PariClientele = () => {
                     </div>
                     <div className="flex items-center gap-16 mt-16 font-medium">
                         <div>
-                            <p className="text-[#FF4500] text-sm">Phone</p>
+                            <p className="text-[#D88A43] text-sm">Phone</p>
                             <p className="text-white">+91 7970476060</p>
                         </div>
                         <div>
-                            <p className="text-[#FF4500] text-sm">Website</p>
+                            <p className="text-[#D88A43] text-sm">Website</p>
                             <p className="text-white">www.parivestra.com</p>
                         </div>
                     </div>
@@ -233,7 +233,7 @@ const PariClientele = () => {
                         </div>
                     </div>
 
-                    <div className="inline-block px-8 py-5 bg-[#FF4500] rounded-full text-white font-bold text-[20px] shadow-2xl relative z-20 -mt-12 border-[6px] border-[#111827]">
+                    <div className="inline-block px-8 py-5 bg-[#A85F32] rounded-full text-white font-bold text-[20px] shadow-2xl relative z-20 -mt-12 border-[6px] border-[#111827]">
                         Your next 1M+ loyal users are in college campuses.<br />
                         <span className="text-[14px] font-normal tracking-wide">And they're ready to download, review, post, and promote — if you show up the right way.</span>
                     </div>
@@ -284,7 +284,7 @@ const PariClientele = () => {
                             <h2 className="text-[36px] md:text-[52px] font-bold text-white tracking-tight">Offline Service Capabilities</h2>
                             <i className="fa-solid fa-circle-arrow-right text-[36px] text-white/50"></i>
                         </div>
-                        <p className="text-[#FF4500] font-bold text-[20px] tracking-wide">Tailored Offline Activation, Fueled by Community</p>
+                        <p className="text-[#D88A43] font-bold text-[20px] tracking-wide">Tailored Offline Activation, Fueled by Community</p>
                     </div>
 
                     <div className="flex flex-col lg:flex-row gap-16">
@@ -322,13 +322,13 @@ const PariClientele = () => {
                                 ].map((item, i) => (
                                     <div key={i} className="relative pl-14">
                                         {/* Dot */}
-                                        <div className={`absolute -left-[5px] top-1 w-8 h-8 rounded-full border-[3px] border-white/20 flex items-center justify-center shadow-lg ${item.dot === 'red' ? 'bg-linear-to-tr from-[#6B0000] to-[#FF4500]' : 'bg-linear-to-tr from-gray-300 to-white'}`}>
+                                        <div className={`absolute -left-[5px] top-1 w-8 h-8 rounded-full border-[3px] border-white/20 flex items-center justify-center shadow-lg ${item.dot === 'red' ? 'bg-linear-to-tr from-[#6B0000] to-[#A85F32]' : 'bg-linear-to-tr from-gray-300 to-white'}`}>
                                             <div className="absolute top-1 left-1.5 w-2 h-2 bg-white/60 rounded-full blur-[1px]"></div>
                                         </div>
-                                        <h3 className="text-[#FF4500] text-[22px] font-bold mb-4 tracking-wide">{item.title}</h3>
+                                        <h3 className="text-[#D88A43] text-[22px] font-bold mb-4 tracking-wide">{item.title}</h3>
                                         <ul className="space-y-4">
                                             {item.points.map((pt, j) => (
-                                                <li key={j} className="text-white/80 text-[15px] leading-relaxed relative before:content-['•'] before:absolute before:-left-5 before:text-[#FF4500]">
+                                                <li key={j} className="text-white/80 text-[15px] leading-relaxed relative before:content-['•'] before:absolute before:-left-5 before:text-[#D88A43]">
                                                     {pt}
                                                 </li>
                                             ))}
@@ -358,10 +358,10 @@ const PariClientele = () => {
                 <div className="max-w-300 mx-auto flex flex-col md:flex-row items-center gap-16">
                     <div className="flex-[0.8] text-center md:text-left">
                         <h2 className="text-[48px] md:text-[64px] font-bold text-white leading-[1.1] tracking-tight mb-8">
-                            Partners who<br />trust our<br /><span className="text-[#FF4500]">campaigns</span>
+                            Partners who<br />trust our<br /><span className="text-[#D88A43]">campaigns</span>
                         </h2>
                         <p className="text-[20px] text-white/90 leading-relaxed font-medium">
-                            We are currently working with more than <span className="text-[#FF4500] font-bold">50 companies</span> across <span className="text-[#FF4500] font-bold">7 industries</span> and <span className="text-[#FF4500] font-bold">11+ countries.</span>
+                            We are currently working with more than <span className="text-[#D88A43] font-bold">50 companies</span> across <span className="text-[#D88A43] font-bold">7 industries</span> and <span className="text-[#D88A43] font-bold">11+ countries.</span>
                         </p>
                     </div>
 
@@ -454,7 +454,7 @@ const PariClientele = () => {
                         <h2 className="text-[64px] lg:text-[80px] font-bold text-white leading-none tracking-tight mb-8">
                             Have a<br />Question?
                         </h2>
-                        <a href="/contact" className="text-white text-[24px] font-bold hover:text-[#FF4500] transition-colors ml-2 flex items-center justify-center md:justify-start gap-3">
+                        <a href="/contact" className="text-white text-[24px] font-bold hover:text-[#D88A43] transition-colors ml-2 flex items-center justify-center md:justify-start gap-3">
                             Book a call
                             <i className="fa-solid fa-arrow-right text-[20px]"></i>
                         </a>
@@ -473,8 +473,8 @@ const PariClientele = () => {
                         <div>
                             <div className="bg-white rounded-full px-6 py-2 inline-block text-[#0B1120] font-bold text-[14px] mb-5 shadow-[0_0_15px_rgba(255,255,255,0.1)]">Link</div>
                             <div className="space-y-2">
-                                <a href="https://www.parivestra.com" target="_blank" rel="noreferrer" className="block text-white/90 text-[16px] hover:text-[#FF4500] transition-colors"><span className="underline decoration-white/30 underline-offset-4">www.parivestra.com</span></a>
-                                <a href="https://calendly.com" target="_blank" rel="noreferrer" className="block text-white text-[16px] hover:text-[#FF4500] transition-colors"><span className="underline decoration-white/30 underline-offset-4 font-bold">Calendly-Ayush</span></a>
+                                <a href="https://www.parivestra.com" target="_blank" rel="noreferrer" className="block text-white/90 text-[16px] hover:text-[#D88A43] transition-colors"><span className="underline decoration-white/30 underline-offset-4">www.parivestra.com</span></a>
+                                <a href="https://calendly.com" target="_blank" rel="noreferrer" className="block text-white text-[16px] hover:text-[#D88A43] transition-colors"><span className="underline decoration-white/30 underline-offset-4 font-bold">Calendly-Ayush</span></a>
                             </div>
                         </div>
                         <div>

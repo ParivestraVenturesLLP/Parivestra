@@ -38,7 +38,7 @@ const AdminLogin = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Password"
                     autoFocus
-                    className="w-full bg-(--pari-bg-primary) border border-(--pari-border) rounded-lg px-4 py-3 text-[14px] text-(--pari-text-primary) placeholder:text-(--pari-text-secondary)/60 focus:outline-none focus:border-[#FF4500]/50 transition-colors"
+                    className="w-full bg-(--pari-bg-primary) border border-(--pari-border) rounded-lg px-4 py-3 text-[14px] text-(--pari-text-primary) placeholder:text-(--pari-text-secondary)/60 focus:outline-none focus:border-[#D88A43]/50 transition-colors"
                 />
 
                 {status === 'error' && (
@@ -48,7 +48,7 @@ const AdminLogin = () => {
                 <button
                     type="submit"
                     disabled={status === 'submitting' || !password}
-                    className="w-full mt-6 py-3 bg-linear-to-r from-[#FF4500] to-[#FF6B35] text-white text-[15px] font-semibold rounded-lg hover:from-[#E03D00] hover:to-[#FF4500] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full mt-6 py-3 bg-linear-to-r from-[#A85F32] to-[#D88A43] text-white text-[15px] font-semibold rounded-lg hover:from-[#8F4F29] hover:to-[#A85F32] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                     {status === 'submitting' ? 'Checking...' : 'Log In'}
                 </button>

@@ -1,132 +1,68 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../assets/logo.png';
-import logoBright from '../assets/logo_bright.png';
-import logoIcon from '../assets/logo_icon.png';
-import ThemeToggle from '../components/ThemeToggle';
-import { useTheme } from '../context/ThemeContext';
+import BookCall from '../components/ui/BookCall';
+import { IconMenu, IconClose } from '../components/ui/icons';
+import { nav } from '../content/homeContent';
 
-const navLinks = [
-    { label: 'Home', to: '/' },
-    { label: 'AI & Apps', to: '/ai-apps' },
-    { label: 'Partnerships', to: '/partnerships' },
-    { label: 'Clientele', to: '/clientele' },
-    { label: 'Case Studies', to: '/case-studies' },
-    { label: 'Distribution', to: '/distribution' },
-    { label: 'About', to: '/about' },
-];
+// Two floating pills, as on Quantara: logo · links + primary CTA.
+// Nav per plan §13: Outcomes | Solutions | Consumer Mesh | Case Studies | About | BOOK A CALL →
+const pill = 'rounded-full border border-bone/10 bg-[#0d0c0a]/90 backdrop-blur-sm';
 
 const PariNavbar = () => {
-    const [scrolled, setScrolled] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
     const location = useLocation();
-    const { theme } = useTheme();
 
+    useEffect(() => { setMenuOpen(false); }, [location.pathname, location.hash]);
     useEffect(() => {
-        const handleScroll = () => setScrolled(window.scrollY > 20);
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        handleScroll();
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+        document.body.style.overflow = menuOpen ? 'hidden' : '';
+        return () => { document.body.style.overflow = ''; };
+    }, [menuOpen]);
 
-    useEffect(() => {
-        setMenuOpen(false);
-    }, [location.pathname]);
-
-    const isActive = (to) => location.pathname === to || (to !== '/' && location.pathname.startsWith(to));
+    const isActive = (to) => !to.includes('#') && (location.pathname === to || location.pathname.startsWith(`${to}/`));
 
     return (
-        <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled
-            ? 'bg-(--pari-bg-primary)/85 backdrop-blur-md border-b border-(--pari-border) shadow-lg shadow-black/5'
-            : 'bg-transparent'
-            }`}>
-            <div className="max-w-360 mx-auto px-6 h-20 flex items-center justify-between">
-                {/* Logo */}
-                <Link to="/" className="flex items-center gap-3 group">
-                    <img
-                        src={logoIcon}
-                        alt="Parivestra Icon"
-                        className={`${scrolled ? 'h-8' : 'h-10'} w-auto object-contain transition-all duration-300 group-hover:scale-105`}
-                    />
-                    <img
-                        src={theme === 'light' ? logoBright : logo}
-                        alt="Parivestra Logo"
-                        className={`${scrolled ? 'h-6' : 'h-8'} w-auto object-contain transition-all duration-300`}
-                    />
+        <header className="fixed inset-x-0 top-3 z-50 flex justify-center px-3 sm:top-4">
+            <div className="flex w-full max-w-[860px] items-center justify-between gap-3 lg:w-auto lg:justify-center">
+                <Link to="/" aria-label="Parivestra home" className={`flex h-[52px] items-center px-6 sm:h-[58px] sm:px-7 ${pill}`}>
+                    <img src={logo} alt="Parivestra" className="h-[19px] w-auto object-contain" />
                 </Link>
 
-                {/* Desktop Nav */}
-                <div className="hidden lg:flex items-center gap-1">
-                    {navLinks.map((link) => (
+                <nav aria-label="Primary" className={`hidden h-[58px] items-center gap-1 pl-3 pr-2 lg:flex ${pill}`}>
+                    {nav.map((l) => (
                         <Link
-                            key={link.to}
-                            to={link.to}
-                            className={`px-4 py-2 rounded-xl text-[14px] font-medium transition-all duration-200 ${isActive(link.to)
-                                ? 'text-[#FF4500] bg-[#FF4500]/10'
-                                : 'text-(--pari-text-secondary) hover:text-(--pari-text-primary) hover:bg-(--pari-border)'
-                                }`}
+                            key={l.label}
+                            to={l.to}
+                            className={`whitespace-nowrap rounded-full px-4 py-2 text-[14.5px] transition-colors hover:text-bone ${isActive(l.to) ? 'text-bone' : 'text-bone/65'}`}
                         >
-                            {link.label}
+                            {l.label}
                         </Link>
                     ))}
-                </div>
+                    <BookCall section="nav" size="sm" variant="bone" className="ml-2 whitespace-nowrap" />
+                </nav>
 
-                {/* CTA */}
-                <div className="flex items-center gap-3">
-                    <ThemeToggle />
-                    <Link
-                        to="/contact"
-                        onClick={() => window.fbq && window.fbq('track', 'Contact')}
-                        className="hidden lg:flex px-5 py-2.5 text-[14px] font-semibold bg-linear-to-r from-[#FF4500] to-[#FF6B35] text-white rounded-[12px] hover:from-[#E03D00] hover:to-[#FF4500] transition-all shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40"
-                    >
-                        Partner With Us
-                    </Link>
-                    {/* Mobile menu button */}
-                    <button
-                        onClick={() => setMenuOpen(!menuOpen)}
-                        aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-                        className="lg:hidden p-2 rounded-lg text-(--pari-text-secondary) hover:text-(--pari-text-primary) hover:bg-(--pari-border)"
-                    >
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            {menuOpen ? (
-                                <path d="M18 6L6 18M6 6l12 12" />
-                            ) : (
-                                <path d="M3 12h18M3 6h18M3 18h18" />
-                            )}
-                        </svg>
-                    </button>
-                </div>
+                <button
+                    type="button"
+                    onClick={() => setMenuOpen((o) => !o)}
+                    aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+                    aria-expanded={menuOpen}
+                    className={`flex h-[52px] w-[52px] items-center justify-center text-bone lg:hidden ${pill}`}
+                >
+                    {menuOpen ? <IconClose size={18} /> : <IconMenu size={18} />}
+                </button>
             </div>
 
-            {/* Mobile Menu */}
             {menuOpen && (
-                <div className="lg:hidden bg-(--pari-bg-primary)/98 backdrop-blur-xl border-t border-(--pari-border) px-6 py-4 flex flex-col gap-1 max-h-[calc(100vh-80px)] overflow-y-auto">
-                    {navLinks.map((link) => (
-                        <Link
-                            key={link.to}
-                            to={link.to}
-                            onClick={() => setMenuOpen(false)}
-                            className={`px-4 py-3 rounded-xl text-[15px] font-medium transition-all ${isActive(link.to)
-                                ? 'text-[#FF4500] bg-[#FF4500]/10'
-                                : 'text-(--pari-text-secondary) hover:text-(--pari-text-primary) hover:bg-(--pari-border)'
-                                }`}
-                        >
-                            {link.label}
+                <div className="fixed inset-x-0 bottom-0 top-[72px] overflow-y-auto bg-ink px-6 pb-28 pt-8 lg:hidden">
+                    {nav.map((l, i) => (
+                        <Link key={l.label} to={l.to} className="flex items-baseline gap-4 border-b border-bone/10 py-5">
+                            <span className="label text-copper">0{i + 1}</span>
+                            <span className="display display-md">{l.label}</span>
                         </Link>
                     ))}
-                    <Link
-                        to="/contact"
-                        onClick={() => {
-                            setMenuOpen(false);
-                            window.fbq && window.fbq('track', 'Contact');
-                        }}
-                        className="mt-2 px-5 py-3 text-[15px] font-semibold bg-linear-to-r from-[#FF4500] to-[#FF6B35] text-white rounded-[12px] text-center"
-                    >
-                        Partner With Us
-                    </Link>
                 </div>
             )}
-        </nav>
+        </header>
     );
 };
 

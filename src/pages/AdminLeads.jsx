@@ -7,7 +7,7 @@ import LeadDetailModal from '../components/LeadDetailModal';
 const STATUSES = ['new', 'contacted', 'qualified', 'closed'];
 
 const statusColors = {
-    new: 'bg-[#FF4500]/15 text-[#FF4500] border-[#FF4500]/30',
+    new: 'bg-[#A85F32]/15 text-[#D88A43] border-[#D88A43]/30',
     contacted: 'bg-blue-500/15 text-blue-500 border-blue-500/30',
     qualified: 'bg-amber-500/15 text-amber-500 border-amber-500/30',
     closed: 'bg-green-500/15 text-green-500 border-green-500/30',
@@ -15,7 +15,7 @@ const statusColors = {
 
 const statCardStyles = {
     total: { icon: 'fa-solid fa-users', color: '#9999FE' },
-    new: { icon: 'fa-solid fa-star', color: '#FF4500' },
+    new: { icon: 'fa-solid fa-star', color: '#D88A43' },
     contacted: { icon: 'fa-solid fa-phone', color: '#3B82F6' },
     qualified: { icon: 'fa-solid fa-thumbs-up', color: '#F59E0B' },
     closed: { icon: 'fa-solid fa-circle-check', color: '#22C55E' },
@@ -120,7 +120,7 @@ const AdminLeads = () => {
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
                             placeholder="Search by name, brand, email, phone..."
-                            className="w-full bg-(--pari-bg-secondary) border border-(--pari-border) rounded-lg pl-10 pr-4 py-2.5 text-[13px] text-(--pari-text-primary) placeholder:text-(--pari-text-secondary)/60 focus:outline-none focus:border-[#FF4500]/50 transition-colors"
+                            className="w-full bg-(--pari-bg-secondary) border border-(--pari-border) rounded-lg pl-10 pr-4 py-2.5 text-[13px] text-(--pari-text-primary) placeholder:text-(--pari-text-secondary)/60 focus:outline-none focus:border-[#D88A43]/50 transition-colors"
                         />
                     </div>
                     <div className="flex items-center gap-2 shrink-0">
@@ -166,7 +166,7 @@ const AdminLeads = () => {
                                     >
                                         <td className="px-4 py-3 whitespace-nowrap">
                                             <div className="flex items-center gap-3">
-                                                <div className="w-8 h-8 rounded-full bg-linear-to-br from-[#FF4500] to-[#FF6B35] flex items-center justify-center text-white text-[12px] font-bold shrink-0">
+                                                <div className="w-8 h-8 rounded-full bg-linear-to-br from-[#A85F32] to-[#D88A43] flex items-center justify-center text-white text-[12px] font-bold shrink-0">
                                                     {(lead.name || '?').charAt(0).toUpperCase()}
                                                 </div>
                                                 <div>

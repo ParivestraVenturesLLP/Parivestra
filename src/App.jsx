@@ -9,10 +9,13 @@ import PariPartnerships from './pages/PariPartnerships';
 import PariCaseStudies from './pages/PariCaseStudies';
 import PariAIApps from './pages/PariAIApps';
 import PariContact from './pages/PariContact';
+import SolutionPage from './pages/SolutionPage';
+import PariInfrastructure from './pages/PariInfrastructure';
 import AdminLogin from './pages/AdminLogin';
 import AdminLeads from './pages/AdminLeads';
 import AdminTools from './pages/AdminTools';
 import ScrollToTop from './components/ScrollToTop';
+import StickyMobileCTA from './components/StickyMobileCTA';
 
 function App() {
   return (
@@ -26,11 +29,15 @@ function App() {
         <Route path="/partnerships" element={<PariPartnerships />} />
         <Route path="/case-studies" element={<PariCaseStudies />} />
         <Route path="/ai-apps" element={<PariAIApps />} />
+        <Route path="/solutions/:id" element={<SolutionPage />} />
+        <Route path="/infrastructure" element={<PariInfrastructure />} />
+        <Route path="/book-a-call" element={<PariContact />} />
         <Route path="/contact" element={<PariContact />} />
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin" element={<AdminLeads />} />
         <Route path="/admin/tools" element={<AdminTools />} />
       </Routes>
+      <StickyMobileCTA />
       <Analytics />
     </Router>
   );

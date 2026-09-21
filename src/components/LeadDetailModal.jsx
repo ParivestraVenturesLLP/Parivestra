@@ -3,7 +3,7 @@ import React from 'react';
 const STATUSES = ['new', 'contacted', 'qualified', 'closed'];
 
 const statusColors = {
-    new: 'bg-[#FF4500]/15 text-[#FF4500] border-[#FF4500]/30',
+    new: 'bg-[#A85F32]/15 text-[#D88A43] border-[#D88A43]/30',
     contacted: 'bg-blue-500/15 text-blue-500 border-blue-500/30',
     qualified: 'bg-amber-500/15 text-amber-500 border-amber-500/30',
     closed: 'bg-green-500/15 text-green-500 border-green-500/30',
@@ -32,7 +32,7 @@ const LeadDetailModal = ({ lead, onClose, onStatusChange }) => {
                     <i className="fa-solid fa-xmark text-[16px]"></i>
                 </button>
 
-                <div className="w-14 h-14 rounded-full bg-linear-to-br from-[#FF4500] to-[#FF6B35] flex items-center justify-center text-white text-[20px] font-bold mb-5">
+                <div className="w-14 h-14 rounded-full bg-linear-to-br from-[#A85F32] to-[#D88A43] flex items-center justify-center text-white text-[20px] font-bold mb-5">
                     {(lead.name || '?').charAt(0).toUpperCase()}
                 </div>
 
@@ -76,13 +76,13 @@ const LeadDetailModal = ({ lead, onClose, onStatusChange }) => {
                 <div className="flex gap-3">
                     <a
                         href={`tel:${digitsOnly}`}
-                        className="flex-1 py-3 bg-(--pari-bg-primary) border border-(--pari-border) rounded-xl text-center text-[13px] font-semibold text-(--pari-text-primary) hover:border-[#FF4500]/40 transition-colors flex items-center justify-center gap-2"
+                        className="flex-1 py-3 bg-(--pari-bg-primary) border border-(--pari-border) rounded-xl text-center text-[13px] font-semibold text-(--pari-text-primary) hover:border-[#D88A43]/40 transition-colors flex items-center justify-center gap-2"
                     >
                         <i className="fa-solid fa-phone"></i> Call
                     </a>
                     <a
                         href={`mailto:${lead.email}`}
-                        className="flex-1 py-3 bg-(--pari-bg-primary) border border-(--pari-border) rounded-xl text-center text-[13px] font-semibold text-(--pari-text-primary) hover:border-[#FF4500]/40 transition-colors flex items-center justify-center gap-2"
+                        className="flex-1 py-3 bg-(--pari-bg-primary) border border-(--pari-border) rounded-xl text-center text-[13px] font-semibold text-(--pari-text-primary) hover:border-[#D88A43]/40 transition-colors flex items-center justify-center gap-2"
                     >
                         <i className="fa-solid fa-envelope"></i> Email
                     </a>
