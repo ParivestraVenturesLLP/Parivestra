@@ -25,15 +25,9 @@ const Plate = ({ id, i, active, done }) => {
     return (
         <g style={{ transform: shift, transition: 'transform .8s cubic-bezier(.2,.7,.2,1)' }}>
             <g strokeLinejoin="round" strokeWidth="1.1" stroke={edge} style={{ transition: 'stroke .5s ease' }}>
-                {/* thin side + top edges — only on the pulled-forward active plate, where the
-                    thickness reads as a raised card. On the receded stack these slivers have
-                    no neighbouring plate to blend into and show up as a stray floating line. */}
-                {active && (
-                    <>
-                        <polygon points={poly([[W, y0, 0], [W, y1, 0], [W, y1, W], [W, y0, W]])} fill="#100e0b" />
-                        <polygon points={poly([[0, y0, W], [W, y0, W], [W, y1, W], [0, y1, W]])} fill="#26211b" />
-                    </>
-                )}
+                {/* thin side + top edges */}
+                <polygon points={poly([[W, y0, 0], [W, y1, 0], [W, y1, W], [W, y0, W]])} fill="#100e0b" />
+                <polygon points={poly([[0, y0, W], [W, y0, W], [W, y1, W], [0, y1, W]])} fill="#26211b" />
                 {/* big face */}
                 <g transform={`matrix(${C * K} ${0.5 * K} 0 ${K} ${ox} ${oy})`}>
                     <rect width={W} height={W} rx="0.2" fill={active ? '#1f1911' : '#1a1712'} vectorEffect="non-scaling-stroke" />
