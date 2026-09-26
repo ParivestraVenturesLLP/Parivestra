@@ -47,10 +47,10 @@ const AIAssistant = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Chat on WhatsApp"
-                className="fixed bottom-22 right-5 lg:bottom-8 lg:right-8 z-100 w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform duration-300 group"
+                className="fixed bottom-22 right-5 lg:bottom-8 lg:right-8 z-100 w-14 h-14 bg-linear-to-br from-[#A85F32] to-[#D88A43] text-bone rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform duration-300 group"
             >
                 <i className="fa-brands fa-whatsapp text-[30px]"></i>
-                <span className="absolute right-full mr-4 px-3 py-1 bg-white text-black text-[12px] font-bold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-xl pointer-events-none">
+                <span className="absolute right-full mr-4 px-3 py-1 bg-bone text-ink text-[12px] font-bold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-xl pointer-events-none">
                     Chat on WhatsApp
                 </span>
             </a>
@@ -59,11 +59,11 @@ const AIAssistant = () => {
                 type="button"
                 onClick={() => setOpen((v) => !v)}
                 aria-label="Open Assistant"
-                className="fixed bottom-40 right-6.5 lg:bottom-24 lg:right-9 z-100 w-11 h-11 bg-linear-to-br from-[#A85F32] to-[#D88A43] text-white rounded-full hidden sm:flex items-center justify-center shadow-2xl hover:scale-110 transition-transform duration-300 group"
+                className="fixed bottom-40 right-6.5 lg:bottom-24 lg:right-9 z-100 w-11 h-11 bg-linear-to-br from-[#A85F32] to-[#D88A43] text-bone rounded-full hidden sm:flex items-center justify-center shadow-2xl hover:scale-110 transition-transform duration-300 group"
             >
                 <i className={`fa-solid ${open ? 'fa-xmark' : 'fa-robot'} text-[18px]`}></i>
                 {!open && (
-                    <span className="absolute right-full mr-4 px-3 py-1 bg-white text-black text-[12px] font-bold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-xl pointer-events-none">
+                    <span className="absolute right-full mr-4 px-3 py-1 bg-bone text-ink text-[12px] font-bold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-xl pointer-events-none">
                         Chat with Assistant
                     </span>
                 )}
