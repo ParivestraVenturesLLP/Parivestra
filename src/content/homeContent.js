@@ -27,7 +27,7 @@ export const outcomes = [
         id: 'acquire',
         name: 'Acquire',
         promise: 'Get new customers.',
-        infra: ['Performance', 'Affiliates', 'Campuses', 'Communities', 'Creators'],
+        infra: ['Performance', 'Affiliates', 'Campuses', 'Communities'],
     },
     {
         id: 'transact',
