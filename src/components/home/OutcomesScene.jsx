@@ -177,23 +177,24 @@ const OutcomesScene = () => {
                     ))}
                 </ol>
 
-                {/* copy */}
+                {/* copy — flush to the right edge, matching the OUT-0X/05 label above it */}
                 {started && (
                 <div
                     key={o.id}
-                    className="fade-up absolute inset-x-0 bottom-24 px-6 text-center sm:bottom-auto sm:left-auto sm:right-10 sm:top-1/2 sm:w-[min(34vw,440px)] sm:-translate-y-1/2 sm:px-0 sm:text-right"
-                    
+                    className="fade-up absolute inset-x-0 bottom-24 flex flex-col items-center px-6 text-center sm:inset-x-auto sm:bottom-auto sm:right-10 sm:top-1/2 sm:w-[min(34vw,440px)] sm:-translate-y-1/2 sm:items-end sm:px-0 sm:text-right"
                 >
                     <p className="label mb-4 text-copper">Outcome 0{Math.max(0, active) + 1}</p>
                     <h3 className="display text-[clamp(2.4rem,5vw,4.5rem)]">{o.name}</h3>
                     <p className="mt-4 text-[17px] leading-relaxed text-bone/60">{o.promise}</p>
-                    <div className="mt-8 hidden flex-wrap justify-end gap-x-10 gap-y-3 sm:flex">
-                        <div className="text-right">
-                            <p className="label text-[10px] text-stone">Infrastructure</p>
-                            <p className="label mt-2 max-w-[220px] text-[10px] leading-relaxed text-bone/70">
-                                <ScrambleText text={o.infra.join(' · ').toUpperCase()} />
-                            </p>
-                        </div>
+                    <div className="mt-8 hidden w-full flex-col items-end sm:flex">
+                        <p className="label text-[10px] text-stone">Infrastructure</p>
+                        <ul className="mt-3 flex flex-wrap justify-end gap-1.5">
+                            {o.infra.map((item) => (
+                                <li key={item} className="label rounded-full border border-bone/15 px-2.5 py-1 text-[9px] text-bone/70">
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
                     </div>
                 </div>
                 )}

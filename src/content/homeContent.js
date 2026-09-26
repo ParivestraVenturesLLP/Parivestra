@@ -19,6 +19,9 @@ export const proof = [
 
 export const outcomeNodes = ['Sale', 'Lead', 'Signup', 'Transaction', 'Footfall'];
 
+// Channel segments shown on the "Attribution" donut in the Consumer Mesh scene.
+export const touchpointChannels = ['Apps', 'Partnerships', 'Web3', 'Communities', 'Creators'];
+
 export const outcomes = [
     {
         id: 'acquire',
