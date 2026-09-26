@@ -2,11 +2,18 @@ import React, { useRef } from 'react';
 import { useScrollProgress, seg, ease } from '../../hooks/useScrollProgress';
 import { outcomeNodes, touchpointChannels } from '../../content/homeContent';
 
+// Every size below the section return is a clamp() that reacts to viewport HEIGHT
+// (vh), not just width. This section is pinned to exactly one screen (h-screen +
+// overflow-hidden), so on a short window — a laptop with Windows display scaling at
+// 125–150%, or a browser that isn't tall — fixed px paddings/sizes were pushing the
+// Attribution card's legend (and sometimes the cards themselves) below the visible
+// area, where they were silently clipped instead of just looking cramped.
+
 /* Donut of five channel segments that fill in as touchpoints get attributed. */
 const Donut = ({ items, on }) => {
     const R = 66, circ = 2 * Math.PI * R, arc = (circ * (72 - 8)) / 360;
     return (
-        <svg viewBox="0 0 180 180" className="mx-auto h-[150px] w-[150px] lg:h-[190px] lg:w-[190px]" role="img" aria-label={`Five touchpoint channels — ${items.join(', ')} — filling as they are attributed.`}>
+        <svg viewBox="0 0 180 180" className="mx-auto h-[clamp(84px,17vh,190px)] w-[clamp(84px,17vh,190px)]" role="img" aria-label={`Five touchpoint channels — ${items.join(', ')} — filling as they are attributed.`}>
             {items.map((n, i) => (
                 <circle
                     key={n}
@@ -30,7 +37,7 @@ const Gauge = ({ r }) => {
     const N = 96;
     const lit = Math.round(r * N);
     return (
-        <div className="relative mx-auto h-[140px] w-[140px] sm:h-[190px] sm:w-[190px] lg:h-[240px] lg:w-[240px]">
+        <div className="relative mx-auto h-[clamp(92px,19vh,240px)] w-[clamp(92px,19vh,240px)]">
             <svg viewBox="0 0 240 240" className="absolute inset-0" aria-hidden="true">
                 {Array.from({ length: N }).map((_, i) => {
                     const a = (i / N) * Math.PI * 2 - Math.PI / 2;
@@ -49,7 +56,7 @@ const Gauge = ({ r }) => {
                 <circle cx="120" cy="120" r="92" fill="none" stroke="rgba(168,95,50,.55)" />
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <span className="display text-[clamp(1.9rem,4.4vw,4rem)] tabular-nums">{Math.round(300 * r)}M+</span>
+                <span className="display text-[clamp(1.2rem,min(4vw,5vh),4rem)] tabular-nums">{Math.round(300 * r)}M+</span>
                 <span className="label mt-1 text-[9px] text-stone">Touchpoints</span>
             </div>
         </div>
@@ -58,7 +65,7 @@ const Gauge = ({ r }) => {
 
 const Card = ({ title, status, children, className = '' }) => (
     <div className={`rounded-lg border border-bone/12 bg-[#0d0c0a] ${className}`}>
-        <div className="flex items-center justify-between border-b border-bone/10 bg-bone/[0.03] px-4 py-2.5">
+        <div className="flex items-center justify-between border-b border-bone/10 bg-bone/[0.03] px-4 py-[clamp(0.3rem,0.9vh,0.625rem)]">
             <span className="text-[13.5px] text-bone/85">{title}</span>
             {status && <span className="label text-[9px] text-stone">{status}</span>}
         </div>
@@ -77,34 +84,34 @@ const MeshFeatures = () => {
     return (
         <section id="consumer-mesh" ref={ref} className="relative" style={{ height: '420vh' }}>
             <div className="sticky top-0 h-screen overflow-hidden">
-                <div className="mx-auto flex h-full max-w-[1240px] flex-col px-5 pb-8 pt-24 sm:px-8 lg:pt-28">
+                <div className="mx-auto flex h-full max-w-[1240px] flex-col px-5 pb-[clamp(0.5rem,2vh,2rem)] pt-[clamp(1.25rem,6vh,5.5rem)] sm:px-8">
                     <div className="text-center">
                         <span className="label text-stone">Consumer Mesh</span>
-                        <h2 className="display display-md mx-auto mt-4 max-w-[26ch] text-balance text-bone/90">
+                        <h2 className="display mx-auto mt-[clamp(0.4rem,1.4vh,1rem)] max-w-[26ch] text-balance text-[clamp(1.05rem,min(2.6vw,4.2vh),2.6rem)] text-bone/90">
                             The infrastructure connecting consumer intent to measurable action.
                         </h2>
                     </div>
 
                     {/* toggle line */}
-                    <div className="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 lg:mt-8">
-                        <span className="display text-[clamp(1.5rem,3.6vw,3.25rem)] transition-colors" style={{ color: t < 0.5 ? '#EFE7DB' : 'rgba(239,231,219,.55)' }}>Millions of touchpoints</span>
+                    <div className="mt-[clamp(0.5rem,2vh,2rem)] flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
+                        <span className="display text-[clamp(1rem,min(3.4vw,4.4vh),3.25rem)] transition-colors" style={{ color: t < 0.5 ? '#EFE7DB' : 'rgba(239,231,219,.55)' }}>Millions of touchpoints</span>
                         <span className="relative h-[34px] w-[64px] shrink-0 rounded-full border border-bone/20 bg-bone/5" aria-hidden="true">
                             <span
                                 className="absolute left-[3px] top-[3px] h-[26px] w-[26px] rounded-full bg-bone"
                                 style={{ transform: `translateX(${t * 30}px)`, background: t > 0.5 ? '#D88A43' : '#EFE7DB' }}
                             />
                         </span>
-                        <span className="display text-[clamp(1.5rem,3.6vw,3.25rem)] transition-colors" style={{ color: t > 0.5 ? '#D88A43' : 'rgba(239,231,219,.35)' }}>One measurable outcome</span>
+                        <span className="display text-[clamp(1rem,min(3.4vw,4.4vh),3.25rem)] transition-colors" style={{ color: t > 0.5 ? '#D88A43' : 'rgba(239,231,219,.35)' }}>One measurable outcome</span>
                     </div>
 
                     {/* dashboard cards */}
-                    <div className="mt-6 grid flex-1 grid-cols-1 content-start gap-4 lg:mt-10 lg:grid-cols-[1.05fr_1fr_1fr] lg:items-start">
+                    <div className="mt-[clamp(0.5rem,2.4vh,2.5rem)] grid flex-1 grid-cols-1 content-start gap-[clamp(0.5rem,1.6vh,1rem)] lg:grid-cols-[1.05fr_1fr_1fr] lg:items-start">
                         <Card title="Attribution" status={done ? 'ATTRIBUTED' : 'SCATTERED'} className="hidden lg:block">
-                            <div className="px-4 py-6">
+                            <div className="px-4 py-[clamp(0.5rem,1.8vh,1.5rem)]">
                                 <Donut items={touchpointChannels} on={donutOn} />
-                                <ul className="mt-6 grid grid-cols-2 gap-x-3 gap-y-2.5">
+                                <ul className="mt-[clamp(0.4rem,1.4vh,1.5rem)] grid grid-cols-2 gap-x-3 gap-y-[clamp(0.2rem,0.7vh,0.625rem)]">
                                     {touchpointChannels.map((ch, i) => (
-                                        <li key={ch} className="flex items-center gap-2 text-[12px]">
+                                        <li key={ch} className="flex items-center gap-2 text-[clamp(10px,1.6vh,12px)]">
                                             <span
                                                 className="h-1.5 w-1.5 shrink-0 rounded-full transition-colors duration-500"
                                                 style={{ background: donutOn[i] ? '#D88A43' : '#4a4036' }}
@@ -118,7 +125,7 @@ const MeshFeatures = () => {
 
                         <div className="space-y-4">
                             <Card title="Consumer touchpoints" status="LIVE">
-                                <div className="px-4 py-3 sm:py-5"><Gauge r={r} /></div>
+                                <div className="px-4 py-[clamp(0.4rem,1.6vh,1.25rem)]"><Gauge r={r} /></div>
                             </Card>
                         </div>
 
@@ -127,7 +134,7 @@ const MeshFeatures = () => {
                                 {outcomeNodes.map((n, i) => {
                                     const on = r > (i + 1) / 6;
                                     return (
-                                        <li key={n} className="flex items-center justify-between py-2 text-[13.5px] text-bone/85">
+                                        <li key={n} className="flex items-center justify-between py-[clamp(0.25rem,0.8vh,0.5rem)] text-[13.5px] text-bone/85">
                                             {n}
                                             <span
                                                 className="label rounded border px-2 py-0.5 text-[9px] transition-colors duration-500"
