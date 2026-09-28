@@ -6,10 +6,8 @@ import { nav, proof } from '../content/homeContent';
 
 const more = [
     { label: 'Infrastructure', to: '/infrastructure' },
-    { label: 'Clientele', to: '/clientele' },
     { label: 'Distribution', to: '/distribution' },
     { label: 'Partnerships', to: '/partnerships' },
-    { label: 'AI & Apps', to: '/ai-apps' },
 ];
 
 const outcomeLinks = [
