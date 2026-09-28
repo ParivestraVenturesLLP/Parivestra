@@ -61,8 +61,27 @@ const PariFooter = () => (
                         <ul className="space-y-3">
                             <li><a href="mailto:ayush@parivestra.com" className={linkCls}>ayush@parivestra.com</a></li>
                             <li><a href="tel:+917970476060" className={linkCls}>+91 79704 76060</a></li>
-                            <li><a href="https://www.instagram.com/parivestra.official/" target="_blank" rel="noopener noreferrer" className={linkCls}>Instagram</a></li>
                         </ul>
+                        <div className="mt-4 flex items-center gap-3">
+                            <a
+                                href="https://www.instagram.com/parivestra.official/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Parivestra on Instagram"
+                                className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 text-ink/70 transition-colors hover:border-copper hover:text-copper"
+                            >
+                                <i className="fa-brands fa-instagram text-[15px]"></i>
+                            </a>
+                            <a
+                                href="https://www.linkedin.com/company/parivestra/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Parivestra on LinkedIn"
+                                className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 text-ink/70 transition-colors hover:border-copper hover:text-copper"
+                            >
+                                <i className="fa-brands fa-linkedin-in text-[15px]"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

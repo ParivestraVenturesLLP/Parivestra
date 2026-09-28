@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../assets/logo.png';
+import logoMark from '../assets/logo_mark.png';
 import BookCall from '../components/ui/BookCall';
 import { IconMenu, IconClose } from '../components/ui/icons';
 import { nav } from '../content/homeContent';
 
-// Two floating pills, as on Quantara: logo · links + primary CTA.
-// Nav per plan §13: Outcomes | Solutions | Consumer Mesh | Case Studies | About | BOOK A CALL →
+// Logo pinned to the left edge (matching every other section's content margin); the
+// links + primary CTA pill stays centered in the header regardless. A 3-column grid
+// (1fr / auto / 1fr) is what keeps the middle pill truly centered on the page even
+// though the logo and the (empty, desktop-only-hidden) right slot aren't the same
+// width — equal 1fr side tracks, not the logo's own width, is what centers it.
 const pill = 'rounded-full border border-bone/10 bg-[#0d0c0a]/90 backdrop-blur-sm';
 
 const PariNavbar = () => {
@@ -22,13 +26,14 @@ const PariNavbar = () => {
     const isActive = (to) => !to.includes('#') && (location.pathname === to || location.pathname.startsWith(`${to}/`));
 
     return (
-        <header className="fixed inset-x-0 top-3 z-50 flex justify-center px-3 sm:top-4">
-            <div className="flex w-full max-w-[860px] items-center justify-between gap-3 lg:w-auto lg:justify-center">
-                <Link to="/" aria-label="Parivestra home" className={`flex h-[52px] items-center px-6 sm:h-[58px] sm:px-7 ${pill}`}>
-                    <img src={logo} alt="Parivestra" className="h-[19px] w-auto object-contain" />
+        <header className="fixed inset-x-0 top-3 z-50 px-3 sm:top-4 sm:px-5 lg:px-10">
+            <div className="mx-auto grid w-full max-w-[1360px] grid-cols-[1fr_auto_1fr] items-center gap-3">
+                <Link to="/" aria-label="Parivestra home" className={`flex h-[52px] w-fit shrink-0 items-center gap-2.5 px-5 justify-self-start sm:h-[58px] sm:px-6 ${pill}`}>
+                    <img src={logoMark} alt="" aria-hidden="true" className="h-[26px] w-auto object-contain sm:h-[30px]" />
+                    <img src={logo} alt="Parivestra" className="h-[15px] w-auto object-contain sm:h-[17px]" />
                 </Link>
 
-                <nav aria-label="Primary" className={`hidden h-[58px] items-center gap-1 pl-3 pr-2 lg:flex ${pill}`}>
+                <nav aria-label="Primary" className={`hidden h-[58px] items-center gap-1 pl-3 pr-2 justify-self-center lg:flex ${pill}`}>
                     {nav.map((l) => (
                         <Link
                             key={l.label}
@@ -46,7 +51,7 @@ const PariNavbar = () => {
                     onClick={() => setMenuOpen((o) => !o)}
                     aria-label={menuOpen ? 'Close menu' : 'Open menu'}
                     aria-expanded={menuOpen}
-                    className={`flex h-[52px] w-[52px] items-center justify-center text-bone lg:hidden ${pill}`}
+                    className={`flex h-[52px] w-[52px] shrink-0 items-center justify-center text-bone justify-self-end lg:hidden ${pill}`}
                 >
                     {menuOpen ? <IconClose size={18} /> : <IconMenu size={18} />}
                 </button>

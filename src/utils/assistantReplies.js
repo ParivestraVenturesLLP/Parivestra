@@ -17,7 +17,7 @@ const rules = [
     },
     {
         keywords: ['client', 'brand', 'worked with', 'clientele'],
-        reply: "We've worked with 100+ brands including Amazon, Uber, Swiggy, Nestlé, Myntra, and more. Check out the Clientele page for the full list.",
+        reply: "We've worked with 300+ brands including Amazon, Uber, Swiggy, Nestlé, Myntra, and more. Check out the Clientele page for the full list.",
     },
     {
         keywords: ['case study', 'case studies', 'example', 'portfolio', 'result'],

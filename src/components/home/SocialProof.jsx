@@ -48,8 +48,18 @@ const Row = ({ items, reverse = false }) => {
             <div className="marquee-track items-center" style={reverse ? { animationDirection: 'reverse', animationDuration: '85s' } : undefined}>
                 {seq.map(([name, src], i) => (
                     <React.Fragment key={`${name}-${i}`}>
-                        <div className="flex h-20 w-[168px] shrink-0 items-center justify-center px-6">
-                            <img src={src} alt="" loading="lazy" className="logo-mono max-h-11 w-auto max-w-full object-contain" />
+                        {/* Fixed-footprint wrapper: every logo gets the same box, transparent,
+                            centred, regardless of its own file's aspect ratio. */}
+                        <div className="flex h-14 w-[110px] shrink-0 items-center justify-center px-4 sm:h-16 sm:w-[135px] sm:px-5 md:h-20 md:w-[168px] md:px-6">
+                            {/* Fixed height (not max-height) so naturally-small logo files scale UP
+                                to the same visual weight as the rest, instead of sitting tiny.
+                                object-contain + max-width preserves each logo's own aspect ratio. */}
+                            <img
+                                src={src}
+                                alt=""
+                                loading="lazy"
+                                className="logo-mono h-8 w-auto max-w-full object-contain sm:h-9 md:h-11"
+                            />
                         </div>
                         <span className="font-mono text-[18px] text-ink/30">+</span>
                     </React.Fragment>
@@ -64,7 +74,7 @@ const SocialProof = () => (
         <Container>
             <div className="flex items-start justify-between gap-6">
                 <h2 className="max-w-[22ch] text-[clamp(1.05rem,1.6vw,1.35rem)] font-light leading-snug text-bone/90">
-                    Trusted by 100+ brands across every consumer category.
+                    Trusted by 300+ brands across every consumer category.
                 </h2>
                 <span className="label text-stone">Ecosystem</span>
             </div>

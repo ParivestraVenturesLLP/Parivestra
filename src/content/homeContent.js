@@ -12,9 +12,9 @@ export const hero = {
 };
 
 export const proof = [
-    { shape: 'circle', prefix: '', value: 100, suffix: '+', label: 'Brands' },
+    { shape: 'circle', prefix: '', value: 300, suffix: '+', label: 'Brands' },
     { shape: 'square', prefix: '', value: 300, suffix: 'M+', label: 'Consumer touchpoints' },
-    { shape: 'triangle', prefix: '₹', value: 120, suffix: 'Cr+', label: 'Sales driven' },
+    { shape: 'triangle', prefix: '₹', value: 500, suffix: 'Cr+', label: 'Sales driven' },
 ];
 
 export const outcomeNodes = ['Sale', 'Lead', 'Signup', 'Transaction', 'Footfall'];
@@ -95,10 +95,10 @@ export const solutions = [
     },
     {
         id: 'distribution',
-        name: 'Distribution',
+        name: 'Agents',
         outcome: 'Scale',
-        promise: 'Turn successful channels into millions of touchpoints.',
-        points: ['Proprietary inventories', 'Automation', 'Intelligence'],
+        promise: 'AI agents built for enterprise.',
+        points: ['Enterprise workflow agents', 'Proprietary inventories', 'Automation', 'Real-time intelligence'],
     },
 ];
 

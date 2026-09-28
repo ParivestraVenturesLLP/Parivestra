@@ -25,10 +25,8 @@ const Plate = ({ id, i, active, done }) => {
     return (
         <g style={{ transform: shift, transition: 'transform .8s cubic-bezier(.2,.7,.2,1)' }}>
             <g strokeLinejoin="round" strokeWidth="1.1" stroke={edge} style={{ transition: 'stroke .5s ease' }}>
-                {/* thin side + top edges */}
-                <polygon points={poly([[W, y0, 0], [W, y1, 0], [W, y1, W], [W, y0, W]])} fill="#100e0b" />
-                <polygon points={poly([[0, y0, W], [W, y0, W], [W, y1, W], [0, y1, W]])} fill="#26211b" />
-                {/* big face */}
+                {/* front face only — the extruded side/top depth polygons that used to sit
+                    here made the card's silhouette stick out past its own rectangle. */}
                 <g transform={`matrix(${C * K} ${0.5 * K} 0 ${K} ${ox} ${oy})`}>
                     <rect width={W} height={W} rx="0.2" fill={active ? '#1f1911' : '#1a1712'} vectorEffect="non-scaling-stroke" />
                     <rect x="0.13" y="0.13" width={W - 0.26} height={W - 0.26} rx="0.12" fill="none" stroke="rgba(239,231,219,.28)" strokeDasharray="3 4" vectorEffect="non-scaling-stroke" strokeWidth="1" />
@@ -93,7 +91,7 @@ const FlowStack = () => {
 
                 {/* stack */}
                 <div className="absolute right-[-6vw] top-[52%] h-[min(62vh,640px)] w-[min(100vw,780px)] -translate-y-1/2 sm:right-[2vw] lg:right-[4vw]">
-                    <svg viewBox="-80 -235 390 340" className="h-full w-full overflow-visible" role="img" aria-label="Five stacked plates: Consumer, Intent, Distribution, Engagement, Transaction.">
+                    <svg viewBox="-80 -235 390 340" className="h-full w-full overflow-hidden" role="img" aria-label="Five stacked plates: Consumer, Intent, Distribution, Engagement, Transaction.">
                         {[...flow].map((f, i) => ({ f, i })).sort((a, b) => (a.i === active) - (b.i === active) || b.i - a.i).map(({ f, i }) => (
                             <Plate key={f.id} id={f.id} i={i} active={i === active} done={i < active} />
                         ))}

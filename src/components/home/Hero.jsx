@@ -73,7 +73,7 @@ const Hero = () => (
 
         {/* mobile proof line */}
         <p className="label absolute inset-x-0 bottom-20 z-10 text-center text-[9.5px] text-bone/60 md:hidden">
-            100+ Brands · 300M+ Touchpoints · ₹120Cr+ Sales
+            300+ Brands · 300M+ Touchpoints · ₹500Cr+ Sales
         </p>
 
         {/* scroll cue */}

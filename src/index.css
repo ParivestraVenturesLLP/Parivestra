@@ -143,6 +143,13 @@ body::after {
   display: flex;
   width: max-content;
   animation: marquee-x 70s linear infinite;
+  /* Animating `transform` makes this element its own stacking context, which
+     isolates any descendant's mix-blend-mode from the real page background
+     behind it — the multiply blend below would otherwise have nothing correct
+     to blend against and each logo's white canvas would render as a visible
+     box. Painting the same bone colour here gives the isolated blend group the
+     right backdrop, so it still melts away exactly as intended. */
+  background-color: #EFE7DB;
 }
 .marquee:hover .marquee-track { animation-play-state: paused; }
 
