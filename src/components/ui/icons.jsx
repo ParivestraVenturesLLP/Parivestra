@@ -66,6 +66,9 @@ export const IconCheck = ({ size = 16, ...p }) => (
 );
 export const IconMenu = (p) => <Svg {...p}><path d="M4 8h16M4 16h16" /></Svg>;
 export const IconClose = (p) => <Svg {...p}><path d="M6 6l12 12M18 6L6 18" /></Svg>;
+export const IconDownload = ({ size = 16, ...p }) => (
+    <Svg size={size} strokeWidth="1.75" {...p}><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 18v1a2 2 0 002 2h12a2 2 0 002-2v-1" /></Svg>
+);
 
 // Quantara-style geometric markers (circle / square / triangle) used on the proof strip.
 export const ShapeMark = ({ shape, size = 44 }) => (
