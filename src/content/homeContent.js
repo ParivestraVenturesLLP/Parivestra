@@ -119,6 +119,7 @@ export const caseStudies = [
         metric: '50+',
         unit: 'Colleges activated',
         title: 'Hyper-local community distribution',
+        overview: 'Swiggy needed distribution that reached students where they already gather, not just where ads could be bought. We built a campus-first activation stack across 50+ colleges, paired offline trials with a community-led GTM in Tier-2 cities, and tied every touchpoint back to app installs.',
         stack: ['Offline activation', 'Community GTM', 'Data attribution'],
         execution: ['Campus activation across 50+ colleges', 'Community-first GTM in Tier-2 cities', 'Brand trials correlated with app installs'],
     },
@@ -128,6 +129,7 @@ export const caseStudies = [
         metric: '15+',
         unit: 'Cities of UGC campaigns',
         title: 'Rider acquisition through UGC and influencers',
+        overview: "Uber's rider growth needed a city-by-city playbook that felt native, not paid. We ran UGC campaigns across 15+ cities, layered influencer-led first-ride pushes on top, and closed the loop with AI-led attribution back to completed rides.",
         stack: ['UGC', 'Influencers', 'AI attribution'],
         execution: ['UGC campaigns across 15+ cities', 'Influencer-driven first-ride conversions', 'AI-led attribution to ride completions'],
     },
@@ -137,6 +139,7 @@ export const caseStudies = [
         metric: '8',
         unit: 'States of revenue-linked distribution',
         title: 'Seller ecosystem expansion',
+        overview: "Meesho's next growth lever was Tier-3 sellers, not Tier-1 shoppers. We built an affiliate reseller network on the ground, activated it through in-person campaigns, and linked every seller's activity back to revenue across 8 states.",
         stack: ['Affiliate commerce', 'On-ground activation', 'Revenue attribution'],
         execution: ['Affiliate seller network built in Tier-3 markets', 'On-ground reseller activation campaigns', 'Revenue-linked distribution across 8 states'],
     },
@@ -146,6 +149,7 @@ export const caseStudies = [
         metric: '20',
         unit: 'Routes of performance marketing',
         title: 'Market entry and distribution stack',
+        overview: 'Entering India meant FlixBus needed trust before it needed traffic. We stood up a pan-India affiliate ecosystem, ran an ORM strategy to build rider confidence, and layered performance marketing across 20 routes to convert that trust into bookings.',
         stack: ['GTM execution', 'Affiliate stack', 'ORM'],
         execution: ['Pan-India affiliate ecosystem built', 'ORM strategy for brand trust building', 'Performance marketing across 20 routes'],
     },
@@ -170,8 +174,16 @@ export const nav = [
 
 // Stories that do not yet have an approved headline number — shown as text-only until verified.
 export const moreStories = [
-    { brand: 'Nestlé', sector: 'FMCG', title: 'Youth-first community engagement', stack: ['Offline distribution', 'Community activation', 'Sales correlation'], execution: ['RWA and turf activations nationwide', 'Brand visibility to sales correlation tracked', 'Community-led product sampling campaigns'] },
-    { brand: 'Myntra', sector: 'Fashion E-Commerce', title: 'Campus and youth distribution', stack: ['Influencer ecosystem', 'Campus GTM', 'Performance tracking'], execution: ['College influencer ambassador program', 'High-intent fashion community targeting', 'Sales-correlated brand presence tracking'] },
+    {
+        brand: 'Nestlé', sector: 'FMCG', title: 'Youth-first community engagement',
+        overview: 'Nestlé wanted youth mindshare that translated to shelf pull, not just impressions. We ran RWA and turf activations nationwide, sampled product through community-led campaigns, and tracked brand visibility through to sales correlation.',
+        stack: ['Offline distribution', 'Community activation', 'Sales correlation'], execution: ['RWA and turf activations nationwide', 'Brand visibility to sales correlation tracked', 'Community-led product sampling campaigns'],
+    },
+    {
+        brand: 'Myntra', sector: 'Fashion E-Commerce', title: 'Campus and youth distribution',
+        overview: 'Myntra needed a foothold with fashion-forward students before they formed shopping habits elsewhere. We built a college influencer ambassador program, targeted high-intent fashion communities on campus, and tracked brand presence through to sales correlation.',
+        stack: ['Influencer ecosystem', 'Campus GTM', 'Performance tracking'], execution: ['College influencer ambassador program', 'High-intent fashion community targeting', 'Sales-correlated brand presence tracking'],
+    },
 ];
 
 // Solution → Book a Call objective (plan §10 objective list)

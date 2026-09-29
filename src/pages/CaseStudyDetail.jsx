@@ -48,6 +48,13 @@ const CaseStudyDetail = () => {
                 </Wrap>
             )}
 
+            {c.overview && (
+                <Wrap className="pb-20">
+                    <Kicker index="00" label="Overview" />
+                    <p className="mt-6 max-w-[760px] text-[17px] leading-relaxed text-bone/75 sm:text-[19px]">{c.overview}</p>
+                </Wrap>
+            )}
+
             <Wrap className="pb-24">
                 <Kicker index="01" label="Distribution deployed" />
                 <ul className="mt-6 flex flex-wrap gap-2">
@@ -87,18 +94,27 @@ const CaseStudyDetail = () => {
                     ))}
                 </div>
                 <p className="mt-3 text-[11.5px] text-bone/40">Representative on-ground execution photography.</p>
+            </Wrap>
 
-                <div className="mt-8 max-w-md">
+            <Wrap className="pb-24">
+                <Kicker index="04" label="Get the case study" />
+                <div className="mt-6 flex flex-col items-start gap-6 rounded-xl border border-amber/25 bg-[#0c0b09] p-8 sm:flex-row sm:items-center sm:justify-between sm:p-10">
                     {wantsDownload ? (
                         <DownloadForm brand={c.brand} />
                     ) : (
-                        <button
-                            type="button"
-                            onClick={() => setWantsDownload(true)}
-                            className="label flex h-12 w-full items-center justify-center gap-2 rounded-full border border-bone/25 text-bone transition-colors hover:border-amber hover:text-amber sm:w-auto sm:px-8"
-                        >
-                            Download case study <IconDownload size={14} />
-                        </button>
+                        <>
+                            <div>
+                                <p className="display display-md">Full {c.brand} breakdown.</p>
+                                <p className="mt-2 max-w-[46ch] text-[14.5px] text-bone/55">The complete deck — timeline, creative examples and the numbers behind {c.unit ? c.unit.toLowerCase() : 'the outcome'}.</p>
+                            </div>
+                            <button
+                                type="button"
+                                onClick={() => setWantsDownload(true)}
+                                className="label flex h-14 w-full shrink-0 items-center justify-center gap-2 rounded-full bg-amber px-8 text-ink transition-colors hover:bg-bone sm:w-auto"
+                            >
+                                Download case study <IconDownload size={14} />
+                            </button>
+                        </>
                     )}
                 </div>
             </Wrap>
