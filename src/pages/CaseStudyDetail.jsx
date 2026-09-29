@@ -36,8 +36,13 @@ const CaseStudyDetail = () => {
     return (
         <PageShell
             eyebrow={<Link to="/case-studies" className="hover:text-amber">← All case studies</Link>}
-            title={<span className="inline-flex flex-wrap items-center justify-center gap-4"><BrandMark brand={c.brand} size="lg" /></span>}
-            sub={c.title}
+            title={
+                <span className="flex flex-col items-center gap-7">
+                    <BrandMark brand={c.brand} size="lg" />
+                    <span className="text-balance">{c.title}</span>
+                </span>
+            }
+            sub={c.sector ? `A ${c.sector} case study` : undefined}
         >
             {c.metric && (
                 <Wrap className="pb-4">
