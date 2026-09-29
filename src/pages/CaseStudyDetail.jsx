@@ -39,69 +39,67 @@ const CaseStudyDetail = () => {
             title={<span className="inline-flex flex-wrap items-center justify-center gap-4"><BrandMark brand={c.brand} size="lg" /></span>}
             sub={c.title}
         >
-            <Wrap className="pb-20">
-                {c.metric && (
+            {c.metric && (
+                <Wrap className="pb-4">
                     <div className="mb-14 flex flex-col items-center text-center">
                         <Metric value={c.metric} className="text-[clamp(5.5rem,14vw,11rem)]" />
                         <p className="label mt-4 text-[11px] text-amber">{c.unit}</p>
                     </div>
+                </Wrap>
+            )}
+
+            <Wrap className="pb-24">
+                <Kicker index="01" label="Distribution deployed" />
+                <ul className="mt-6 flex flex-wrap gap-2">
+                    {c.stack.map((t) => <li key={t} className="label rounded border border-bone/14 px-3 py-1.5 text-[10px] text-bone/70">{t}</li>)}
+                </ul>
+            </Wrap>
+
+            <Wrap className="pb-24">
+                <Kicker index="02" label="Execution" />
+                <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+                    {c.execution.map((e) => (
+                        <li key={e} className="flex items-start gap-3 text-[16px] text-bone/75"><IconCheck size={16} className="mt-1 shrink-0 text-amber" />{e}</li>
+                    ))}
+                </ul>
+
+                {c.metric && (
+                    <div className="mt-10 flex flex-wrap items-center gap-4 rounded-lg border border-bone/12 bg-[#0c0b09] p-6">
+                        <span className="label text-[10px] text-stone">Measured outcome</span>
+                        <span className="text-[16px] text-bone">{c.metric} {c.unit.toLowerCase()}</span>
+                    </div>
                 )}
 
-                <div className="grid gap-10 lg:grid-cols-12">
-                    <div className="lg:col-span-7">
-                        <Kicker index="01" label="Distribution deployed" />
-                        <ul className="mt-6 flex flex-wrap gap-2">
-                            {c.stack.map((t) => <li key={t} className="label rounded border border-bone/14 px-3 py-1.5 text-[10px] text-bone/70">{t}</li>)}
-                        </ul>
+                <div className="mt-10 flex flex-wrap items-center gap-4">
+                    <BookCall section={`case-detail-${c.brand.toLowerCase()}`} variant="bone" />
+                </div>
+            </Wrap>
 
-                        <div className="mt-14">
-                            <Kicker index="02" label="Execution" />
-                            <ul className="mt-6 space-y-3">
-                                {c.execution.map((e) => (
-                                    <li key={e} className="flex items-start gap-3 text-[16px] text-bone/75"><IconCheck size={16} className="mt-1 shrink-0 text-amber" />{e}</li>
-                                ))}
-                            </ul>
-                        </div>
+            <Wrap className="pb-24">
+                <Kicker index="03" label="Photos" />
+                <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+                    {executionPhotos.map((p) => (
+                        <figure key={p.src} className="photo-card relative aspect-[4/5] overflow-hidden rounded-lg border border-bone/12">
+                            <img src={p.src} alt={p.alt} loading="lazy" className="photo-grade h-full w-full object-cover" />
+                            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/85 via-transparent to-transparent" />
+                            <figcaption className="label absolute bottom-2.5 left-2.5 text-[9px] text-bone/85">{p.caption}</figcaption>
+                        </figure>
+                    ))}
+                </div>
+                <p className="mt-3 text-[11.5px] text-bone/40">Representative on-ground execution photography.</p>
 
-                        {c.metric && (
-                            <div className="mt-10 flex flex-wrap items-center gap-4 rounded-lg border border-bone/12 bg-[#0c0b09] p-6">
-                                <span className="label text-[10px] text-stone">Measured outcome</span>
-                                <span className="text-[16px] text-bone">{c.metric} {c.unit.toLowerCase()}</span>
-                            </div>
-                        )}
-
-                        <div className="mt-10 flex flex-wrap items-center gap-4">
-                            <BookCall section={`case-detail-${c.brand.toLowerCase()}`} variant="bone" />
-                        </div>
-                    </div>
-
-                    <div className="lg:col-span-5">
-                        <Kicker index="03" label="Photos" />
-                        <div className="mt-6 grid grid-cols-2 gap-3">
-                            {executionPhotos.map((p) => (
-                                <figure key={p.src} className="photo-card relative aspect-[4/5] overflow-hidden rounded-lg border border-bone/12">
-                                    <img src={p.src} alt={p.alt} loading="lazy" className="photo-grade h-full w-full object-cover" />
-                                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/85 via-transparent to-transparent" />
-                                    <figcaption className="label absolute bottom-2.5 left-2.5 text-[9px] text-bone/85">{p.caption}</figcaption>
-                                </figure>
-                            ))}
-                        </div>
-                        <p className="mt-3 text-[11.5px] text-bone/40">Representative on-ground execution photography.</p>
-
-                        <div className="mt-8">
-                            {wantsDownload ? (
-                                <DownloadForm brand={c.brand} />
-                            ) : (
-                                <button
-                                    type="button"
-                                    onClick={() => setWantsDownload(true)}
-                                    className="label flex h-12 w-full items-center justify-center gap-2 rounded-full border border-bone/25 text-bone transition-colors hover:border-amber hover:text-amber"
-                                >
-                                    Download case study <IconDownload size={14} />
-                                </button>
-                            )}
-                        </div>
-                    </div>
+                <div className="mt-8 max-w-md">
+                    {wantsDownload ? (
+                        <DownloadForm brand={c.brand} />
+                    ) : (
+                        <button
+                            type="button"
+                            onClick={() => setWantsDownload(true)}
+                            className="label flex h-12 w-full items-center justify-center gap-2 rounded-full border border-bone/25 text-bone transition-colors hover:border-amber hover:text-amber sm:w-auto sm:px-8"
+                        >
+                            Download case study <IconDownload size={14} />
+                        </button>
+                    )}
                 </div>
             </Wrap>
 

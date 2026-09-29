@@ -27,12 +27,17 @@ export const Metric = ({ value, className = 'text-[clamp(5rem,10vw,9rem)]' }) =>
     );
 };
 
+// The logo sits on the same sandstone "light surface" used for the footer and the
+// logo marquee elsewhere on the site — a textured paper tone, not a flat white
+// sticker — so it reads as part of the theme rather than a box dropped on top of it.
+// A plain dark chip isn't an option: several source logo files are opaque JPGs with
+// their own white canvas, which would show as a stray white rectangle on a dark chip.
 export const BrandMark = ({ brand, size = 'md' }) => {
     const logo = logoFor[brand];
     const h = size === 'lg' ? 'h-9 sm:h-10' : 'h-6';
     if (!logo) return <span className="display text-[1.5rem]">{brand}</span>;
     return (
-        <span className={`inline-flex ${size === 'lg' ? 'h-16 px-6' : 'h-11 px-4'} shrink-0 items-center rounded-lg bg-bone`}>
+        <span className={`surface-bone inline-flex ${size === 'lg' ? 'h-16 px-6' : 'h-11 px-4'} shrink-0 items-center rounded-lg border border-ink/10 shadow-[0_4px_14px_-4px_rgba(0,0,0,0.45)]`}>
             <img src={logo} alt={brand} className={`${h} w-auto max-w-[160px] object-contain`} />
         </span>
     );
