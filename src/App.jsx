@@ -7,6 +7,7 @@ import PariClientele from './pages/PariClientele';
 import PariDistribution from './pages/PariDistribution';
 import PariPartnerships from './pages/PariPartnerships';
 import PariCaseStudies from './pages/PariCaseStudies';
+import CaseStudyDetail from './pages/CaseStudyDetail';
 import PariAIApps from './pages/PariAIApps';
 import PariContact from './pages/PariContact';
 import SolutionPage from './pages/SolutionPage';
@@ -28,6 +29,7 @@ function App() {
         <Route path="/distribution" element={<PariDistribution />} />
         <Route path="/partnerships" element={<PariPartnerships />} />
         <Route path="/case-studies" element={<PariCaseStudies />} />
+        <Route path="/case-studies/:brand" element={<CaseStudyDetail />} />
         <Route path="/ai-apps" element={<PariAIApps />} />
         <Route path="/solutions/:id" element={<SolutionPage />} />
         <Route path="/infrastructure" element={<PariInfrastructure />} />

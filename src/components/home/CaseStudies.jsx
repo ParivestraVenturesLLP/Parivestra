@@ -28,7 +28,7 @@ const CaseStudies = () => (
                 {caseStudies.map((c, i) => (
                     <ScrollReveal key={c.brand} delay={(i % 2) * 90}>
                         <Link
-                            to={`/case-studies#${c.brand.toLowerCase()}`}
+                            to={`/case-studies/${c.brand.toLowerCase()}`}
                             className="group flex h-full min-h-[440px] flex-col justify-between rounded-lg border border-bone/12 bg-[#0c0b09] p-7 transition-colors duration-300 hover:border-amber/50 sm:p-9"
                         >
                             <div className="flex items-center justify-between">
