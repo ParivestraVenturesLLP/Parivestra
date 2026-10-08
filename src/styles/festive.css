@@ -1,0 +1,53 @@
+/* Motion scoped to /festive-reach only — distinct from the main site's fade-up language,
+   built around the "distribution" idea: things travel along lines, glows drift, nothing spins in 3D. */
+
+@keyframes festive-drift {
+    0%   { transform: translate(0, 0) scale(1); opacity: 0.55; }
+    50%  { transform: translate(26px, -18px) scale(1.1); opacity: 0.8; }
+    100% { transform: translate(-20px, 14px) scale(0.94); opacity: 0.5; }
+}
+.festive-glow-drift { animation: festive-drift 16s ease-in-out infinite alternate; }
+
+@keyframes festive-spin { to { transform: rotate(360deg); } }
+.festive-orbit { animation: festive-spin 26s linear infinite; }
+.festive-orbit-rev { animation: festive-spin 34s linear infinite reverse; }
+
+@keyframes festive-node-breathe {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(216, 138, 67, 0); }
+    50% { box-shadow: 0 0 0 7px rgba(216, 138, 67, 0.14); }
+}
+.festive-node-pulse { animation: festive-node-breathe 3.4s ease-in-out infinite; }
+
+@keyframes festive-grid-drift {
+    to { background-position: 72px 72px; }
+}
+.festive-grid { animation: festive-grid-drift 50s linear infinite; }
+
+@keyframes festive-modal-in {
+    from { opacity: 0; transform: translateY(16px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.festive-modal-in { animation: festive-modal-in 0.4s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+
+/* Hero headline accent — the one line on the page that should feel designed, not just
+   the site's default light display weight. Gradient fill + heavier weight, no italics
+   (the rest of the brand never uses them). */
+.festive-accent-text {
+    font-weight: 560;
+    background: linear-gradient(100deg, #D88A43 0%, #F2B179 45%, #EFE7DB 100%);
+    background-size: 160% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: festive-accent-sheen 6s ease-in-out infinite;
+}
+@keyframes festive-accent-sheen {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .festive-glow-drift, .festive-orbit, .festive-orbit-rev, .festive-node-pulse, .festive-grid, .festive-modal-in, .festive-accent-text {
+        animation: none;
+    }
+}

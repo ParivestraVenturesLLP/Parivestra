@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import BookCall from './ui/BookCall';
 
 // Persistent Book a Call on mobile (plan §10 / §12). Hidden where it would be redundant.
-const HIDDEN_ON = ['/book-a-call', '/contact', '/admin'];
+const HIDDEN_ON = ['/book-a-call', '/contact', '/admin', '/festive-reach'];
 
 const StickyMobileCTA = () => {
     const { pathname } = useLocation();

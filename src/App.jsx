@@ -12,6 +12,7 @@ import PariAIApps from './pages/PariAIApps';
 import PariContact from './pages/PariContact';
 import SolutionPage from './pages/SolutionPage';
 import PariInfrastructure from './pages/PariInfrastructure';
+import FestiveReach from './pages/FestiveReach';
 import AdminLogin from './pages/AdminLogin';
 import AdminLeads from './pages/AdminLeads';
 import AdminTools from './pages/AdminTools';
@@ -33,6 +34,7 @@ function App() {
         <Route path="/ai-apps" element={<PariAIApps />} />
         <Route path="/solutions/:id" element={<SolutionPage />} />
         <Route path="/infrastructure" element={<PariInfrastructure />} />
+        <Route path="/festive-reach" element={<FestiveReach />} />
         <Route path="/book-a-call" element={<PariContact />} />
         <Route path="/contact" element={<PariContact />} />
         <Route path="/admin/login" element={<AdminLogin />} />
