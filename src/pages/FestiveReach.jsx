@@ -238,9 +238,22 @@ const FestiveReach = () => {
             </ScrollReveal>
 
             {/* ── Scale strip ──────────────────────────────────── */}
-            <section className="border-y border-bone/10 bg-bone/[0.02] py-14">
-                <Wrap>
-                    <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-6">
+            {/* Horizontal swipe on mobile (brief §19) instead of a cramped 2-col grid —
+                each stat becomes a small card so it reads as a deliberate carousel, not a
+                wrapped list. Reverts to a plain grid from sm up where there's room. */}
+            <section className="border-y border-bone/10 bg-bone/[0.02] py-10 sm:py-14">
+                <div className="flex gap-3 overflow-x-auto px-5 pb-2 [-ms-overflow-style:none] [scrollbar-width:none] snap-x snap-mandatory sm:hidden [&::-webkit-scrollbar]:hidden">
+                    {stats.map((s) => (
+                        <div key={s.label} className="shrink-0 snap-start rounded-xl border border-bone/10 bg-bone/[0.03] px-5 py-4" style={{ width: '42%' }}>
+                            <dd className="display text-[clamp(1.6rem,7vw,2.2rem)] text-bone">
+                                <Counter value={s.value} suffix={s.suffix} />
+                            </dd>
+                            <dt className="label mt-2 text-[9px] text-bone/45">{s.label}</dt>
+                        </div>
+                    ))}
+                </div>
+                <Wrap className="hidden sm:block">
+                    <div className="grid grid-cols-3 gap-x-6 gap-y-10 lg:grid-cols-6">
                         {stats.map((s) => (
                             <ScrollReveal key={s.label}>
                                 <dd className="display text-[clamp(1.8rem,3.4vw,2.6rem)] text-bone">
@@ -285,7 +298,7 @@ const FestiveReach = () => {
                                 <ScrollReveal key={c.id} delay={(i % 2) * 100} className={c.id === 'offline' ? 'lg:col-span-2' : ''}>
                                     <div className={`group relative flex h-full flex-col rounded-2xl border border-bone/10 bg-bone/[0.03] p-7 sm:p-8 ${cardCls}`}>
                                         <div className="flex items-center justify-between">
-                                            <span className="flex h-11 w-11 items-center justify-center rounded-full border border-bone/12 text-amber"><Icon size={18} /></span>
+                                            <span className="flex h-11 w-11 items-center justify-center rounded-full border border-amber/25 bg-amber/10 text-amber"><Icon size={18} /></span>
                                             <span className="label text-[10px] text-bone/35">{c.index}</span>
                                         </div>
                                         <h3 className="display display-md mt-6">{c.title}</h3>
@@ -326,7 +339,7 @@ const FestiveReach = () => {
                         {objectives.map((o, i) => (
                             <ScrollReveal key={o.title} delay={i * 100}>
                                 <div className={`flex h-full flex-col rounded-2xl border border-bone/10 bg-bone/[0.03] p-8 ${cardCls}`}>
-                                    <span className="label text-[10px] text-amber">{o.index}</span>
+                                    <span className="label flex h-9 w-9 items-center justify-center rounded-full border border-amber/25 bg-amber/10 text-[11px] text-amber">{o.index}</span>
                                     <h3 className="display display-md mt-4">{o.title}</h3>
                                     <p className="mt-3 text-[14.5px] leading-relaxed text-bone/55">{o.description}</p>
                                     <div className="mt-6 flex flex-1 flex-col justify-end gap-2 border-t border-bone/10 pt-5">
