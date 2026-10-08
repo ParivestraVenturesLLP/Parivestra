@@ -7,7 +7,7 @@ export const CTA_LABEL = 'Book a Call';
 export const hero = {
     eyebrow: 'Outcome infrastructure for consumer brands',
     headline: "We're reimagining how brands reach, engage and convert consumers.",
-    sub: 'Parivestra connects millions of consumer touchpoints across digital, communities, creators and the physical world — and engineers them toward measurable business outcomes.',
+    sub: 'Parivestra connects millions of consumer touchpoints across digital, communities, creators and the physical world, and engineers them toward measurable business outcomes.',
     secondary: 'Explore Outcomes',
 };
 
