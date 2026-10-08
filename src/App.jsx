@@ -34,7 +34,7 @@ function App() {
         <Route path="/ai-apps" element={<PariAIApps />} />
         <Route path="/solutions/:id" element={<SolutionPage />} />
         <Route path="/infrastructure" element={<PariInfrastructure />} />
-        <Route path="/festive-reach" element={<FestiveReach />} />
+        <Route path="/our-services" element={<FestiveReach />} />
         <Route path="/book-a-call" element={<PariContact />} />
         <Route path="/contact" element={<PariContact />} />
         <Route path="/admin/login" element={<AdminLogin />} />

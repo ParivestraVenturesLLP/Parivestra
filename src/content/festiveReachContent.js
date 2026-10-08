@@ -1,14 +1,14 @@
-// Copy and data for /festive-reach — a dedicated paid-campaign landing page.
+// Copy and data for /our-services — a dedicated paid-campaign landing page.
 // Every stat, partner and case-study figure here is taken directly from the brief;
 // nothing on this page is invented beyond what was supplied.
 
 export const heroCopy = {
-    eyebrow: 'Festive campaign 2026',
-    headline: 'Make your festive campaign reach further.',
-    headlineLead: 'Make your festive campaign',
-    headlineAccent: 'reach further.',
+    eyebrow: 'Our services',
+    headline: 'Make every campaign drive more revenue.',
+    headlineLead: 'Make every campaign',
+    headlineAccent: 'drive more revenue.',
     tagline: 'One distribution ecosystem. Multiple ways to reach high-intent audiences at scale.',
-    sub: 'Parivestra brings together OEM, brand, college, creator, affiliate and offline distribution channels to help brands build sharper acquisition and reach strategies.',
+    sub: 'Parivestra brings together OEM, brand, college, creator, affiliate and offline distribution channels to help brands turn reach into measurable revenue.',
 };
 
 export const heroNodes = ['OEM', 'Brand inventory', 'Colleges', 'Creators', 'Affiliate', 'Programmatic', 'Offline'];

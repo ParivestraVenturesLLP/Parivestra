@@ -184,9 +184,9 @@ const EcosystemGraphic = ({ compact = false }) => {
 
 const FestiveReach = () => {
     usePageMeta({
-        title: 'Festive Reach 2026 | Parivestra — Multi-Channel Distribution',
-        description: 'Reach high-intent audiences at scale through OEM, brand, college, creator, affiliate and offline distribution — one ecosystem, engineered for your festive campaign.',
-        path: '/festive-reach',
+        title: 'Our Services | Parivestra — Multi-Channel Distribution',
+        description: 'Reach high-intent audiences at scale through OEM, brand, college, creator, affiliate and offline distribution — one ecosystem, engineered to grow your revenue.',
+        path: '/our-services',
     });
 
     const [bookOpen, setBookOpen] = useState(false);
@@ -214,7 +214,7 @@ const FestiveReach = () => {
                         <p className="mt-4 max-w-[54ch] text-[15px] leading-relaxed text-bone/50">{heroCopy.sub}</p>
                         <p className="label mt-8 flex items-center gap-2.5 text-[10px] text-amber">
                             <span className="festive-node-pulse h-1.5 w-1.5 rounded-full bg-amber" />
-                            Festive distribution capacity is limited — early bookings get priority channel allocation
+                            Distribution capacity is limited — early bookings get priority channel allocation
                         </p>
                         <button type="button" onClick={() => setContactOpen(true)} className="label mt-6 inline-flex items-center gap-2 text-[11px] text-bone/55 transition-colors hover:text-amber">
                             Have a question first? Contact us <IconArrowUpRight size={12} />
@@ -435,7 +435,7 @@ const FestiveReach = () => {
                 <Glow className="left-1/2 top-1/2 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 opacity-50" />
                 <Wrap className="text-center">
                     <ScrollReveal>
-                        <h2 className="display display-xl text-balance">Ready to scale your festive campaign?</h2>
+                        <h2 className="display display-xl text-balance">Ready to scale your revenue?</h2>
                         <p className="mx-auto mt-6 max-w-[52ch] text-[17px] leading-relaxed text-bone/65">
                             Tell us your campaign objective, audience and requirements. Our team can help you build the right distribution mix through Parivestra.
                         </p>
