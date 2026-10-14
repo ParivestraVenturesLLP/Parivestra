@@ -65,6 +65,13 @@ export const useContactForm = (initial = {}) => {
                     });
                 }
                 if (window.gtag) {
+                    // Enhanced conversions: Google hashes this client-side before sending —
+                    // we never send a raw hash ourselves. Harmless to set even before the
+                    // dashboard toggle is turned on; it's simply unused until then.
+                    window.gtag('set', 'user_data', {
+                        email: formData.emailId,
+                        phone_number: formData.phoneNumber,
+                    });
                     window.gtag('event', 'conversion', {
                         send_to: 'AW-18512237161/KeuJCIPwn5wdEOmkqftE',
                         value: 1.0,
