@@ -2,18 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { sendContactMessage } from '../../services/api';
 import { IconArrow, IconCheck, IconClose } from '../ui/icons';
 import { objectiveOptions } from '../../content/festiveReachContent';
+import { fireGoogleAdsConversion, GOOGLE_ADS_CONVERSIONS } from '../../services/googleAds';
 import '../../styles/festive.css';
 
 const fieldCls = 'h-12 w-full rounded-lg border border-bone/12 bg-bone/[0.03] px-4 text-[14px] text-bone placeholder:text-bone/35 outline-none transition-colors focus:border-amber';
 const labelCls = 'label mb-2 block text-[10px] text-bone/45';
-
-// Google hashes email/phone client-side before sending — we never send a raw hash
-// ourselves. Harmless to call even before the enhanced-conversions dashboard toggle is on.
-const fireBookingConversion = (email, phone) => {
-    if (!window.gtag) return;
-    window.gtag('set', 'user_data', { email, phone_number: phone });
-    window.gtag('event', 'conversion', { send_to: 'AW-18512237161/KeuJCIPwn5wdEOmkqftE', value: 1.0, currency: 'INR' });
-};
 
 const Shell = ({ open, onClose, children }) => {
     useEffect(() => {
@@ -96,7 +89,9 @@ export const HeroBookForm = () => {
             });
             if (res.success) {
                 if (window.fbq) window.fbq('track', 'Lead', { content_name: 'Our Services — Hero form' });
-                fireBookingConversion(data.emailId, data.phoneNumber);
+                const userData = { email: data.emailId, phone: data.phoneNumber };
+                fireGoogleAdsConversion(GOOGLE_ADS_CONVERSIONS.bookAppointment, userData);
+                fireGoogleAdsConversion(GOOGLE_ADS_CONVERSIONS.submitLeadForm, userData);
                 setStatus('success');
             } else {
                 setStatus('error');
@@ -160,7 +155,9 @@ export const BookNowModal = ({ open, onClose }) => {
             });
             if (res.success) {
                 if (window.fbq) window.fbq('track', 'Lead', { content_name: 'Our Services — Book Now' });
-                fireBookingConversion(data.emailId, data.phoneNumber);
+                const userData = { email: data.emailId, phone: data.phoneNumber };
+                fireGoogleAdsConversion(GOOGLE_ADS_CONVERSIONS.bookAppointment, userData);
+                fireGoogleAdsConversion(GOOGLE_ADS_CONVERSIONS.submitLeadForm, userData);
                 setStatus('success');
             } else {
                 setStatus('error');
@@ -224,6 +221,7 @@ export const ContactModal = ({ open, onClose }) => {
                 source: 'our_services_contact',
             });
             if (res.success) {
+                fireGoogleAdsConversion(GOOGLE_ADS_CONVERSIONS.submitLeadForm, { email: data.emailId, phone: data.phoneNumber });
                 setStatus('success');
             } else {
                 setStatus('error');

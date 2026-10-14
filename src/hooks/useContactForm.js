@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { sendContactMessage } from '../services/api';
+import { fireGoogleAdsConversion, GOOGLE_ADS_CONVERSIONS } from '../services/googleAds';
 
 const EMPTY = {
     name: '',
@@ -64,20 +65,9 @@ export const useContactForm = (initial = {}) => {
                         currency: 'INR',
                     });
                 }
-                if (window.gtag) {
-                    // Enhanced conversions: Google hashes this client-side before sending —
-                    // we never send a raw hash ourselves. Harmless to set even before the
-                    // dashboard toggle is turned on; it's simply unused until then.
-                    window.gtag('set', 'user_data', {
-                        email: formData.emailId,
-                        phone_number: formData.phoneNumber,
-                    });
-                    window.gtag('event', 'conversion', {
-                        send_to: 'AW-18512237161/KeuJCIPwn5wdEOmkqftE',
-                        value: 1.0,
-                        currency: 'INR',
-                    });
-                }
+                const userData = { email: formData.emailId, phone: formData.phoneNumber };
+                fireGoogleAdsConversion(GOOGLE_ADS_CONVERSIONS.bookAppointment, userData);
+                fireGoogleAdsConversion(GOOGLE_ADS_CONVERSIONS.submitLeadForm, userData);
                 setStatus('success');
                 setFormData({ ...EMPTY });
             } else {

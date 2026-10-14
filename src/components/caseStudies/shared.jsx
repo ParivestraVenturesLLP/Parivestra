@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { IconCheck, IconArrowUpRight, IconDownload } from '../ui/icons';
 import { sendContactMessage } from '../../services/api';
+import { fireGoogleAdsConversion, GOOGLE_ADS_CONVERSIONS } from '../../services/googleAds';
 
 import swiggyLogo from '../../assets/swiggy.png';
 import uberLogo from '../../assets/Uber.svg';
@@ -64,6 +65,7 @@ export const DownloadForm = ({ brand }) => {
             });
             if (res.success) {
                 if (window.fbq) window.fbq('track', 'Lead', { content_name: `Case Study Download — ${brand}`, value: 0, currency: 'INR' });
+                fireGoogleAdsConversion(GOOGLE_ADS_CONVERSIONS.submitLeadForm, { email: data.emailId, phone: data.phoneNumber });
                 setStatus('success');
             } else {
                 setStatus('error');
