@@ -88,6 +88,7 @@ export const HeroBookForm = () => {
             });
             if (res.success) {
                 if (window.fbq) window.fbq('track', 'Lead', { content_name: 'Our Services — Hero form' });
+                if (window.gtag) window.gtag('event', 'conversion', { send_to: 'AW-18512237161/KeuJCIPwn5wdEOmkqftE', value: 1.0, currency: 'INR' });
                 setStatus('success');
             } else {
                 setStatus('error');
@@ -151,6 +152,7 @@ export const BookNowModal = ({ open, onClose }) => {
             });
             if (res.success) {
                 if (window.fbq) window.fbq('track', 'Lead', { content_name: 'Our Services — Book Now' });
+                if (window.gtag) window.gtag('event', 'conversion', { send_to: 'AW-18512237161/KeuJCIPwn5wdEOmkqftE', value: 1.0, currency: 'INR' });
                 setStatus('success');
             } else {
                 setStatus('error');

@@ -64,6 +64,13 @@ export const useContactForm = (initial = {}) => {
                         currency: 'INR',
                     });
                 }
+                if (window.gtag) {
+                    window.gtag('event', 'conversion', {
+                        send_to: 'AW-18512237161/KeuJCIPwn5wdEOmkqftE',
+                        value: 1.0,
+                        currency: 'INR',
+                    });
+                }
                 setStatus('success');
                 setFormData({ ...EMPTY });
             } else {
