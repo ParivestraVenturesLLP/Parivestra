@@ -4,10 +4,21 @@ import { IconArrow, IconCheck, IconClose } from '../ui/icons';
 import { objectiveOptions } from '../../content/festiveReachContent';
 import { fireGoogleAdsConversion, GOOGLE_ADS_CONVERSIONS } from '../../services/googleAds';
 import { isWorkEmail, WORK_EMAIL_ERROR } from '../../utils/workEmail';
+import { isValidEmailFormat, isValidPhone } from '../../utils/validation';
 import '../../styles/festive.css';
 
 const fieldCls = 'h-12 w-full rounded-lg border border-bone/12 bg-bone/[0.03] px-4 text-[14px] text-bone placeholder:text-bone/35 outline-none transition-colors focus:border-amber';
 const labelCls = 'label mb-2 block text-[10px] text-bone/45';
+
+// Shared gate for every lead form on this page: format first (cheap, no network), then
+// the work-email domain check. Returns an error string, or null when the contact fields
+// are clean enough to submit.
+const validateContactFields = (emailId, phoneNumber) => {
+    if (!isValidEmailFormat(emailId)) return 'Please enter a valid email address.';
+    if (!isValidPhone(phoneNumber)) return 'Please enter a valid 10-digit phone number.';
+    if (!isWorkEmail(emailId)) return WORK_EMAIL_ERROR;
+    return null;
+};
 
 const Shell = ({ open, onClose, children }) => {
     useEffect(() => {
@@ -70,16 +81,17 @@ const SubmitBtn = ({ submitting, label }) => (
 // takes zero extra clicks. The modal below still exists for the fuller campaign-detail
 // capture triggered from deeper in the page.
 export const HeroBookForm = () => {
-    const [data, setData] = useState({ name: '', brandName: '', emailId: '', phoneNumber: '' });
+    const [data, setData] = useState({ name: '', brandName: '', emailId: '', phoneNumber: '', objective: '', requirement: '' });
     const [status, setStatus] = useState('idle');
     const [error, setError] = useState('');
     const set = (k) => (e) => setData((d) => ({ ...d, [k]: e.target.value }));
 
     const submit = async (e) => {
         e.preventDefault();
-        if (!isWorkEmail(data.emailId)) {
+        const fieldError = validateContactFields(data.emailId, data.phoneNumber);
+        if (fieldError) {
             setStatus('error');
-            setError(WORK_EMAIL_ERROR);
+            setError(fieldError);
             return;
         }
         setStatus('submitting');
@@ -90,7 +102,7 @@ export const HeroBookForm = () => {
                 brandName: data.brandName,
                 emailId: data.emailId,
                 phoneNumber: data.phoneNumber,
-                serviceRequired: 'Our Services booking — hero form',
+                serviceRequired: `Service: ${data.objective} — ${data.requirement}`,
                 source: 'our_services_hero_form',
             });
             if (res.success) {
@@ -122,6 +134,15 @@ export const HeroBookForm = () => {
                         <input required placeholder="Company" value={data.brandName} onChange={set('brandName')} className={fieldCls} />
                         <input required type="email" placeholder="Work email" value={data.emailId} onChange={set('emailId')} className={fieldCls} />
                         <input required type="tel" placeholder="Phone" value={data.phoneNumber} onChange={set('phoneNumber')} className={fieldCls} />
+                        <select required value={data.objective} onChange={set('objective')} className={`${fieldCls} appearance-none sm:col-span-2`}>
+                            <option value="" className="bg-ink-2">Service required</option>
+                            {objectiveOptions.map((o) => <option key={o} value={o} className="bg-ink-2">{o}</option>)}
+                        </select>
+                        <textarea
+                            required rows={2} placeholder="What do you need help with?"
+                            value={data.requirement} onChange={set('requirement')}
+                            className={`${fieldCls} h-auto resize-none py-3 sm:col-span-2`}
+                        />
                     </div>
                     {status === 'error' && <p role="alert" className="mt-3 text-[13px] text-red-300">{error}</p>}
                     <button
@@ -141,16 +162,17 @@ export const HeroBookForm = () => {
 // Primary conversion form — fields per the campaign brief, folded into `serviceRequired`
 // since the lead backend only persists name/brandName/phoneNumber/serviceRequired/emailId.
 export const BookNowModal = ({ open, onClose }) => {
-    const [data, setData] = useState({ name: '', brandName: '', emailId: '', phoneNumber: '', objective: '', audience: '', budget: '', timeline: '' });
+    const [data, setData] = useState({ name: '', brandName: '', emailId: '', phoneNumber: '', objective: '', requirement: '', audience: '', budget: '', timeline: '' });
     const [status, setStatus] = useState('idle');
     const [error, setError] = useState('');
     const set = (k) => (e) => setData((d) => ({ ...d, [k]: e.target.value }));
 
     const submit = async (e) => {
         e.preventDefault();
-        if (!isWorkEmail(data.emailId)) {
+        const fieldError = validateContactFields(data.emailId, data.phoneNumber);
+        if (fieldError) {
             setStatus('error');
-            setError(WORK_EMAIL_ERROR);
+            setError(fieldError);
             return;
         }
         setStatus('submitting');
@@ -161,7 +183,7 @@ export const BookNowModal = ({ open, onClose }) => {
                 brandName: data.brandName,
                 emailId: data.emailId,
                 phoneNumber: data.phoneNumber,
-                serviceRequired: `Our Services booking — Objective: ${data.objective || 'n/a'}; Audience: ${data.audience || 'n/a'}; Budget: ${data.budget || 'n/a'}; Timeline: ${data.timeline || 'n/a'}`,
+                serviceRequired: `Service: ${data.objective} — ${data.requirement}; Audience: ${data.audience || 'n/a'}; Budget: ${data.budget || 'n/a'}; Timeline: ${data.timeline || 'n/a'}`,
                 source: 'our_services_book_now',
             });
             if (res.success) {
@@ -194,15 +216,23 @@ export const BookNowModal = ({ open, onClose }) => {
                         <Field label="Work email" required type="email" placeholder="you@company.com" value={data.emailId} onChange={set('emailId')} />
                         <Field label="Phone number" required type="tel" placeholder="+91 00000 00000" value={data.phoneNumber} onChange={set('phoneNumber')} />
                         <label className="block">
-                            <span className={labelCls}>Campaign objective</span>
-                            <select value={data.objective} onChange={set('objective')} className={`${fieldCls} appearance-none`}>
-                                <option value="" className="bg-ink-2">Select objective</option>
+                            <span className={labelCls}>Service required</span>
+                            <select required value={data.objective} onChange={set('objective')} className={`${fieldCls} appearance-none`}>
+                                <option value="" className="bg-ink-2">Select service</option>
                                 {objectiveOptions.map((o) => <option key={o} value={o} className="bg-ink-2">{o}</option>)}
                             </select>
                         </label>
                         <Field label="Target audience" placeholder="e.g. Tier-1 college students" value={data.audience} onChange={set('audience')} />
                         <Field label="Estimated budget" placeholder="e.g. ₹10L" value={data.budget} onChange={set('budget')} />
                         <Field label="Campaign timeline" placeholder="e.g. Diwali week" value={data.timeline} onChange={set('timeline')} />
+                        <label className="block sm:col-span-2">
+                            <span className={labelCls}>Business requirement</span>
+                            <textarea
+                                required rows={3} placeholder="What are you looking to achieve?"
+                                value={data.requirement} onChange={set('requirement')}
+                                className={`${fieldCls} h-auto resize-none py-3`}
+                            />
+                        </label>
                     </div>
                     {status === 'error' && <p role="alert" className="mt-5 text-[13px] text-red-300">{error}</p>}
                     <SubmitBtn submitting={status === 'submitting'} label="Book now" />
@@ -213,16 +243,17 @@ export const BookNowModal = ({ open, onClose }) => {
 };
 
 export const ContactModal = ({ open, onClose }) => {
-    const [data, setData] = useState({ name: '', brandName: '', emailId: '', phoneNumber: '', message: '' });
+    const [data, setData] = useState({ name: '', brandName: '', emailId: '', phoneNumber: '', objective: '', message: '' });
     const [status, setStatus] = useState('idle');
     const [error, setError] = useState('');
     const set = (k) => (e) => setData((d) => ({ ...d, [k]: e.target.value }));
 
     const submit = async (e) => {
         e.preventDefault();
-        if (!isWorkEmail(data.emailId)) {
+        const fieldError = validateContactFields(data.emailId, data.phoneNumber);
+        if (fieldError) {
             setStatus('error');
-            setError(WORK_EMAIL_ERROR);
+            setError(fieldError);
             return;
         }
         setStatus('submitting');
@@ -230,10 +261,10 @@ export const ContactModal = ({ open, onClose }) => {
         try {
             const res = await sendContactMessage({
                 name: data.name,
-                brandName: data.brandName || data.name,
+                brandName: data.brandName,
                 emailId: data.emailId,
                 phoneNumber: data.phoneNumber,
-                serviceRequired: `Our Services contact — ${data.message || 'No message provided.'}`,
+                serviceRequired: `Service: ${data.objective} — ${data.message}`,
                 source: 'our_services_contact',
             });
             if (res.success) {
@@ -259,12 +290,19 @@ export const ContactModal = ({ open, onClose }) => {
                     <p className="mt-3 max-w-[42ch] text-[14.5px] leading-relaxed text-bone/55">Have a question before booking? Send us a note.</p>
                     <div className="mt-7 grid gap-4 sm:grid-cols-2">
                         <Field label="Name" required placeholder="Your name" value={data.name} onChange={set('name')} />
-                        <Field label="Company" placeholder="Company" value={data.brandName} onChange={set('brandName')} />
+                        <Field label="Company" required placeholder="Company" value={data.brandName} onChange={set('brandName')} />
                         <Field label="Work email" required type="email" placeholder="you@company.com" value={data.emailId} onChange={set('emailId')} />
                         <Field label="Phone" required type="tel" placeholder="+91 00000 00000" value={data.phoneNumber} onChange={set('phoneNumber')} />
+                        <label className="block sm:col-span-2">
+                            <span className={labelCls}>Service required</span>
+                            <select required value={data.objective} onChange={set('objective')} className={`${fieldCls} appearance-none`}>
+                                <option value="" className="bg-ink-2">Select service</option>
+                                {objectiveOptions.map((o) => <option key={o} value={o} className="bg-ink-2">{o}</option>)}
+                            </select>
+                        </label>
                     </div>
                     <label className="mt-4 block">
-                        <span className={labelCls}>Message</span>
+                        <span className={labelCls}>Business requirement</span>
                         <textarea required rows={4} placeholder="What are you looking to do?" value={data.message} onChange={set('message')} className={`${fieldCls} h-auto resize-none py-3`} />
                     </label>
                     {status === 'error' && <p role="alert" className="mt-5 text-[13px] text-red-300">{error}</p>}
