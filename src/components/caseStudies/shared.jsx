@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { IconCheck, IconArrowUpRight, IconDownload } from '../ui/icons';
 import { sendContactMessage } from '../../services/api';
 import { fireGoogleAdsConversion, GOOGLE_ADS_CONVERSIONS } from '../../services/googleAds';
+import { isWorkEmail, WORK_EMAIL_ERROR } from '../../utils/workEmail';
+import { isValidEmailFormat, isValidPhone } from '../../utils/validation';
 
 import swiggyLogo from '../../assets/swiggy.png';
 import uberLogo from '../../assets/Uber.svg';
@@ -55,6 +57,21 @@ export const DownloadForm = ({ brand }) => {
 
     const submit = async (e) => {
         e.preventDefault();
+        if (!isValidEmailFormat(data.emailId)) {
+            setStatus('error');
+            setError('Please enter a valid email address.');
+            return;
+        }
+        if (!isValidPhone(data.phoneNumber)) {
+            setStatus('error');
+            setError('Please enter a valid 10-digit phone number.');
+            return;
+        }
+        if (!isWorkEmail(data.emailId)) {
+            setStatus('error');
+            setError(WORK_EMAIL_ERROR);
+            return;
+        }
         setStatus('submitting');
         setError('');
         try {

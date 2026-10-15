@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { sendContactMessage } from '../services/api';
 import { fireGoogleAdsConversion, GOOGLE_ADS_CONVERSIONS } from '../services/googleAds';
+import { isWorkEmail, WORK_EMAIL_ERROR } from '../utils/workEmail';
+import { isValidEmailFormat, isValidPhone } from '../utils/validation';
 
 const EMPTY = {
     name: '',
@@ -35,6 +37,21 @@ export const useContactForm = (initial = {}) => {
         if (!formData.objective) {
             setStatus('error');
             setErrorMessage('Please choose the outcome you are trying to achieve.');
+            return;
+        }
+        if (!isValidEmailFormat(formData.emailId)) {
+            setStatus('error');
+            setErrorMessage('Please enter a valid email address.');
+            return;
+        }
+        if (!isValidPhone(formData.phoneNumber)) {
+            setStatus('error');
+            setErrorMessage('Please enter a valid 10-digit phone number.');
+            return;
+        }
+        if (!isWorkEmail(formData.emailId)) {
+            setStatus('error');
+            setErrorMessage(WORK_EMAIL_ERROR);
             return;
         }
         setStatus('submitting');
