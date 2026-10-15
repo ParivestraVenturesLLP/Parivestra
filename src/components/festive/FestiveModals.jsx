@@ -3,6 +3,7 @@ import { sendContactMessage } from '../../services/api';
 import { IconArrow, IconCheck, IconClose } from '../ui/icons';
 import { objectiveOptions } from '../../content/festiveReachContent';
 import { fireGoogleAdsConversion, GOOGLE_ADS_CONVERSIONS } from '../../services/googleAds';
+import { isWorkEmail, WORK_EMAIL_ERROR } from '../../utils/workEmail';
 import '../../styles/festive.css';
 
 const fieldCls = 'h-12 w-full rounded-lg border border-bone/12 bg-bone/[0.03] px-4 text-[14px] text-bone placeholder:text-bone/35 outline-none transition-colors focus:border-amber';
@@ -76,6 +77,11 @@ export const HeroBookForm = () => {
 
     const submit = async (e) => {
         e.preventDefault();
+        if (!isWorkEmail(data.emailId)) {
+            setStatus('error');
+            setError(WORK_EMAIL_ERROR);
+            return;
+        }
         setStatus('submitting');
         setError('');
         try {
@@ -142,6 +148,11 @@ export const BookNowModal = ({ open, onClose }) => {
 
     const submit = async (e) => {
         e.preventDefault();
+        if (!isWorkEmail(data.emailId)) {
+            setStatus('error');
+            setError(WORK_EMAIL_ERROR);
+            return;
+        }
         setStatus('submitting');
         setError('');
         try {
@@ -209,6 +220,11 @@ export const ContactModal = ({ open, onClose }) => {
 
     const submit = async (e) => {
         e.preventDefault();
+        if (!isWorkEmail(data.emailId)) {
+            setStatus('error');
+            setError(WORK_EMAIL_ERROR);
+            return;
+        }
         setStatus('submitting');
         setError('');
         try {
@@ -244,7 +260,7 @@ export const ContactModal = ({ open, onClose }) => {
                     <div className="mt-7 grid gap-4 sm:grid-cols-2">
                         <Field label="Name" required placeholder="Your name" value={data.name} onChange={set('name')} />
                         <Field label="Company" placeholder="Company" value={data.brandName} onChange={set('brandName')} />
-                        <Field label="Email" required type="email" placeholder="you@company.com" value={data.emailId} onChange={set('emailId')} />
+                        <Field label="Work email" required type="email" placeholder="you@company.com" value={data.emailId} onChange={set('emailId')} />
                         <Field label="Phone" required type="tel" placeholder="+91 00000 00000" value={data.phoneNumber} onChange={set('phoneNumber')} />
                     </div>
                     <label className="mt-4 block">
